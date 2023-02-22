@@ -1,16 +1,21 @@
 // Get references to HTML elements
+const getStartedButton = document.getElementById('get-started-btn');
 const navLinks = document.querySelectorAll('nav ul li a');
-const bannerBtn = document.querySelector('#banner button');
 const recipeBtns = document.querySelectorAll('.recipe button');
 const mealPlannerForm = document.querySelector('#meal-planner form');
 
+console.log(getStartedButton);
+
 // Add event listeners
+getStartedButton.addEventListener('click', getStarted);
 navLinks.forEach(link => link.addEventListener('click', smoothScroll));
-bannerBtn.addEventListener('click', smoothScroll);
-recipeBtns.forEach(btn => btn.addEventListener('click', viewRecipe));
 mealPlannerForm.addEventListener('submit', planMeals);
 
 // Define functions
+function getStarted(event) {
+    console.log('You pressed the Get Started button!');
+}
+
 function smoothScroll(event) {
   event.preventDefault();
   const target = event.currentTarget.getAttribute('href');
