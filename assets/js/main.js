@@ -6,6 +6,27 @@
 
 (function($) {
 
+	// var login_button = document.getElementById('login-button');
+
+	// login_button.addEventListener("click", login_click);
+
+	// console.log("HI");
+	// // console.log(login_button);
+
+	// // Login
+	// function login_click (event) {
+	// 	console.log("HI!");
+	// 	event.preventDefault();
+	// // 	var $username = $('username-input');
+	// // 	var $password = $('password-input');
+
+	// // 	var $username = document.getElementById('username-input').value;
+	// // 	var $password = document.getElementById('password-input').value;
+
+	// // 	console.log($username);
+	// // 	console.log($password)
+	// };
+
 	var	$window = $(window),
 		$head = $('head'),
 		$body = $('body');
