@@ -8,6 +8,8 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+
+
 <html>
 	<head>
 		<title>MiMeals</title>
@@ -24,9 +26,10 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
+
 							<!-- Header -->
 								<header id="header">
-									<a href="index.html" class="logo"><strong>MiMeals</strong></a>
+									<a href="index.php" class="logo"><strong>MiMeals</strong></a>
 									<ul class="icons">
 										<!-- social media icons -->
 										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -44,7 +47,7 @@
 										</header>
 										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life. With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
 										<ul class="actions">
-											<li><a href="SignUp.html" class="button big">Get Started</a></li>
+											<li><a href="signup.php" class="button big">Get Started</a></li>
 										</ul>
 									</div>
 									<span class="image object">
@@ -85,7 +88,7 @@
 								</section>
 
 						</div>
-					</div> 
+					</div>
 
 				<!-- Sidebar -->
 					<div id="sidebar">
@@ -104,9 +107,9 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="index.html">Homepage</a></li>
-										<li><a href="Login.html">Login</a></li>
-										<li><a href="SignUp.html">Sign Up</a></li>
+										<li><a href="index.php">Homepage</a></li>
+										<li><a href="login.php">Login</a></li>
+										<li><a href="signup.php">Sign Up</a></li>
 										<!-- <li>
 											<span class="opener">Another Submenu</span>
 											<ul>

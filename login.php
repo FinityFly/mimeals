@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>MiMeals | Sign Up</title>
+		<title>MiMeals | Login</title>
 		<link rel="icon" type="image/x-icon" href="/images/mimealsfavicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -21,7 +21,7 @@
 					<div class="inner">
 						<!-- Header -->
 						<header id="header">
-							<a href="index.html" class="logo"><strong>MiMeals</strong></a>
+							<a href="index.php" class="logo"><strong>MiMeals</strong></a>
 							<ul class="icons">
 								<!-- social media icons -->
 								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -29,27 +29,22 @@
 								<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 							</ul>
 						</header>
-						
+
 						<div class="login-form">
 							<form>
-								<h1>Sign Up</h1>
+								<h1>Log In</h1>
 								<div class="input-field">
-									<input type="text" placeholder="name">
+									<input type="text" placeholder="username/email" required="required" id="username-input">
 								</div>
 								<div class="input-field">
-									<input type="text" placeholder="email">
+									<input type="password" placeholder="password" required="required" id="password-input">
 								</div>
-								<div class="input-field">
-									<input type="password" placeholder="password">
-								</div>
-								<div class="input-field">
-									<input type="password" placeholder="confirm password">
-								</div>
+								<!-- https://stackoverflow.com/questions/49492567/console-log-data-from-html-form-input -->
 								<div class="login-button">
-									<button>sign up</button>
+									<button id="login-button" href="#">login</button>
 								</div>
 								<p class="message">
-									already registered? <a href="Login.html">login to your account</a>
+									Not registered? <a href="signup.php">Create an account</a>
 								</p>
 							</form>
 						</div>
@@ -74,9 +69,9 @@
 									<h2>Menu</h2>
 								</header>
 								<ul>
-									<li><a href="index.html">Homepage</a></li>
-									<li><a href="Login.html">Login</a></li>
-									<li><a href="SignUp.html">Sign Up</a></li>
+									<li><a href="index.php">Homepage</a></li>
+									<li><a href="login.php">Login</a></li>
+									<li><a href="signup.php">Sign Up</a></li>
 									<!-- <li>
 										<span class="opener">Another Submenu</span>
 										<ul>
@@ -118,6 +113,20 @@
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
+			<script>
+				
+				$(document).ready(function(){
+					$("#login-button").click(function(event) {
+						event.preventDefault();
+						event.stopPropagation();
+						var username = $('#username-input').val();
+						var password = $('#password-input').val();
+						console.log(username);
+						console.log(password);
+						
+					});
+				});
+			</script>
 			<script src="assets/js/main.js"></script>
 
 	</body>
