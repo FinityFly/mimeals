@@ -4,6 +4,7 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+
 <html>
 	<head>
 		<title>MiMeals | Login</title>
@@ -21,7 +22,7 @@
 					<div class="inner">
 						<!-- Header -->
 						<header id="header">
-							<a href="index.php" class="logo"><strong>MiMeals</strong></a>
+							<a href="home.php" class="logo"><strong>MiMeals</strong></a>
 							<ul class="icons">
 								<!-- social media icons -->
 								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -31,20 +32,30 @@
 						</header>
 
 						<div class="login-form">
-							<form>
+							<?php
+							if(isset($_POST['login-button'])) {
+								echo "HELLO2!";
+								$username = mysql_real_escape_string($_POST['username-input']);
+								$password = mysql_real_escape_string($_POST['password-input']);
+							
+								echo "Username entered is: ". $username . "<br />";
+								echo "Password entered is: ". $password;
+							}
+							?>
+							<form method="POST">
+								<p>WELCOME BACK!</p>
 								<h1>Log In</h1>
 								<div class="input-field">
-									<input type="text" placeholder="username/email" required="required" id="username-input">
+									<input type="text" placeholder="username/email" required="required" name="username-input" id="username-input">
 								</div>
 								<div class="input-field">
-									<input type="password" placeholder="password" required="required" id="password-input">
+									<input type="password" placeholder="password" required="required" name="password-input" id="password-input">
 								</div>
-								<!-- https://stackoverflow.com/questions/49492567/console-log-data-from-html-form-input -->
 								<div class="login-button">
-									<button id="login-button" href="#">login</button>
+									<button type="submit" id="login-button" href="#">login</button>
 								</div>
 								<p class="message">
-									Not registered? <a href="signup.php">Create an account</a>
+									Not registered? <a href="signup.php">create an account</a>
 								</p>
 							</form>
 						</div>
@@ -69,7 +80,7 @@
 									<h2>Menu</h2>
 								</header>
 								<ul>
-									<li><a href="index.php">Homepage</a></li>
+									<li><a href="home.php">Homepage</a></li>
 									<li><a href="login.php">Login</a></li>
 									<li><a href="signup.php">Sign Up</a></li>
 									<!-- <li>
@@ -114,7 +125,6 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script>
-				
 				$(document).ready(function(){
 					$("#login-button").click(function(event) {
 						event.preventDefault();

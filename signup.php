@@ -21,7 +21,7 @@
 					<div class="inner">
 						<!-- Header -->
 						<header id="header">
-							<a href="index.php" class="logo"><strong>MiMeals</strong></a>
+							<a href="home.php" class="logo"><strong>MiMeals</strong></a>
 							<ul class="icons">
 								<!-- social media icons -->
 								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -32,6 +32,7 @@
 						
 						<div class="login-form">
 							<form>
+								<p>WELCOME!</p>
 								<h1>Sign Up</h1>
 								<div class="input-field">
 									<input type="text" placeholder="name">
@@ -46,10 +47,10 @@
 									<input type="password" placeholder="confirm password">
 								</div>
 								<div class="login-button">
-									<button>sign up</button>
+									<button type="submit" id="login-button" href="#">sign up</button>
 								</div>
 								<p class="message">
-									already registered? <a href="login.php">login to your account</a>
+									Already registered? <a href="login.php">login to your account</a>
 								</p>
 							</form>
 						</div>
@@ -74,7 +75,7 @@
 									<h2>Menu</h2>
 								</header>
 								<ul>
-									<li><a href="index.php">Homepage</a></li>
+									<li><a href="home.php">Homepage</a></li>
 									<li><a href="login.php">Login</a></li>
 									<li><a href="signup.php">Sign Up</a></li>
 									<!-- <li>
