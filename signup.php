@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<title>MiMeals | Sign Up</title>
-		<link rel="icon" type="image/x-icon" href="/images/mimealsfavicon.ico">
+		<link rel="icon" type="image/x-icon" href="./images/mimealsfavicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -21,7 +21,7 @@
 					<div class="inner">
 						<!-- Header -->
 						<header id="header">
-							<a href="home.php" class="logo"><strong>MiMeals</strong></a>
+							<a href="index.php" class="logo"><strong>MiMeals</strong></a>
 							<ul class="icons">
 								<!-- social media icons -->
 								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -31,24 +31,29 @@
 						</header>
 						
 						<div class="login-form">
-							<form>
+							<form action="includes/signup-submit.php" method="POST">
 								<p>WELCOME!</p>
 								<h1>Sign Up</h1>
 								<div class="input-field">
-									<input type="text" placeholder="name">
+									<input type="text" placeholder="name" name="name-input" required="required">
 								</div>
 								<div class="input-field">
-									<input type="text" placeholder="email">
+									<input type="text" placeholder="email" name="email-input" required="required">
 								</div>
 								<div class="input-field">
-									<input type="password" placeholder="password">
+									<input type="password" placeholder="password" name="password-input" required="required">
 								</div>
 								<div class="input-field">
-									<input type="password" placeholder="confirm password">
+									<input type="password" placeholder="confirm password" name="cpassword-input" required="required">
 								</div>
 								<div class="login-button">
-									<button type="submit" id="login-button" href="#">sign up</button>
+									<button type="submit" id="signup-button" href="#">sign up</button>
 								</div>
+								<?php if (isset($_GET['error'])) { ?>
+									<div class="box">
+										<p> <?php echo $_GET['error']; ?> </p>
+									</div>
+								<?php } ?>
 								<p class="message">
 									Already registered? <a href="login.php">login to your account</a>
 								</p>
@@ -75,7 +80,8 @@
 									<h2>Menu</h2>
 								</header>
 								<ul>
-									<li><a href="home.php">Homepage</a></li>
+									<li><a href="index.php">Homepage</a></li>
+									<li><a href="guest-explorer.php">Explore</a></li>
 									<li><a href="login.php">Login</a></li>
 									<li><a href="signup.php">Sign Up</a></li>
 									<!-- <li>

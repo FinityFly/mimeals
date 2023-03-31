@@ -259,4 +259,15 @@ $(document).ready(function(){
 
 			});
 
+	// Custom.
+		var $button = $('test-button');
+		$button.on('click', function(event) {
+
+			$button.hide();
+			alert("IF YOU SEE THIS, THEN MY CODE WORKS");
+
+		});
+
+	console.log("TESTING");
+
 });

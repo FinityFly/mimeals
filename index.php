@@ -13,7 +13,7 @@
 <html>
 	<head>
 		<title>MiMeals | Homepage</title>
-		<link rel="icon" type="image/x-icon" href="/images/mimealsfavicon.ico">
+		<link rel="icon" type="image/x-icon" href="./images/mimealsfavicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -29,7 +29,7 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="home.php" class="logo"><strong>MiMeals</strong></a>
+									<a href="index.php" class="logo"><strong>MiMeals</strong></a>
 									<ul class="icons">
 										<!-- social media icons -->
 										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -107,8 +107,8 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="home.php">Homepage</a></li>
-										<li><a href="meal-explorer.php">Explore</a></li>
+										<li><a href="index.php">Homepage</a></li>
+										<li><a href="guest-explorer.php">Explore</a></li>
 										<li><a href="login.php">Login</a></li>
 										<li><a href="signup.php">Sign Up</a></li>
 										<!-- <li>
@@ -124,7 +124,7 @@
 							<!-- Section -->
 								<!-- <section>
 									<header class="major">
-										<h2>Ante interdum</h2>
+										<h2>Meet the team</h2>
 									</header>
 									<div class="mini-posts">
 										<article>

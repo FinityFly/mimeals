@@ -7,7 +7,7 @@
 
 <html>
 	<head>
-		<title>MiMeals | Login</title>
+		<title>MiMeals | Reset Password</title>
 		<link rel="icon" type="image/x-icon" href="./images/mimealsfavicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -30,32 +30,62 @@
 								<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 							</ul>
 						</header>
-						<div class="login-form">
-							<form action="includes/login-submit.php" method="POST">
-								<p>WELCOME BACK!</p>
-								<h1>Log In</h1>
-								<div class="input-field">
-									<input type="text" placeholder="email" name="email-input" required="required">
+
+						<?php
+							$selector = $_GET["selector"];
+							$validator = $_GET["validator"];
+
+							if (empty($selector) || empty($validator)) {
+								?>
+								<div class="box">
+									<p>Could not validate your request!</p>
 								</div>
-								<div class="input-field">
-									<input type="password" placeholder="password" name="password-input" required="required">
-								</div>
-								<div class="login-button">
-									<button type="submit" id="login-button" href="#">login</button>
-								</div>
-								<?php if (isset($_GET['error'])) { ?>
-									<div class="box">
-										<p> <?php echo $_GET['error']; ?> </p>
+								<?php
+							} else {
+								if (ctype_xdigit($selector) !== false && ctype_xdigit($validator) !== false) {
+									?>
+
+									<div class="login-form">
+										<form action="includes/password-reset.php" method="POST">
+											<p>PASSWORD RECOVERY</p>
+											<h1>Enter your new password</h1>
+											<input type="hidden" name="selector" value="<?php echo $selector ?>">
+											<input type="hidden" name="validator" value="<?php echo $validator ?>">
+											<div class="input-field">
+												<input type="password" placeholder="password" name="password-input" required="required">
+											</div>
+											<div class="input-field">
+												<input type="password" placeholder="confirm password" name="cpassword-input" required="required">
+											</div>
+											<div class="login-button">
+												<button type="submit" id="login-button" href="#">Reset</button>
+											</div>
+											<?php if (isset($_GET['error'])) { ?>
+												<div class="box">
+													<p> <?php echo $_GET['error']; ?> </p>
+												</div>
+											<?php } ?>
+											<?php 
+											if (isset($_GET['reset'])) {
+												if ($_GET['reset'] == "success") {
+													echo '<p class="box">Your password has been reset!</p>';
+												} else if ($_GET['reset'] == "error") {
+													echo '<p class="box">Something went wrong, please resubmit your reset request</p>';
+												} else {
+													echo '<p class="box">' . $_GET['reset'] . '</p>';
+												}
+											}
+											?>
+											<p class="message">
+												Try to login? <a href="login.php">login to your account</a>
+											</p>
+										</form>
 									</div>
-								<?php } ?>
-								<p class="message">
-									Not registered? <a href="signup.php">create an account</a>
-								</p>
-								<p class="message">
-									Forgot your password? <a href="forgor.php">reset password</a>
-								</p>
-							</form>
-						</div>
+
+									<?php
+								}
+							}
+						?>
 
 					</div>
 				</div>

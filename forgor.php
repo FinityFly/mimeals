@@ -7,7 +7,7 @@
 
 <html>
 	<head>
-		<title>MiMeals | Login</title>
+		<title>MiMeals | Forgot Password</title>
 		<link rel="icon" type="image/x-icon" href="./images/mimealsfavicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -31,28 +31,29 @@
 							</ul>
 						</header>
 						<div class="login-form">
-							<form action="includes/login-submit.php" method="POST">
-								<p>WELCOME BACK!</p>
-								<h1>Log In</h1>
+							<form action="includes/reset-request.php" method="POST">
+								<p>UH OH...</p>
+								<h1>Forgot your password?</h1>
 								<div class="input-field">
 									<input type="text" placeholder="email" name="email-input" required="required">
 								</div>
-								<div class="input-field">
-									<input type="password" placeholder="password" name="password-input" required="required">
-								</div>
+								<p>An email will be sent to your inbox to reset your password</p>
 								<div class="login-button">
-									<button type="submit" id="login-button" href="#">login</button>
+									<button type="submit" id="reset-button" href="#">Send email</button>
 								</div>
-								<?php if (isset($_GET['error'])) { ?>
-									<div class="box">
-										<p> <?php echo $_GET['error']; ?> </p>
-									</div>
-								<?php } ?>
+								<?php 
+								if (isset($_GET['reset'])) {
+									if ($_GET['reset'] == "success") {
+										echo '<p class="box">Email sent successfully, check your email!</p>';
+									} else if ($_GET['reset'] == "error") {
+										echo '<p class="box">Something went wrong, try again</p>';
+									} else {
+										echo '<p class="box">' . $_GET['reset'] . '</p>';
+									}
+								}
+								?>
 								<p class="message">
-									Not registered? <a href="signup.php">create an account</a>
-								</p>
-								<p class="message">
-									Forgot your password? <a href="forgor.php">reset password</a>
+									Try to login? <a href="login.php">login to your account</a>
 								</p>
 							</form>
 						</div>
