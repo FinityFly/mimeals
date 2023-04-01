@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'mimeals'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1ED074B63EFA46A9B90EDF58AB43C2B1 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_23A8F83E1A7C46649C1475A9DC7063EB }}
           package: .
