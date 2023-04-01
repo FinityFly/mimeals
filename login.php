@@ -79,6 +79,7 @@
 								<ul>
 									<li><a href="index.php">Homepage</a></li>
 									<li><a href="guest-explorer.php">Explore</a></li>
+									<li><a href="showcase.php">Showcase Page (delete later)</a></li>
 									<li><a href="login.php">Login</a></li>
 									<li><a href="signup.php">Sign Up</a></li>
 									<!-- <li>
