@@ -81,6 +81,7 @@
 									<li><a href="dashboard.php">Dashboard</a></li>
 										<li><a href="meal-calendar.php">Calendar</a></li>
 										<li><a href="meal-explorer.php">Explorer</a></li>
+										<li><a href="meal-recipes.php">Recipes</a></li>
 										<li><a href="includes/logout.php">Log out</a></li>
 									</ul>
 								</nav>

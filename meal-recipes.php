@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
+?>
+
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -521,3 +527,9 @@ print 'It took ' + i + ' iterations to sort the deck.';
 
 	</body>
 </html>
+
+<?php
+} else {
+	header("Location: index.php");
+}
+?>

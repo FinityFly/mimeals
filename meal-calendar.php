@@ -1,12 +1,30 @@
+<?php
+session_start();
+
+if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
+?>
+
 <!DOCTYPE HTML>
-<!--
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
+<!-- https://www.geeksforgeeks.org/design-a-calendar-using-html-and-css/ -->
+
+<!-- https://www.mssqltips.com/sqlservertip/7552/events-calendar-html-sql-server-css/ -->
+
+
+<!-- http://www.dhtmlgoodies.com/packages/dhtml-suite-for-applications/demos/demo-calendar-1.html -->
+<!-- https://stackoverflow.com/questions/2161241/to-display-calendar-using-javascript-and-php -->
+
+
+<!-- add selectable dates -->
+<!-- add data to each day? -->
+<!-- allow user to click on each day -->
+<!-- highlight planned days (to distinguish between unplanned days) using color -->
+
+
+
 <html>
 	<head>
-		<title>MiMeals | Meal Calendar</title>
+		<title>MiMeals | Homepage</title>
 		<link rel="icon" type="image/x-icon" href="./images/mimealsfavicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -23,27 +41,120 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="index.php" class="logo"><strong>Editorial</strong> by HTML5 UP</a>
+									<a href="index.php" class="logo"><strong>MiMeals</strong></a>
 									<ul class="icons">
+										<!-- social media icons -->
 										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
 										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
 									</ul>
 								</header>
 
-							<!-- Content -->
-								<section>
-									<header class="main">
-										<h1>Generic</h1>
-									</header>
-
-									<span class="image main"><img src="images/pic11.jpg" alt="" /></span>
-
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit.</p>
-									
+							<!-- Banner -->
+								<section id="banner">
+									<div class="content">
+										<header>
+											<h1>Welcome to Mimeals!</h1>
+											<p>Your meal planning website</p>
+										</header>
+										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life. With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
+										<ul class="actions">
+											<li><a href="guest-signup.php" class="button big">Get Started</a></li>
+										</ul>
+									</div>
 								</section>
+						
+
+
+				
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Ipsum sed dolor</h2>
+									</header>
+								</section>
+
+
+							<!-- Calendar -->
+
+							<!-- add arrows to change month -->
+
+							<h2 align="center" style="color: orange;">January 2021</h2>
+							<table bgcolor="lightgrey" align="center" cellspacing="21" cellpadding="21">
+    
+  
+							<thead>
+								<tr>
+									<!-- Here we have applied inline style 
+										to make it more attractive-->
+									<th>Sun</th>
+									<th>Mon</th>
+									<th>Tue</th>
+									<th>Wed</th>
+									<th>Thu</th>
+									<th>Fri</th>
+									<th>sat</th>
+								</tr>
+							</thead>
+          
+							<tbody>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td>1</td>
+									<td>2</td>
+								</tr>
+								<tr></tr>
+								<tr>
+									<td>3</td>
+									<td>4</td>
+									<td>5</td>
+									<td>6</td>
+									<td>7</td>
+									<td>8</td>
+									<td>9</td>
+								</tr>
+								<tr>
+									<td>10</td>
+									<td>11</td>
+									<td>12</td>
+									<td>13</td>
+									<td>14</td>
+									<td>15</td>
+									<td>16</td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>18</td>
+									<td>19</td>
+									<td>20</td>
+									<td>21</td>
+									<td>22</td>
+									<td>23</td>
+								</tr>
+								<tr>
+									<td>24</td>
+									<td>25</td>
+									<td>26</td>
+									<td>27</td>
+									<td>28</td>
+									<td>29</td>
+									<td>30</td>
+								</tr>
+								<tr>
+									<td>31</td>
+									<td>1</td>
+									<td>2</td>
+									<td>3</td>
+									<td>4</td>
+									<td>5</td>
+									<td>6</td>
+								</tr>
+							</tbody>
+						</table>
 
 						</div>
 					</div>
@@ -59,7 +170,7 @@
 									</form>
 								</section>
 
-							<!-- Menu -->
+							<!-- Menu-->
 								<nav id="menu">
 									<header class="major">
 										<h2>Menu</h2>
@@ -70,52 +181,19 @@
 										<li><a href="meal-explorer.php">Explorer</a></li>
 										<li><a href="meal-recipes.php">Recipes</a></li>
 										<li><a href="includes/logout.php">Log out</a></li>
+										<!-- <li>
+											<span class="opener">Another Submenu</span>
+											<ul>
+												<li><a href="#">Lorem Dolor</a></li>
+												<li><a href="#">Ipsum Adipiscing</a></li>
+											</ul>
+										</li> -->
 									</ul>
 								</nav>
-
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Ante interdum</h2>
-									</header>
-									<div class="mini-posts">
-										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-									</div>
-									<ul class="actions">
-										<li><a href="#" class="button">More</a></li>
-									</ul>
-								</section>
-
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Get in touch</h2>
-									</header>
-									<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-									<ul class="contact">
-										<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
-										<li class="icon solid fa-phone">(000) 000-0000</li>
-										<li class="icon solid fa-home">1234 Somewhere Road #8254<br />
-										Nashville, TN 00000-0000</li>
-									</ul>
-								</section>
-
 							<!-- Footer -->
 								<footer id="footer">
 									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 								</footer>
-
 						</div>
 					</div>
 
@@ -130,3 +208,9 @@
 
 	</body>
 </html>
+
+<?php
+} else {
+	header("Location: index.php");
+}
+?>

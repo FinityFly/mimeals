@@ -61,25 +61,25 @@ if (isset($_POST['email-input'])) {
                     $mail->Subject = $subject;
                     $mail->Body    = $message;
                     if( !$mail->Send()) {
-                        header("Location: ../forgor.php?reset=error");
+                        header("Location: ../guest-forgor.php?reset=error");
                         var_dump($mail);
                     } else {
-                        header("Location: ../forgor.php?reset=success");
+                        header("Location: ../guest-forgor.php?reset=success");
                     }
                 } catch (Exception $e) {
-                    header("Location: ../forgor.php?reset=error");
+                    header("Location: ../guest-forgor.php?reset=error");
                 }
                 exit();
             } else {
-                header("Location: ../forgor.php?reset=Invalid email");
+                header("Location: ../guest-forgor.php?reset=Invalid email");
                 exit();
             }
         } else {
-            header("Location: ../forgor.php?reset=Invalid email");
+            header("Location: ../guest-forgor.php?reset=Invalid email");
             exit();
         }
     } else {
-        header("Location: ../forgor.php?reset=Invalid email");
+        header("Location: ../guest-forgor.php?reset=Invalid email");
         exit();
     }
 } else {

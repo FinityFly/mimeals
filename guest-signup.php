@@ -4,10 +4,9 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-
 <html>
 	<head>
-		<title>MiMeals | Forgot Password</title>
+		<title>MiMeals | Sign Up</title>
 		<link rel="icon" type="image/x-icon" href="./images/mimealsfavicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -30,30 +29,33 @@
 								<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 							</ul>
 						</header>
+						
 						<div class="login-form">
-							<form action="includes/reset-request.php" method="POST">
-								<p>UH OH...</p>
-								<h1>Forgot your password?</h1>
+							<form action="includes/signup-submit.php" method="POST">
+								<p>WELCOME!</p>
+								<h1>Sign Up</h1>
+								<div class="input-field">
+									<input type="text" placeholder="name" name="name-input" required="required">
+								</div>
 								<div class="input-field">
 									<input type="text" placeholder="email" name="email-input" required="required">
 								</div>
-								<p>An email will be sent to your inbox to reset your password</p>
-								<div class="login-button">
-									<button type="submit" id="reset-button" href="#">Send email</button>
+								<div class="input-field">
+									<input type="password" placeholder="password" name="password-input" required="required">
 								</div>
-								<?php 
-								if (isset($_GET['reset'])) {
-									if ($_GET['reset'] == "success") {
-										echo '<p class="box">Email sent successfully, check your email!</p>';
-									} else if ($_GET['reset'] == "error") {
-										echo '<p class="box">Something went wrong, try again</p>';
-									} else {
-										echo '<p class="box">' . $_GET['reset'] . '</p>';
-									}
-								}
-								?>
+								<div class="input-field">
+									<input type="password" placeholder="confirm password" name="cpassword-input" required="required">
+								</div>
+								<div class="login-button">
+									<button type="submit" id="signup-button" href="#">sign up</button>
+								</div>
+								<?php if (isset($_GET['error'])) { ?>
+									<div class="box">
+										<p> <?php echo $_GET['error']; ?> </p>
+									</div>
+								<?php } ?>
 								<p class="message">
-									Try to login? <a href="login.php">login to your account</a>
+									Already registered? <a href="guest-login.php">login to your account</a>
 								</p>
 							</form>
 						</div>
@@ -80,8 +82,9 @@
 								<ul>
 									<li><a href="index.php">Homepage</a></li>
 									<li><a href="guest-explorer.php">Explore</a></li>
-									<li><a href="login.php">Login</a></li>
-									<li><a href="signup.php">Sign Up</a></li>
+									<li><a href="guest-showcase.php">Showcase Page (delete later)</a></li>
+									<li><a href="guest-login.php">Login</a></li>
+									<li><a href="guest-signup.php">Sign Up</a></li>
 									<!-- <li>
 										<span class="opener">Another Submenu</span>
 										<ul>
@@ -123,18 +126,6 @@
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			<script>
-				// $(document).ready(function(){
-					// $("#login-button").click(function(event) {
-					// 	event.preventDefault();
-					// 	event.stopPropagation();
-					// 	var username = $('#username-input').val();
-					// 	var password = $('#password-input').val();
-					// 	console.log(username);
-					// 	console.log(password);
-					// });
-				// });
-			</script>
 			<script src="assets/js/main.js"></script>
 
 	</body>

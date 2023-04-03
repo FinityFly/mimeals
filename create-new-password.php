@@ -77,7 +77,7 @@
 											}
 											?>
 											<p class="message">
-												Try to login? <a href="login.php">login to your account</a>
+												Try to login? <a href="guest-login.php">login to your account</a>
 											</p>
 										</form>
 									</div>
@@ -109,8 +109,8 @@
 								<ul>
 									<li><a href="index.php">Homepage</a></li>
 									<li><a href="guest-explorer.php">Explore</a></li>
-									<li><a href="login.php">Login</a></li>
-									<li><a href="signup.php">Sign Up</a></li>
+									<li><a href="guest-login.php">Login</a></li>
+									<li><a href="guest-signup.php">Sign Up</a></li>
 									<!-- <li>
 										<span class="opener">Another Submenu</span>
 										<ul>

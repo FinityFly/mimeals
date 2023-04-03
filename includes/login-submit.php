@@ -26,15 +26,15 @@ if (isset($_POST['email-input']) && isset($_POST['password-input'])) {
                 header("Location: ../dashboard.php");
                 exit();
             } else {
-                header("Location: ../login.php?error=Incorrect email/password");
+                header("Location: ../guest-login.php?error=Incorrect email/password");
                 exit();
             }
         } else {
-            header("Location: ../login.php?error=Incorrect email/password");
+            header("Location: ../guest-login.php?error=Incorrect email/password");
             exit();
         }
     } else {
-        header("Location: ../login.php?error=Invalid email");
+        header("Location: ../guest-login.php?error=Invalid email");
         exit();
     }
 } else {

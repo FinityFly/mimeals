@@ -22,7 +22,7 @@ if (isset($_POST['email-input']) && isset($_POST['password-input'])) {
         if (mysqli_num_rows($result)) {
             $row = mysqli_fetch_assoc($result);
             if ($row['email'] === $uemail) {
-                header("Location: ../signup.php?error=Email already in use");
+                header("Location: ../guest-signup.php?error=Email already in use");
                 exit();
             }
         } else {
@@ -40,12 +40,12 @@ if (isset($_POST['email-input']) && isset($_POST['password-input'])) {
                 header("Location: ../dashboard.php");
                 exit();
             } else {
-                header("Location: ../signup.php?error=Passwords don't match");
+                header("Location: ../guest-signup.php?error=Passwords don't match");
                 exit();
             }
         }
     } else {
-        header("Location: ../signup.php?error=Invalid email");
+        header("Location: ../guest-signup.php?error=Invalid email");
         exit();
     }
 } else {

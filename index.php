@@ -47,11 +47,11 @@
 										</header>
 										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life. With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
 										<ul class="actions">
-											<li><a href="signup.php" class="button big">Get Started</a></li>
+											<li><a href="guest-signup.php" class="button big">Get Started</a></li>
 										</ul>
 									</div>
 									<span class="image object">
-										<img src="images/pic10.jpg" alt="" />
+										<img src="images/gordon.jpeg" alt="" />
 									</span>
 								</section>
 
@@ -109,9 +109,10 @@
 									<ul>
 										<li><a href="index.php">Homepage</a></li>
 										<li><a href="guest-explorer.php">Explore</a></li>
-										<li><a href="showcase.php">Showcase Page (delete later)</a></li>
-										<li><a href="login.php">Login</a></li>
-										<li><a href="signup.php">Sign Up</a></li>
+										<li><a href="guest-showcase.php">Showcase Page (delete later)</a></li>
+										<li><a href="guest-login.php">Login</a></li>
+
+										<li><a href="guest-signup.php">Sign Up</a></li>
 										<!-- <li>
 											<span class="opener">Another Submenu</span>
 											<ul>

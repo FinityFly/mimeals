@@ -99,7 +99,7 @@
 										</div>
 
 									<!-- Pagination -->
-									<h4>Pagination</h4>
+									<div class="container">
 										<ul class="pagination">
 											<li><span class="button disabled">Prev</span></li>
 											<li><a href="#" class="page active">1</a></li>
@@ -111,7 +111,7 @@
 											<li><a href="#" class="page">10</a></li>
 											<li><a href="#" class="button">Next</a></li>
 										</ul>
-
+									</div>
 
 								</section>
 
@@ -137,9 +137,9 @@
 									<ul>
 										<li><a href="index.php">Homepage</a></li>
 										<li><a href="guest-explorer.php">Explore</a></li>
-										<li><a href="showcase.php">Showcase Page (delete later)</a></li>
-										<li><a href="login.php">Login</a></li>
-										<li><a href="signup.php">Sign Up</a></li>
+										<li><a href="guest-showcase.php">Showcase Page (delete later)</a></li>
+										<li><a href="guest-login.php">Login</a></li>
+										<li><a href="guest-signup.php">Sign Up</a></li>
 									</ul>
 								</nav>
 
@@ -197,6 +197,8 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script type="module" src="assets/js/recipe.js"></script>
+			<script type="module" src="assets/js/api.js"></script>
 
 	</body>
 </html>

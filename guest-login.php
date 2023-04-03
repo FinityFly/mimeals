@@ -4,9 +4,10 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+
 <html>
 	<head>
-		<title>MiMeals | Sign Up</title>
+		<title>MiMeals | Login</title>
 		<link rel="icon" type="image/x-icon" href="./images/mimealsfavicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -29,25 +30,18 @@
 								<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 							</ul>
 						</header>
-						
 						<div class="login-form">
-							<form action="includes/signup-submit.php" method="POST">
-								<p>WELCOME!</p>
-								<h1>Sign Up</h1>
-								<div class="input-field">
-									<input type="text" placeholder="name" name="name-input" required="required">
-								</div>
+							<form action="includes/login-submit.php" method="POST">
+								<p>WELCOME BACK!</p>
+								<h1>Log In</h1>
 								<div class="input-field">
 									<input type="text" placeholder="email" name="email-input" required="required">
 								</div>
 								<div class="input-field">
 									<input type="password" placeholder="password" name="password-input" required="required">
 								</div>
-								<div class="input-field">
-									<input type="password" placeholder="confirm password" name="cpassword-input" required="required">
-								</div>
 								<div class="login-button">
-									<button type="submit" id="signup-button" href="#">sign up</button>
+									<button type="submit" id="login-button" href="#">login</button>
 								</div>
 								<?php if (isset($_GET['error'])) { ?>
 									<div class="box">
@@ -55,7 +49,10 @@
 									</div>
 								<?php } ?>
 								<p class="message">
-									Already registered? <a href="login.php">login to your account</a>
+									Not registered? <a href="guest-signup.php">create an account</a>
+								</p>
+								<p class="message">
+									Forgot your password? <a href="guest-forgor.php">reset password</a>
 								</p>
 							</form>
 						</div>
@@ -82,9 +79,9 @@
 								<ul>
 									<li><a href="index.php">Homepage</a></li>
 									<li><a href="guest-explorer.php">Explore</a></li>
-									<li><a href="showcase.php">Showcase Page (delete later)</a></li>
-									<li><a href="login.php">Login</a></li>
-									<li><a href="signup.php">Sign Up</a></li>
+									<li><a href="guest-showcase.php">Showcase Page (delete later)</a></li>
+									<li><a href="guest-login.php">Login</a></li>
+									<li><a href="guest-signup.php">Sign Up</a></li>
 									<!-- <li>
 										<span class="opener">Another Submenu</span>
 										<ul>
@@ -126,6 +123,18 @@
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
+			<script>
+				// $(document).ready(function(){
+					// $("#login-button").click(function(event) {
+					// 	event.preventDefault();
+					// 	event.stopPropagation();
+					// 	var username = $('#username-input').val();
+					// 	var password = $('#password-input').val();
+					// 	console.log(username);
+					// 	console.log(password);
+					// });
+				// });
+			</script>
 			<script src="assets/js/main.js"></script>
 
 	</body>

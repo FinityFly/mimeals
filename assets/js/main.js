@@ -268,6 +268,4 @@ $(document).ready(function(){
 
 		});
 
-	console.log("TESTING");
-
 });
