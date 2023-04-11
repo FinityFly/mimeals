@@ -6,6 +6,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 <!DOCTYPE HTML>
 
+<!-- setup css specifically for this page -->
+
+<!--  -->
+
+
 <!-- https://www.geeksforgeeks.org/design-a-calendar-using-html-and-css/ -->
 
 <!-- https://www.mssqltips.com/sqlservertip/7552/events-calendar-html-sql-server-css/ -->
@@ -19,6 +24,31 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 <!-- add data to each day? -->
 <!-- allow user to click on each day -->
 <!-- highlight planned days (to distinguish between unplanned days) using color -->
+<!-- https://www.w3schools.com/howto/howto_css_calendar.asp -->
+<style>
+
+days 
+{
+  display: grid;
+  grid-template-columns: repeat(7, 120px);
+  grid-template-rows:    repeat(6, 90px);
+}
+days.d1 day:first-child { grid-column: 1; }
+days.d2 day:first-child { grid-column: 2; }
+days.d3 day:first-child { grid-column: 3; }
+days.d4 day:first-child { grid-column: 4; }
+days.d5 day:first-child { grid-column: 5; }
+days.d6 day:first-child { grid-column: 6; }
+days.d7 day:first-child { grid-column: 7; }
+
+</style>
+
+
+
+
+
+
+
 
 
 
@@ -67,19 +97,48 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 
 				
-							<!-- Section -->
+							<!-- Calendar Part -->
 								<section>
 									<header class="major">
-										<h2>Ipsum sed dolor</h2>
+										<h2>Calendar</h2>
 									</header>
 								</section>
 
 
 							<!-- Calendar -->
 
-							<!-- add arrows to change month -->
+							<!--  -->
+							<script src = 'calendar.js'> </script>
 
 							<h2 align="center" style="color: orange;">January 2021</h2>
+							
+							<!-- change this based on javascript or mysql?-->
+							<!-- USE PHP TO GENRATE HTML -->
+
+							<?php
+							// determing starting date
+
+
+							// gives day of month
+							echo date("d") ;
+							// highlight the date
+							
+							?>
+
+							<days class="d7">
+								<day>1</day>
+								<day>2</day>
+								<day class="on"><a href="/2022/10/03">3</a></day>
+								<day>4</day>
+								<day>5</day>
+								<day class="on"><a href="/2022/10/06">6</a></day>
+								<day>7</day>
+								
+								
+								<day>30</day>
+								<day>31</day>
+							</days>
+							
 							<table bgcolor="lightgrey" align="center" cellspacing="21" cellpadding="21">
     
   

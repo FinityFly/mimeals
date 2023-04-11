@@ -49,6 +49,8 @@
 										</div>
 
 										<div class="row">
+											
+
 											<div class="col-6 col-12-small">
 												<a href="#">
 												<span class="image fit"><img src="images/bratwurst.png" alt="" /></span>

@@ -1,6 +1,10 @@
 import Recipe from './recipe.js';
+require('dotenv').config()
 
-let apiKey = "dc09bd6aec87426f9b4a4c30ddaf204f"; // put into dotenv later
+const container = document.querySelector('.row');
+console.log("sup!");
+
+let apiKey = process.env.SPOONACULAR_KEY; // put into dotenv later
 
 async function fetchResponse(query) {
     let response = await fetch(query);
@@ -17,23 +21,47 @@ async function getRecipeData(id) {
     return recipe;
 }
 
-async function getRecipes(args, page) {
+async function getRecipes(args, page, numRecipes) {
     let recipes = [];
     if (args.length == 0) {
         // sort by popularity
-        let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=10`;
+        let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=${numRecipes}`;
         let data = await fetchResponse(query);
         for (let i = 0; i < data.results.length; i++) {
             recipes.push(await getRecipeData(data.results[i].id));
         }
     } else {
         // do later
-        let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity`;
-        let data = fetchResponse(query);
+        let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=${numRecipes}`;
+        let data = await fetchResponse(query);
     }
     return recipes
 }
 
-let recipes = await getRecipes([], 0);
-console.log(recipes[0]);
-console.log(recipes[0].title);
+async function loadRecipes(numRecipes) {
+    let recipes = await getRecipes([], 0, numRecipes);
+    for (let i = 0; i < recipes.length; i++) {
+        let recipe = recipes[i];
+        let div = document.createElement('div');
+        div.className = 'col-6 col-12-small';
+        let html = `<a href="#">
+                    <span class="image fit"><img src="${recipe.image}" alt="" /></span>
+                    <h2>${recipe.title}</h2>
+                    </a>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <ul class="actions fit">
+                        <li><a href="#" class="button primary fit icon solid fa-download">Add to Recipes</a></li>
+                        <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
+                    </ul>`;
+        div.innerHTML = html;
+        while (div.children.length > 0) {
+            container.appendChild(div.children[0]);
+        }
+    }
+}
+
+await loadRecipes(2);
+
+// let recipes = await getRecipes([], 0, 2);
+// console.log(recipes[0]);
+// console.log(recipes[0].keys());

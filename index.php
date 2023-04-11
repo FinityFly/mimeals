@@ -109,17 +109,18 @@
 									<ul>
 										<li><a href="index.php">Homepage</a></li>
 										<li><a href="guest-explorer.php">Explore</a></li>
+
+
+										<!-- DELTETE LATER -->
+										<li><a href="meal-calendar.php">Calendar</a></li>
+
+
 										<li><a href="guest-showcase.php">Showcase Page (delete later)</a></li>
+
 										<li><a href="guest-login.php">Login</a></li>
 
 										<li><a href="guest-signup.php">Sign Up</a></li>
-										<!-- <li>
-											<span class="opener">Another Submenu</span>
-											<ul>
-												<li><a href="#">Lorem Dolor</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-											</ul>
-										</li> -->
+										
 									</ul>
 								</nav>
 
