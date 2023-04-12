@@ -111,7 +111,7 @@
 										<li><a href="guest-explorer.php">Explore</a></li>
 
 
-										<!-- DELTETE LATER -->
+										<!-- DELETE LATER -->
 										<li><a href="meal-calendar.php">Calendar</a></li>
 
 

@@ -1,10 +1,8 @@
-import Recipe from './recipe.js';
-require('dotenv').config()
+import Recipe from './recipeObj.js';
 
 const container = document.querySelector('.row');
-console.log("sup!");
 
-let apiKey = process.env.SPOONACULAR_KEY; // put into dotenv later
+let apiKey = "dc09bd6aec87426f9b4a4c30ddaf204f"; // put into dotenv later
 
 async function fetchResponse(query) {
     let response = await fetch(query);
@@ -15,8 +13,6 @@ async function fetchResponse(query) {
 async function getRecipeData(id) {
     let query = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
     let data = await fetchResponse(query);
-    console.log(data);
-    console.log(data.aggregateLikes);
     let recipe = new Recipe(data.aggregateLikes, data.analyzedInstructions, data.cheap, data.cookingMinutes, data.creditsText, data.cuisines, data.dairyFree, data.diets, data.dishTypes, data.extendedIngredients, data.gaps, data.glutenFree, data.healthScore, data.id, data.image, data.instructions, data.lowFodmap, data.occasions, data.preparationMinutes, data.pricePerServing, data.readyInMinutes, data.servings, data.sourceName, data.sourceUrl, data.spoonacularSourceUrl, data.summary, data.title, data.vegan, data.vegetarian, data.veryHealthy, data.veryPopular, data.weightWatcherSmartPoints);
     return recipe;
 }
@@ -35,25 +31,37 @@ async function getRecipes(args, page, numRecipes) {
         let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=${numRecipes}`;
         let data = await fetchResponse(query);
     }
-    return recipes
+    return recipes;
 }
 
-async function loadRecipes(numRecipes) {
-    let recipes = await getRecipes([], 0, numRecipes);
+async function loadRecipes(n) {
+    let recipes = await getRecipes([], 0, n);
     for (let i = 0; i < recipes.length; i++) {
-        let recipe = recipes[i];
         let div = document.createElement('div');
-        div.className = 'col-6 col-12-small';
-        let html = `<a href="#">
-                    <span class="image fit"><img src="${recipe.image}" alt="" /></span>
-                    <h2>${recipe.title}</h2>
-                    </a>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <ul class="actions fit">
-                        <li><a href="#" class="button primary fit icon solid fa-download">Add to Recipes</a></li>
-                        <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
-                    </ul>`;
+        let recipe = recipes[i];
+        let redirect = `./guest-recipe.php?id=${recipe.id}`;
+        let description = `${(recipe.cuisines.length > 0) ? recipe.cuisines[0] + ' / ' : ''}${recipe.readyInMinutes} minutes / ${recipe.servings} servings / ~$${recipe.pricePerServing}`;
+        let html = `<div class="col-6 col-12-small">
+                        <a href="${redirect}"><span class="image fit"><img src="${recipe.image}" alt="" /></span></a>
+                        <div class="row">
+                            <div class="col-9 col-12-small">
+                                <a href="${redirect}"><span class="image fit"><h2>${recipe.title}</h2></a>
+                            </div>
+                            <div class="off-9-small col-12-small" style="text-align:right;white-space:nowrap;">
+                                <a href="#" class="button primary small icon solid fa-heart">${recipe.aggregateLikes}</a>
+                            </div>
+                        </div>
+                        <p>${description}</p>
+                        <ul class="actions fit">
+                            <li><a href="#" class="button primary fit icon solid fa-download">Add Recipe</a></li>
+                            <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
+                        </ul>
+                        <script>
+                            localStorage.setItem("firstname", "Smith");
+                        </script>
+                    </div>`
         div.innerHTML = html;
+        localStorage.setItem(recipe.id, JSON.stringify(recipe));
         while (div.children.length > 0) {
             container.appendChild(div.children[0]);
         }
@@ -61,7 +69,3 @@ async function loadRecipes(numRecipes) {
 }
 
 await loadRecipes(2);
-
-// let recipes = await getRecipes([], 0, 2);
-// console.log(recipes[0]);
-// console.log(recipes[0].keys());

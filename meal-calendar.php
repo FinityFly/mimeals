@@ -108,7 +108,6 @@ days.d7 day:first-child { grid-column: 7; }
 							<!-- Calendar -->
 
 							<!--  -->
-							<script src = 'calendar.js'> </script>
 
 							<h2 align="center" style="color: orange;">January 2021</h2>
 							
@@ -264,6 +263,7 @@ days.d7 day:first-child { grid-column: 7; }
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script type="module" src='assets/js/calendar.js'></script>
 
 	</body>
 </html>
