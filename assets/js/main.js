@@ -260,12 +260,17 @@ $(document).ready(function(){
 			});
 
 	// Custom.
-		var $button = $('test-button');
-		$button.on('click', function(event) {
+	
+	var velocity = 0.4;
 
-			$button.hide();
-			alert("IF YOU SEE THIS, THEN MY CODE WORKS");
-
+	function update() {
+		var pos = $(window).scrollTop();
+		$('.container').each(function() { 
+			var $element = $(this);
+			$(this).css('backgroundPosition', '50% ' + -pos * velocity + 'px');
 		});
+	};
+	
+	$(window).bind('scroll', update);
 
 });

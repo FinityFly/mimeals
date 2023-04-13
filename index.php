@@ -39,21 +39,36 @@
 								</header>
 
 							<!-- Banner -->
-								<section id="banner">
+								<section class="container hero bg-1">
 									<div class="content">
-										<header>
-											<h1>Welcome to Mimeals!</h1>
-											<p>Your meal planning website</p>
-										</header>
-										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life. With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
-										<ul class="actions">
-											<li><a href="guest-signup.php" class="button big">Get Started</a></li>
-										</ul>
+										<h1>Welcome to Mimeals!</h1>
+										<h2>Your meal planning website</h2>
+										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life.</p>
+										<a href="guest-signup.php" class="button primary big">Get Started</a>
+										<a href="#" class="button big">Learn More</a>
 									</div>
-									<span class="image object">
-										<img src="images/gordon.jpeg" alt="" />
-									</span>
 								</section>
+
+								<section>
+									<article>
+										<span class="image right">
+											<img src="images/gordon.jpeg" alt="" />
+										</span>
+										<h3>Why use MiMeals?</h3>
+										<p>With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
+									</article>
+								</section>
+
+								<section class="container hero bg-2">
+									<div class="content">
+										<h1>Discover Greatness</h1>
+										<h2>Your journey begins here</h2>
+										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life.</p>
+										<a href="guest-signup.php" class="button primary big">Get Started</a>
+										<a href="#" class="button big">Learn More</a>
+									</div>
+								</section>
+
 
 							<!-- Section -->
 								<!-- <section>
@@ -69,17 +84,19 @@
 											</div>
 										</article>
 									</div>
-								</section>
-							<!-- Section -->
+								</section> -->
 								<section>
+									<span class="image object">
+										<img src="images/gordon.jpeg" alt="" />
+									</span>
 									<header class="major">
 										<h2>Ipsum sed dolor</h2>
 									</header>
 									<div class="posts">
 										<article>
 											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-											<h3>Interdum aenean</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+											<h3>Why use MiMeals?</h3>
+											<p>With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
 											<ul class="actions">
 												<li><a href="#" class="button">More</a></li>
 											</ul>

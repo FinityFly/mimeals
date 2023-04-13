@@ -98,6 +98,63 @@ if (isset($_GET['id'])) {
 									</header>
 									<!-- Content -->
 
+										<div class="table-wrapper">
+											<table>
+												<tbody>
+													<tr>
+														<!-- these should be toggled  -->
+														<td><b>Popular</b></td>
+														<td><b>Healthy</b></td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+										<div class="table-wrapper">
+											<table>
+												<tbody>
+													<tr>
+														<td><b>Total Time:</b> X</td>
+														<td><b>Preparation Time:</b> X</td>
+														<td><b>Cooking Time:</b> X</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+										<div class="table-wrapper">
+											<table>
+												<tbody>
+													<tr>
+														<td><b>Servings:</b> X</td>
+														<td><b>Price Per Serving:</b> X</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+										<div class="table-wrapper">
+											<table>
+												<tbody>
+													<tr>
+														<td><b>Dairy Free:</b> X</td>
+														<td><b>Gluten Free:</b> X</td>
+														<td><b>Vegan:</b> X</td>
+														<td><b>Vegetarian:</b> X</td>
+														<td><b>Low FODMAP:</b> X</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+										<div class="table-wrapper">
+											<table>
+												<tbody>
+													<tr>
+														<!-- these should be toggled  -->
+														<td><b>Health Score:</b> X</td>
+														<td><b>Weight Watcher Smart Points:</b> X</td>
+													</tr>
+												</tbody>
+											</tfoot>
+											</table>
+										</div>
 										<!-- 
 										
 										-TIME
