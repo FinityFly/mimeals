@@ -42,15 +42,15 @@ if (isset($_POST['password-input']) && isset($_POST['cpassword-input'])) {
                 header("Location: ../create-new-password.php?reset=success&selector=" . $selector . "&validator=" . bin2hex($validator));
                 exit();
             } else {
-                header("Location: ../create-new-password.php?reset=error");
+                header("Location: ../create-new-password.php?reset=error&selector=" . $selector . "&validator=" . bin2hex($validator));
                 exit();
             }
         } else {
-            header("Location: ../create-new-password.php?reset=error");
+            header("Location: ../create-new-password.php?reset=error&selector=" . $selector . "&validator=" . bin2hex($validator));
             exit();
         }
     } else {
-        header("Location: ../create-new-password.php?reset=error");
+        header("Location: ../create-new-password.php?reset=error&selector=" . $selector . "&validator=" . bin2hex($validator));
         exit();
     }
 } else {

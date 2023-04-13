@@ -1,8 +1,17 @@
+<!-- win -->
 <?php
-session_start();
+// session_start();
 
-if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
+// if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 ?>
+
+<?php
+// } else {
+// 	header("Location: index.php");}
+?>
+
+
+
 
 <!DOCTYPE HTML>
 
@@ -30,9 +39,15 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 days 
 {
   display: grid;
-  grid-template-columns: repeat(7, 120px);
-  grid-template-rows:    repeat(6, 90px);
+  /* screensize/ 7? */
+
+  grid-template-columns: repeat(7, 12%);
+  grid-template-rows:    repeat(6, 100%);
 }
+/* https://www.w3schools.com/cssref/sel_firstchild.php */
+
+
+/* create a bunch of month templates... days.d1 means starts month on sunday, days.d2 is monday etc */
 days.d1 day:first-child { grid-column: 1; }
 days.d2 day:first-child { grid-column: 2; }
 days.d3 day:first-child { grid-column: 3; }
@@ -54,12 +69,14 @@ days.d7 day:first-child { grid-column: 7; }
 
 <html>
 	<head>
-		<title>MiMeals | Homepage</title>
+		<title >MiMeals | Homepage</title >
 		<link rel="icon" type="image/x-icon" href="./images/mimealsfavicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
+	
+	
 	<body class="is-preload">
 
 		<!-- Wrapper -->
@@ -113,18 +130,43 @@ days.d7 day:first-child { grid-column: 7; }
 							
 							<!-- change this based on javascript or mysql?-->
 							<!-- USE PHP TO GENRATE HTML -->
-
+							<!-- use php to find date -->
 							<?php
-							// determing starting date
-
-
-							// gives day of month
-							echo date("d") ;
-							// highlight the date
+							// 1-31
+							$current_date = date('j');
 							
-							?>
+							// current weekday (use to find first day of month)
+							// 0 is sunday 6 is saturday
+							$today_weekday = date('w');
+							$first_date= ($today_weekday-$current_date%7)%7+9;
 
-							<days class="d7">
+							// first date is now 1 = sunday, 2 = monday etc 7 =saturday
+							echo $first_date;
+
+							// uh ok i got first date, now what...
+
+
+
+
+	
+							?>
+							<!-- Weekday Names -->
+							<days class="d1" align = 'center'>
+							<day>Sun</day>
+							<day>Mon</day>
+							<day>Tue</day>
+							<day>Wed</day>
+							<day>Thu</day>
+							<day>Fri</day>
+							<day>Sat</day>
+							</days>
+							<br>
+
+							<days class="d7" align = 'center'>
+								
+
+								<!-- is there a more efficient way to do this, like a list? or a for loop statement? -->
+
 								<day>1</day>
 								<day>2</day>
 								<day class="on"><a href="/2022/10/03">3</a></day>
@@ -138,81 +180,6 @@ days.d7 day:first-child { grid-column: 7; }
 								<day>31</day>
 							</days>
 							
-							<table bgcolor="lightgrey" align="center" cellspacing="21" cellpadding="21">
-    
-  
-							<thead>
-								<tr>
-									<!-- Here we have applied inline style 
-										to make it more attractive-->
-									<th>Sun</th>
-									<th>Mon</th>
-									<th>Tue</th>
-									<th>Wed</th>
-									<th>Thu</th>
-									<th>Fri</th>
-									<th>sat</th>
-								</tr>
-							</thead>
-          
-							<tbody>
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td>1</td>
-									<td>2</td>
-								</tr>
-								<tr></tr>
-								<tr>
-									<td>3</td>
-									<td>4</td>
-									<td>5</td>
-									<td>6</td>
-									<td>7</td>
-									<td>8</td>
-									<td>9</td>
-								</tr>
-								<tr>
-									<td>10</td>
-									<td>11</td>
-									<td>12</td>
-									<td>13</td>
-									<td>14</td>
-									<td>15</td>
-									<td>16</td>
-								</tr>
-								<tr>
-									<td>17</td>
-									<td>18</td>
-									<td>19</td>
-									<td>20</td>
-									<td>21</td>
-									<td>22</td>
-									<td>23</td>
-								</tr>
-								<tr>
-									<td>24</td>
-									<td>25</td>
-									<td>26</td>
-									<td>27</td>
-									<td>28</td>
-									<td>29</td>
-									<td>30</td>
-								</tr>
-								<tr>
-									<td>31</td>
-									<td>1</td>
-									<td>2</td>
-									<td>3</td>
-									<td>4</td>
-									<td>5</td>
-									<td>6</td>
-								</tr>
-							</tbody>
-						</table>
 
 						</div>
 					</div>
@@ -248,6 +215,7 @@ days.d7 day:first-child { grid-column: 7; }
 										</li> -->
 									</ul>
 								</nav>
+
 							<!-- Footer -->
 								<footer id="footer">
 									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
@@ -267,9 +235,3 @@ days.d7 day:first-child { grid-column: 7; }
 
 	</body>
 </html>
-
-<?php
-} else {
-	header("Location: index.php");
-}
-?>
