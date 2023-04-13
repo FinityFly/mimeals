@@ -123,18 +123,6 @@
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			<script>
-				// $(document).ready(function(){
-					// $("#login-button").click(function(event) {
-					// 	event.preventDefault();
-					// 	event.stopPropagation();
-					// 	var username = $('#username-input').val();
-					// 	var password = $('#password-input').val();
-					// 	console.log(username);
-					// 	console.log(password);
-					// });
-				// });
-			</script>
 			<script src="assets/js/main.js"></script>
 
 	</body>

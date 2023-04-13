@@ -51,7 +51,7 @@
 
 								<section>
 									<article>
-										<span class="image right">
+										<span class="image fit right">
 											<img src="images/gordon.jpeg" alt="" />
 										</span>
 										<h3>Why use MiMeals?</h3>
@@ -86,9 +86,6 @@
 									</div>
 								</section> -->
 								<section>
-									<span class="image object">
-										<img src="images/gordon.jpeg" alt="" />
-									</span>
 									<header class="major">
 										<h2>Ipsum sed dolor</h2>
 									</header>

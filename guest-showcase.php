@@ -98,7 +98,7 @@
 																<li>Felis dolore viverra.</li>
 															</ul>
 
-															<h4>Alternate</h4>
+															<h4>Unordered Alternate</h4>
 															<ul class="alt">
 																<li>Dolor etiam magna etiam.</li>
 																<li>Sagittis lorem eleifend.</li>
@@ -110,6 +110,16 @@
 
 															<h4>Ordered</h4>
 															<ol>
+																<li>Dolor etiam magna etiam.</li>
+																<li>Etiam vel lorem sed viverra.</li>
+																<li>Felis dolore viverra.</li>
+																<li>Dolor etiam magna etiam.</li>
+																<li>Etiam vel lorem sed viverra.</li>
+																<li>Felis dolore viverra.</li>
+															</ol>
+
+															<h4>Ordered Alternate</h4>
+															<ol class="alt">
 																<li>Dolor etiam magna etiam.</li>
 																<li>Etiam vel lorem sed viverra.</li>
 																<li>Felis dolore viverra.</li>

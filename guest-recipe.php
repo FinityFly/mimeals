@@ -19,40 +19,64 @@ if (isset($_GET['id'])) {
 		<link rel="stylesheet" href="assets/css/main.css" />
 
 		<script>
+			function makeBulletList(arr, id) {
+				let ul = document.getElementById(id);
+				let li = document.createElement('li');
+				arr.forEach((element) => {
+					li.innerHTML += `<b>${element.amount} ${element.measures.metric.unitShort}</b> ${element.originalName.toLowerCase()}`;
+					ul.appendChild(li);
+					li = document.createElement('li');
+				});
+			}
+
+			function makeOrderedList(arr, id) {
+				let ol = document.getElementById(id);
+				let li = document.createElement('li');
+				arr.forEach((element) => {
+					li.innerHTML += `<h2 style="display: inline;">${element.number}</h2> &emsp; ${element.step}`;
+					ol.appendChild(li);
+					li = document.createElement('li');
+				});
+			}
+
 			function loadRecipeData() {
 				var recipe = JSON.parse(localStorage.getItem('<?php echo $id ?>'));
+
 				// document.getElementById("aggregateLikes").innerHTML = recipe.aggregateLikes;
 				// document.getElementById("analyzedInstructions").innerHTML = recipe.analyzedInstructions;
 				// document.getElementById("cheap").innerHTML = recipe.cheap;
-				// document.getElementById("cookingMinutes").innerHTML = recipe.cookingMinutes;
-				// document.getElementById("creditsText").innerHTML = recipe.creditsText;
+				document.getElementById("cookingMinutes").innerHTML = recipe.cookingMinutes;
+				document.getElementById("creditsText").innerHTML = recipe.creditsText;
 				// document.getElementById("cuisines").innerHTML = recipe.cuisines;
-				// document.getElementById("dairyFree").innerHTML = recipe.dairyFree;
+				document.getElementById("dairyFree").innerHTML = (recipe.dairyFree = "true") ? "Yes" : "No";
 				// document.getElementById("diets").innerHTML = recipe.diets;
 				// document.getElementById("dishTypes").innerHTML = recipe.dishTypes;
 				// document.getElementById("extendedIngredients").innerHTML = recipe.extendedIngredients;
 				// document.getElementById("gaps").innerHTML = recipe.gaps;
-				// document.getElementById("glutenFree").innerHTML = recipe.glutenFree;
-				// document.getElementById("healthScore").innerHTML = recipe.healthScore;
+				document.getElementById("glutenFree").innerHTML = (recipe.glutenFree = "true") ? "Yes" : "No";
+				document.getElementById("healthScore").innerHTML = recipe.healthScore;
 				// document.getElementById("recipeId").innerHTML = recipe.id;
 				document.getElementById("recipeImage").src = recipe.image;
 				// document.getElementById("instructions").innerHTML = recipe.instructions;
-				// document.getElementById("lowFodmap").innerHTML = recipe.lowFodmap;
+				document.getElementById("lowFodmap").innerHTML = (recipe.lowFodmap = "true") ? "Yes" : "No";
 				// document.getElementById("occasions").innerHTML = recipe.occasions;
-				// document.getElementById("preparationMinutes").innerHTML = recipe.preparationMinutes;
-				// document.getElementById("pricePerServing").innerHTML = recipe.pricePerServing;
-				// document.getElementById("readyInMinutes").innerHTML = recipe.readyInMinutes;
-				// document.getElementById("servings").innerHTML = recipe.servings;
+				document.getElementById("preparationMinutes").innerHTML = recipe.preparationMinutes;
+				document.getElementById("pricePerServing").innerHTML = recipe.pricePerServing;
+				document.getElementById("readyInMinutes").innerHTML = recipe.readyInMinutes;
+				document.getElementById("servings").innerHTML = recipe.servings;
 				// document.getElementById("sourceName").innerHTML = recipe.sourceName;
-				// document.getElementById("sourceUrl").innerHTML = recipe.sourceUrl;
+				document.getElementById("sourceUrl").href = recipe.sourceUrl;
 				// document.getElementById("spoonacularSourceUrl").innerHTML = recipe.spoonacularSourceUrl;
-				// document.getElementById("summary").innerHTML = recipe.summary;
+				document.getElementById("summary").innerHTML = recipe.summary;
 				document.getElementById("recipeTitle").innerHTML = recipe.title;
-				// document.getElementById("vegan").innerHTML = recipe.vegan;
-				// document.getElementById("vegetarian").innerHTML = recipe.vegetarian;
+				document.getElementById("vegan").innerHTML = (recipe.vegan = "true") ? "Yes" : "No";
+				document.getElementById("vegetarian").innerHTML = (recipe.vegetarian = "true") ? "Yes" : "No";
 				// document.getElementById("veryHealthy").innerHTML = recipe.veryHealthy;
 				// document.getElementById("veryPopular").innerHTML = recipe.veryPopular;
-				// document.getElementById("weightWatcherSmartPoints").innerHTML = recipe.weightWatcherSmartPoints;
+				document.getElementById("weightWatcherSmartPoints").innerHTML = recipe.weightWatcherSmartPoints;
+
+				makeBulletList(recipe.extendedIngredients, "ingredientsList");
+				makeOrderedList(recipe.analyzedInstructions[0].steps, "directionsList");
 			}
 		</script>
 	</head>
@@ -88,6 +112,7 @@ if (isset($_GET['id'])) {
 											<a href="#"><span class="image fit"><img id="recipeImage" alt="" /></span></a>
 										</div>
 										<h1><span id="recipeTitle"></span></h1>
+										<h3>In credit to: <span id="creditsText"></span></h3>
 										<!-- 
 										
 										FOLLOW HOW THIS WEBSITE FORMATS THEIR RECIPES: https://www.foodnetwork.com/recipes/ree-drummond/simple-perfect-chili-recipe-2107099
@@ -98,80 +123,75 @@ if (isset($_GET['id'])) {
 									</header>
 									<!-- Content -->
 
-										<div class="table-wrapper">
-											<table>
-												<tbody>
-													<tr>
-														<!-- these should be toggled  -->
-														<td><b>Popular</b></td>
-														<td><b>Healthy</b></td>
-													</tr>
-												</tfoot>
-											</table>
-										</div>
-										<div class="table-wrapper">
-											<table>
-												<tbody>
-													<tr>
-														<td><b>Total Time:</b> X</td>
-														<td><b>Preparation Time:</b> X</td>
-														<td><b>Cooking Time:</b> X</td>
-													</tr>
-												</tfoot>
-											</table>
-										</div>
-										<div class="table-wrapper">
-											<table>
-												<tbody>
-													<tr>
-														<td><b>Servings:</b> X</td>
-														<td><b>Price Per Serving:</b> X</td>
-													</tr>
-												</tfoot>
-											</table>
-										</div>
-										<div class="table-wrapper">
-											<table>
-												<tbody>
-													<tr>
-														<td><b>Dairy Free:</b> X</td>
-														<td><b>Gluten Free:</b> X</td>
-														<td><b>Vegan:</b> X</td>
-														<td><b>Vegetarian:</b> X</td>
-														<td><b>Low FODMAP:</b> X</td>
-													</tr>
-												</tfoot>
-											</table>
-										</div>
-										<div class="table-wrapper">
-											<table>
-												<tbody>
-													<tr>
-														<!-- these should be toggled  -->
-														<td><b>Health Score:</b> X</td>
-														<td><b>Weight Watcher Smart Points:</b> X</td>
-													</tr>
-												</tbody>
+									<div class="table-wrapper">
+										<table>
+											<tbody>
+												<tr>
+													<td><b>Health Score:</b> <span id="healthScore"></span></td>
+													<td><b>Weight Watcher Smart Points:</b> <span id="weightWatcherSmartPoints"></span></td>
+												</tr>
+											</tbody>
+										</tfoot>
+										</table>
+									</div>
+									<div class="table-wrapper">
+										<table>
+											<tbody>
+												<tr>
+													<td><b>Total Time:</b> <span id="readyInMinutes"></span> minutes</td>
+													<td><b>Preparation Time:</b> <span id="preparationMinutes"></span> minutes</td>
+													<td><b>Cooking Time:</b> <span id="cookingMinutes"></span> minutes</td>
+													<td><b>Servings:</b> <span id="servings"></span></td>
+													<td><b>Price Per Serving:</b> $<span id="pricePerServing"></span></td>
+												</tr>
 											</tfoot>
-											</table>
+										</table>
+									</div>
+									<div class="table-wrapper">
+										<table>
+											<tbody>
+												<tr>
+													<td><b>Dairy Free:</b> <span id="dairyFree"></span></td>
+													<td><b>Gluten Free:</b> <span id="glutenFree"></span></td>
+													<td><b>Vegan:</b> <span id="vegan"></span></td>
+													<td><b>Vegetarian:</b> <span id="vegetarian"></span></td>
+													<td><b>Low FODMAP:</b> <span id="lowFodmap"></span></td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+									<!-- 
+										COLLAPSIBLE MENU FOR NUTRITION INFORMATION
+
+										BREAK
+
+										OPTION TO SAVE, DOWNLOAD, SHARE, NAVIGATE TO, AND PRINT RECIPE
+										-->
+									<hr>
+									<div class="container">
+										<a href="#" class="button primary large">Add Recipe</a>
+										<a href="#" id="sourceUrl" class="button primary large">Visit Website</a>
+										<a href="#" class="button large">Download</a>
+										<a href="#" class="button large">Print</a>
+										<a href="#" class="button large">Share</a>
+									</div>
+									<hr>
+									<div>
+										<p><span id="summary"></span></p>
+									</div>
+									<hr>
+									<div class="row">
+										<div class="col-6 col-12-small">
+											<!-- INGREDIENTS -->
+											<h2>Ingredients</h2>
+											<ul id="ingredientsList"></ul>
 										</div>
-										<!-- 
-										
-										-TIME
-											-readyInMinutes, preparationMinutes, cookingMinutes
-										-PRICE
-											-servings, pricePerServing
-										-DIET
-											-dairyFree, glutenFree, vegan, vegetarian, lowFodmap
-										-NUTRITION
-											-veryPopular, veryHealthy, healthScore, weightWatcherSmartPoints
-
-										 -->
-
-
-										<div>
-											<p>Introducing our recipe explorer - the ultimate tool for culinary exploration. With just a simple scroll, you can discover a vast array of recipes from every corner of the world, each one guaranteed to excite your taste buds and inspire your creativity in the kitchen. From the bold flavors of Latin American cuisine to the aromatic spices of Indian dishes, our recipe explorer allows you to take a global journey from the comfort of your own home.</p>
+										<div class="col-6 col-12-small">
+											<!-- DIRECTIONS -->
+											<h2>Directions</h2>
+											<ol class="alt" id="directionsList"></ol>
 										</div>
+									</div>
 
 								</section>
 
@@ -257,6 +277,6 @@ if (isset($_GET['id'])) {
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script src="assets/js/recipe.js"></script>
+			<script src="assets/js/preloader.js"></script>
 	</body>
 </html>
