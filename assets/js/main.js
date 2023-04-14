@@ -263,9 +263,15 @@ $(document).ready(function(){
 	
 	var velocity = 0.4;
 
+	// runs once
+	$('.bg').each(function() { 
+		var $element = $(this);
+		$(this).css('backgroundPosition', '50% ' + -($(window).scrollTop()) * velocity + 'px');
+	});
+
 	function update() {
 		var pos = $(window).scrollTop();
-		$('.container').each(function() { 
+		$('.bg').each(function() { 
 			var $element = $(this);
 			$(this).css('backgroundPosition', '50% ' + -pos * velocity + 'px');
 		});

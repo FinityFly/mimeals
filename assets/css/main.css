@@ -73,6 +73,7 @@ body {
     min-width: 320px; } }
 
 html {
+  scroll-behavior: smooth;
   box-sizing: border-box; }
 
 *, *:before, *:after {
@@ -2314,8 +2315,18 @@ button,
 
 .container {
   margin: auto;
-  text-align: center;
-}
+  text-align: center; }
+  .container.relative {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    flex-direction: column;
+  }
 
 .title {
   height: 20px;
@@ -2329,33 +2340,6 @@ button,
   position: fixed;
   z-index: 100;
 }
-
-/* .hero {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh;
-  flex-direction: column; }
-  .hero.bg-1 {
-  background-image: url(../../images/bg.jpg);
-  background-size: auto 130%;
-  background-position: center 0px;
-  background-repeat: no-repeat;
-  background-attachment: fixed; }
-  .hero.bg-2 {
-  background-image: url(../../images/shakshouka.png);
-  background-size: 140% auto;
-  background-position: center 0px;
-  background-repeat: repeat;
-  background-attachment: fixed; } */
-
-/* z-index: -1;
-filter: blur(5px);
--webkit-filter: blur(5px); */
-
 
 .hero {
   width: 100%;
@@ -2379,6 +2363,35 @@ filter: blur(5px);
   background-repeat: repeat;
   background-attachment: fixed; }
 
+/* z-index: -1;
+filter: blur(5px);
+-webkit-filter: blur(5px); */
+
+.hero-inner {
+  color: #3d4449;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  /* z-index: -1; */
+  flex-direction: column;
+  background-size: cover;
+  background-attachment: fixed;
+  filter: blur(5px);
+  -webkit-filter: blur(5px); }
+  .bg.im-1 {
+    background-image: url(../../images/bg.jpg);
+    background-repeat: no-repeat; }
+  .bg.im-2 {
+    background-image: url(../../images/shakshouka.png);
+    background-repeat: repeat; }
+
 .content {
+  position: absolute;
+  /* z-index: 1; */
   color: #3d4449;
 }

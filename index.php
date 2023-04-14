@@ -39,7 +39,8 @@
 								</header>
 
 							<!-- Banner -->
-								<section class="container hero bg-1">
+								<section class="container relative">
+									<div class="bg im-1"></div>
 									<div class="content">
 										<h1>Welcome to Mimeals!</h1>
 										<h2>Your meal planning website</h2>
@@ -56,10 +57,12 @@
 										</span>
 										<h3>Why use MiMeals?</h3>
 										<p>With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
+										<a href="#" class="button">More</a>
 									</article>
 								</section>
 
-								<section class="container hero bg-2">
+								<section class="container relative">
+									<div class="bg im-2"></div>
 									<div class="content">
 										<h1>Discover Greatness</h1>
 										<h2>Your journey begins here</h2>
