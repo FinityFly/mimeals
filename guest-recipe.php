@@ -106,20 +106,27 @@ if (isset($_GET['id'])) {
 							<!-- Content -->
 
 								<section>
-
 									<header class="main">
-										<div>
-											<a href="#"><span class="image fit"><img id="recipeImage" alt="" /></span></a>
-										</div>
+										<span class="image fit"><img id="recipeImage" alt="" /></span>
 										<h1><span id="recipeTitle"></span></h1>
-										<h3>In credit to: <span id="creditsText"></span></h3>
+										<div class="row">
+											<div class="col-10 col-12-small" style="align-text: left;">
+												<h3>In credit to: <span id="creditsText"></span></h3>
+											</div>
+											<div class="off-10-small col-12-small" style="text-align:right;white-space:nowrap;">
+												<a href="#" class="button primary small icon solid fa-heart">69420</a>
+											</div>
+										</div>
+										<!-- <div class="off-9-small col-12-small" style="text-align:right;white-space:nowrap;">
+											<a href="#" class="button primary small icon solid fa-heart">69420</a>
+										</div> -->
 										<!-- 
 										
 										FOLLOW HOW THIS WEBSITE FORMATS THEIR RECIPES: https://www.foodnetwork.com/recipes/ree-drummond/simple-perfect-chili-recipe-2107099
 
 										INCLUDE AUTHOR AND LIKES
 
-										 -->
+										-->
 									</header>
 									<!-- Content -->
 
