@@ -41,7 +41,7 @@
 							<!-- Banner -->
 								<section class="container relative">
 									<div class="bg im-1"></div>
-									<div class="content">
+									<div class="bg-content">
 										<h1>Welcome to Mimeals!</h1>
 										<h2>Your meal planning website</h2>
 										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life.</p>
@@ -63,7 +63,7 @@
 
 								<section class="container relative">
 									<div class="bg im-2"></div>
-									<div class="content">
+									<div class="bg-content">
 										<h1>Discover Greatness</h1>
 										<h2>Your journey begins here</h2>
 										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life.</p>
@@ -71,23 +71,6 @@
 										<a href="#" class="button big">Learn More</a>
 									</div>
 								</section>
-
-
-							<!-- Section -->
-								<!-- <section>
-									<header class="major">
-										<h2>Erat lacinia</h2>
-									</header>
-									<div class="features">
-										<article>
-											<span class="icon fa-gem"></span>
-											<div class="content">
-												<h3>Portitor ullamcorper</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-									</div>
-								</section> -->
 								<section>
 									<header class="major">
 										<h2>Ipsum sed dolor</h2>
@@ -140,23 +123,6 @@
 										
 									</ul>
 								</nav>
-
-							<!-- Section -->
-								<!-- <section>
-									<header class="major">
-										<h2>Meet the team</h2>
-									</header>
-									<div class="mini-posts">
-										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-									</div>
-									<ul class="actions">
-										<li><a href="#" class="button">More</a></li>
-									</ul>
-								</section> -->
-
 							<!-- Footer -->
 								<footer id="footer">
 									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>

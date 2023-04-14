@@ -19,6 +19,7 @@
 				<!-- Main -->
 				<div id="main">
 					<div class="inner">
+
 						<!-- Header -->
 						<header id="header">
 							<a href="index.php" class="logo"><strong>MiMeals</strong></a>

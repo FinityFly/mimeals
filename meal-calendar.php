@@ -5,10 +5,7 @@
 // if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 ?>
 
-<?php
-// } else {
-// 	header("Location: index.php");}
-?>
+
 
 
 
@@ -19,6 +16,7 @@
 
 <!--  -->
 
+<!-- https://www.youtube.com/watch?v=Z1BGAivZRlE -->
 
 <!-- https://www.geeksforgeeks.org/design-a-calendar-using-html-and-css/ -->
 
@@ -34,128 +32,10 @@
 <!-- allow user to click on each day -->
 <!-- highlight planned days (to distinguish between unplanned days) using color -->
 <!-- https://www.w3schools.com/howto/howto_css_calendar.asp -->
-<style>
-
-days 
-{
-  display: grid;
-  /* screensize/ 7? */
-
-  grid-template-columns: repeat(7, 12%);
-  grid-template-rows:    repeat(6, 100%);
-}
-/* https://www.w3schools.com/cssref/sel_firstchild.php */
-
-
-/* create a bunch of month templates... days.d1 means starts month on sunday, days.d2 is monday etc */
-
-/* acc i dont need this anymore */
-days.d1 day:first-child { grid-column: 1; }
-days.d2 day:first-child { grid-column: 2; }
-days.d3 day:first-child { grid-column: 3; }
-days.d4 day:first-child { grid-column: 4; }
-days.d5 day:first-child { grid-column: 5; }
-days.d6 day:first-child { grid-column: 6; }
-days.d7 day:first-child { grid-column: 7; }
-
-</style>
 
 
 
 <!-- https://stackoverflow.com/questions/6841379/is-there-java-hashmap-equivalent-in-php -->
-
-<!-- php -->
-<?php
-
-$html .= '<div class="box">' . ('ALL CAPS BABY') . '</div>';
-
-// I could do the same for month names lol.
-// Set the number of days in each month
-$daysInMonth = array(
-    '1' => 31,
-    '2' => 28,
-    '3' => 31,
-    '4' => 30,
-    '5' => 31,
-    '6' => 30,
-    '7' => 31,
-    '8' => 31,
-    '9' => 30,
-    '10' => 31,
-    '11' => 30,
-    '12' => 31
-);
-
-$leap_years = array(1996, 2000, 2004, 2008, 2012, 2016, 2020, 2024, 2028, 2032, 2036, 2040, 2044, 2048, 2052, 2056, 2060)
-if $display_year in $leap_years{
-	$dayInMonth['2'] = 29
-}else{
-	$dayInMonth['2'] = 28
-}
-// 1-31
-$current_date = date('j');
-// year
-$todays_year = date('y');
-// month
-$todays_month = date('m');
-
-$display_year = $todays_year;
-$display_month = $todays_month;
-
-
-// the year loop
-// or is it -1
-// if  $todays_month = 0{
-// 	$display_year -=1
-// 	$todays_month = 11
-
-// }
-// if  $todays_month = 12{
-// 	$display_year ++
-// 	$todays_month = 0
-// }
-
-
-// current weekday (use to find first day of month)
-// 0 is sunday 6 is saturday
-$today_weekday = date('w');
-$first_date= ($today_weekday-$current_date%7)%7+9;
-
-// first date is now 1 = sunday, 2 = monday etc 7 =saturday
-echo $first_date;
-
-
-// uh ok i got first date, now what...
-// fill this out, using first date.
-// $current_month = {};
-// if $first_date != 0{
-
-// 	// do like a date - 1 thing
-// 	$num_last_month__days = date()
-
-// 	// if date is 6, meaning sunday, then 6-6 = 0
-// 	// if date is 0, do none
-// 	// if date is 1 do 1
-// 	// if date is 4 (out of 6), do 4
-// 	$num_last_month__display_days = $first_date
-// 	// basically display num_last_month__display_days amount of days from the last month
-
-
-
-
-// }
-
-// $prev_months ={};
-// $next_month = {};
-
-// $display_calendar = {};
-
-?>
-
-
-
-
-
 
 <html>
 	<head>
@@ -164,6 +44,7 @@ echo $first_date;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 	</head>
 	
 	
@@ -206,11 +87,48 @@ echo $first_date;
 							<!-- functionality: do not allow meals to be planned for dates that already happened -->
 				
 							<!-- Calendar Part -->
-								<section>
-									<header class="major">
-										<h2>Calendar</h2>
-									</header>
-								</section>
+
+								<div class="calendar-wrapper">
+									<div class="calendar-header">
+										<h1 class="current-date"></h1>
+										<div class="icons">
+										<span id="prev" class="material-symbols-rounded">chevron_left</span>
+										<span id="next" class="material-symbols-rounded">chevron_right</span>
+										</div>
+									</div>
+									<div class="calendar">
+										<ul class="weeks">
+										<li>Sun</li>
+										<li>Mon</li>
+										<li>Tue</li>
+										<li>Wed</li>
+										<li>Thu</li>
+										<li>Fri</li>
+										<li>Sat</li>
+										</ul>
+										<ul class="days"></ul>
+									</div>
+
+									<div class="popup">
+										<a id="close" class="button small">Back</a>
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 							<!-- Calendar -->
@@ -242,7 +160,7 @@ echo $first_date;
 
 								<day>1</day>
 								<day>2</day>
-								<day class="on"><a href="/2022/10/03">3</a></day>
+								<a href="/2022/10/03"><day class="on">3</day></a>
 								<day>4</day>
 								<day>5</day>
 								<day class="on"><a href="/2022/10/06">6</a></day>
@@ -308,3 +226,7 @@ echo $first_date;
 
 	</body>
 </html>
+<?php
+// } else {
+// 	header("Location: index.php");}
+?>

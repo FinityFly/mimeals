@@ -2104,7 +2104,7 @@ button,
     border-bottom: 0;
     color: inherit;
     font-family: "Roboto Slab", serif;
-    font-size: 1.125em; }
+    font-size: 4.25 em; }
   #header .icons {
     text-align: right; }
   @media screen and (max-width: 1680px) {
@@ -2363,10 +2363,6 @@ button,
   background-repeat: repeat;
   background-attachment: fixed; }
 
-/* z-index: -1;
-filter: blur(5px);
--webkit-filter: blur(5px); */
-
 .hero-inner {
   color: #3d4449;
 }
@@ -2390,8 +2386,139 @@ filter: blur(5px);
     background-image: url(../../images/shakshouka.png);
     background-repeat: repeat; }
 
-.content {
+.bg-content {
   position: absolute;
   /* z-index: 1; */
   color: #3d4449;
+}
+
+.calendar-wrapper{
+  /* position: relative; */
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+.calendar-wrapper.calendar-header {
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
+}
+
+.calendar-header.icons{
+  display: flex;
+}
+.calendar-header.icons span{
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  cursor: pointer;
+  color: #878787;
+  text-align: center;
+  line-height: 38px;
+  font-size: 1.9rem;
+  user-select: none;
+  border-radius: 50%;
+}
+.icons span:last-child{
+  margin-right: -10px;
+}
+.calendar-header h1 {
+  padding-top: 50px;
+  text-align: center;
+}
+.calendar-header.icons span:hover{
+  background: #f2f2f2;
+}
+.calendar-header.current-date{
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+.calendar{
+  padding: 20px;
+}
+.calendar ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+}
+.calendar .days{
+  margin-bottom: 20px;
+}
+.calendar li{
+  color: #333;
+  width: calc(100% / 7);
+  font-size: 1.07rem;
+}
+.calendar .weeks li{
+  font-weight: 500;
+  cursor: default;
+}
+.calendar .days li{
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.days li.inactive{
+  color: #aaa;
+}
+.days li.active{
+  color: #fff;
+}
+.days li::before{
+  position: absolute;
+  content: "";
+  left: 53%;
+  top: 50%;
+  height: 50px;
+  width: 50px;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.days li.active::before{
+  background: #ef6969;
+}
+.days li:not(.active):hover::before{
+  background: #f2f2f2;
+}
+
+.icons {
+  cursor: pointer;
+  text-align: right; }
+  .icons span {
+  cursor: pointer; }
+
+.popup {
+  background-color: #ffffff;
+  width: 80%;
+  height: 80%;
+  padding: 30px;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  border: 5px solid #ef6969;
+  border-radius: 8px;
+  z-index: 9999;
+  display: none;
+}
+
+.popup button {
+  display: block;
+  margin: 0 0 20px auto;
+  background-color: transparent;
+  font-size: 30px;
+  color: #ffffff;
+  background: #ef6969;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
