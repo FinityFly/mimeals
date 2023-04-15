@@ -59,16 +59,35 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
 // date popup window
 const popup = document.querySelector(".popup");
 const dateCircle = document.querySelectorAll(".days li");
-
+const overlay = document.querySelector("#overlay");
+try{
+    overlay.classList.add("inactive");
+}
+catch{
+    // do nothing
+} 
 dateCircle.forEach(day => {
     day.addEventListener("click", function() {
-        // popup.classList.toggle("nofade");
         try{
             popup.classList.remove("nofade");
+            console.log('pop')
         }
         catch{
             // do nothing
         } 
+        try{
+            overlay.classList.remove("inactive");
+            console.log('active')
+        }
+        catch{
+            // do nothing
+        } 
+        //  idk what layer but below the popup
+        console.log(overlay.classList)
+        overlay.classList.add("active");
+        overlay.style.zIndex = "999";
+        console.log(overlay.classList)
+
         popup.classList.add("nofade");
         popup.style.zIndex = "9999";
 
@@ -77,12 +96,24 @@ dateCircle.forEach(day => {
     })
 })
 
+overlay.addEventListener('click', function(){
+    // remove the 'active' css style and send to back layer
+    console.log('ssss')
+    popup.classList.remove("nofade");
+    popup.classList.add("fade");
+
+    overlay.classList.remove("active");
+    overlay.classList.add("inactive");
+})
+
 // back button functionality
 const backButton = document.querySelector("#close");
 
 backButton.addEventListener("click", function() {
-    // popup.classList.toggle("fade");
+    // remove the 'active' css style 
     popup.classList.remove("nofade");
     popup.classList.add("fade");
-    popup.style.zIndex = "-1";
+
+    overlay.classList.remove("active");
+    overlay.classList.add("inactive");
 })
