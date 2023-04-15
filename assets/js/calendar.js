@@ -62,7 +62,14 @@ const dateCircle = document.querySelectorAll(".days li");
 
 dateCircle.forEach(day => {
     day.addEventListener("click", function() {
-        popup.classList.toggle("nofade");
+        // popup.classList.toggle("nofade");
+        try{
+            popup.classList.remove("nofade");
+        }
+        catch{
+            // do nothing
+        } 
+        popup.classList.add("nofade");
         popup.style.zIndex = "9999";
 
         let dateString = `Your meals for ${months[currMonth]} ${day.innerHTML}, ${currYear}`;
@@ -74,6 +81,8 @@ dateCircle.forEach(day => {
 const backButton = document.querySelector("#close");
 
 backButton.addEventListener("click", function() {
-    popup.classList.toggle("fade");
+    // popup.classList.toggle("fade");
+    popup.classList.remove("nofade");
+    popup.classList.add("fade");
     popup.style.zIndex = "-1";
 })

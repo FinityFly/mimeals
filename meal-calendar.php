@@ -1,9 +1,8 @@
-<!-- win -->
-<?php
-// session_start();
+<!-- <?php
+session_start();
 
-// if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
-?>
+if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
+?> -->
 
 
 
@@ -154,13 +153,7 @@
 										<li><a href="meal-explorer.php">Explorer</a></li>
 										<li><a href="meal-recipes.php">Recipes</a></li>
 										<li><a href="includes/logout.php">Log out</a></li>
-										<!-- <li>
-											<span class="opener">Another Submenu</span>
-											<ul>
-												<li><a href="#">Lorem Dolor</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-											</ul>
-										</li> -->
+										
 									</ul>
 								</nav>
 
@@ -184,6 +177,6 @@
 	</body>
 </html>
 <?php
-// } else {
-// 	header("Location: index.php");}
+} else {
+	header("Location: index.php");}
 ?>

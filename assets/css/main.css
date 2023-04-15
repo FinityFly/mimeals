@@ -2385,9 +2385,11 @@ button,
   background-attachment: fixed;
   filter: blur(5px);
   -webkit-filter: blur(5px); }
+  /* for homepage */
   .bg.im-1 {
     background-image: url(../../images/bg.jpg);
     background-repeat: no-repeat; }
+  /* for homepage */
   .bg.im-2 {
     background-image: url(../../images/shakshouka.png);
     background-repeat: repeat; }
