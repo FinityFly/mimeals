@@ -60,33 +60,26 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
 const popup = document.querySelector(".popup");
 const dateCircle = document.querySelectorAll(".days li");
 const overlay = document.querySelector("#overlay");
-try{
-    overlay.classList.add("inactive");
-}
-catch{
-    // do nothing
-} 
+overlay.classList.add("inactive");
+
 dateCircle.forEach(day => {
     day.addEventListener("click", function() {
         try{
             popup.classList.remove("nofade");
-            console.log('pop')
         }
         catch{
             // do nothing
         } 
         try{
             overlay.classList.remove("inactive");
-            console.log('active')
         }
         catch{
             // do nothing
         } 
-        //  idk what layer but below the popup
-        console.log(overlay.classList)
+
+        // set the CSS for the popup and overlay to active and set their layer to front
         overlay.classList.add("active");
         overlay.style.zIndex = "999";
-        console.log(overlay.classList)
 
         popup.classList.add("nofade");
         popup.style.zIndex = "9999";
@@ -96,6 +89,7 @@ dateCircle.forEach(day => {
     })
 })
 
+// overlay exit popup functionality
 overlay.addEventListener('click', function(){
     // remove the 'active' css style and send to back layer
     console.log('ssss')

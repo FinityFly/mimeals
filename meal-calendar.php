@@ -128,7 +128,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									</div>
 									<!-- overlay to also exit popup -->
 									<!-- <div class = 'overlay inactive' id="overlay"></div> -->
-									<div class = 'overlay' id="overlay"></div>
+									<div class = 'overlay' id="overlay"></div> 
 								</div>
 
 						</div>
