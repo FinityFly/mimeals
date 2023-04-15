@@ -50,7 +50,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									<div>
 										<header>
 											<h1>Welcome, <?php echo $_SESSION['name']; ?></h1>
-											<p>We hope to make your life a big easier!</p>
+											<p>We hope to make your life a bit easier!</p>
 										</header>
 										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life. With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
 										<ul class="actions">

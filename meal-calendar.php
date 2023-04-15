@@ -111,66 +111,23 @@
 
 									<div class="popup">
 										<a id="close" class="button small">Back</a>
+										<h1 id="datestring"><h1>
+										<!-- HEADER
+									
+										Includes total price, required ingredients, average health score, others (maybe nutrition info like calories)
+									
+										-->
+
+										<!-- RECIPE LIST -->
+										<a id="add-recipe" class="button primary fit slim icon solid fa-plus">Add recipe</a>
+										
+										<!-- MAYBE SEPARATE FOR BREAKFAST LUNCH AND DINNER -->
+										
+										<ul class="recipe-list">
+
+										</ul>
 									</div>
 								</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- Calendar -->
-
-							<!--  -->
-
-							<h2 align="center" style="color: orange;">January 2021</h2>
-							
-							<!-- change this based on javascript or mysql?-->
-							<!-- USE PHP TO GENRATE HTML -->
-							<!-- use php to find date -->
-							
-							<!-- Weekday Names -->
-							<days class="d1" align = 'center'>
-							<day>Sun</day>
-							<day>Mon</day>
-							<day>Tue</day>
-							<day>Wed</day>
-							<day>Thu</day>
-							<day>Fri</day>
-							<day>Sat</day>
-							</days>
-							<br>
-
-							<days class="d7" align = 'center'>
-								
-
-								<!-- is there a more efficient way to do this, like a list? or a for loop statement? -->
-
-								<day>1</day>
-								<day>2</day>
-								<a href="/2022/10/03"><day class="on">3</day></a>
-								<day>4</day>
-								<day>5</day>
-								<day class="on"><a href="/2022/10/06">6</a></day>
-								<day>7</day>
-								
-								
-								<day>30</day>
-								<day>31</day>
-							</days>
-							
 
 						</div>
 					</div>

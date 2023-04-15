@@ -1555,6 +1555,12 @@ button,
   button.small,
   .button.small {
     font-size: 0.6em; }
+  input[type="submit"].slim,
+  input[type="reset"].slim,
+  input[type="button"].slim,
+  button.slim,
+  .button.slim {
+    font-size: 0.4em; }
   input[type="submit"].large,
   input[type="reset"].large,
   input[type="button"].large,
@@ -2504,8 +2510,22 @@ button,
   top: 50%;
   border: 5px solid #ef6969;
   border-radius: 8px;
-  z-index: 9999;
-  display: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3 ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
+}
+
+.popup.fade {
+  opacity: 0;
+}
+
+.popup.nofade {
+  opacity: 1;
+}
+
+.popup h1 {
+  padding: 20px;
 }
 
 .popup button {

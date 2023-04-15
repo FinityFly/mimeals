@@ -57,10 +57,23 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
 });
 
 // date popup window
-document.querySelector(".days").addEventListener("click", function() {
-    document.querySelector(".popup").style.display = "block";
+const popup = document.querySelector(".popup");
+const dateCircle = document.querySelectorAll(".days li");
+
+dateCircle.forEach(day => {
+    day.addEventListener("click", function() {
+        popup.classList.toggle("nofade");
+        popup.style.zIndex = "9999";
+
+        let dateString = `Your meals for ${months[currMonth]} ${day.innerHTML}, ${currYear}`;
+        document.querySelector("#datestring").innerHTML = dateString;
+    })
 })
 
-document.querySelector("#close").addEventListener("click", function() {
-    document.querySelector(".popup").style.display = "none";
+// back button functionality
+const backButton = document.querySelector("#close");
+
+backButton.addEventListener("click", function() {
+    popup.classList.toggle("fade");
+    popup.style.zIndex = "-1";
 })
