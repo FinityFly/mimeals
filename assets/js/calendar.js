@@ -1,4 +1,6 @@
 // might have to add on document load here
+const overlay = document.querySelector("#overlay");
+overlay.classList.add("inactive");
 
 const daysTag = document.querySelector(".days"),
 currentDate = document.querySelector(".current-date"),
@@ -39,6 +41,8 @@ const renderCalendar = () => {
 }
 renderCalendar();
 
+var dateCircle = document.querySelectorAll(".days li");
+
 prevNextIcon.forEach(icon => { // getting prev and next icons
     icon.addEventListener("click", () => { // adding click event on both icons
         // if clicked icon is previous icon then decrement current month by 1 else increment it by 1
@@ -53,16 +57,62 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
             date = new Date(); // pass the current date as date value
         }
         renderCalendar(); // calling renderCalendar function
+        dateCircle = document.querySelectorAll(".days li");
+
+        dateCircle.forEach(day => {
+            day.addEventListener("click", function() {
+                console.log("clicked");
+                try{
+                    popup.classList.remove("nofade");
+                }
+                catch{
+                    // do nothing
+                } 
+                try{
+                    overlay.classList.remove("inactive");
+                }
+                catch{
+                    // do nothing
+                } 
+        
+                // set the CSS for the popup and overlay to active and set their layer to front
+                overlay.classList.add("active");
+                overlay.style.zIndex = "999";
+        
+                popup.classList.add("nofade");
+                popup.style.zIndex = "9999";
+        
+                let dateString = `Your meals for ${months[currMonth]} ${day.innerHTML}, ${currYear}`;
+                document.querySelector("#datestring").innerHTML = dateString;
+            })
+        })
     });
 });
 
 // date popup window
 const popup = document.querySelector(".popup");
-const dateCircle = document.querySelectorAll(".days li");
 
 dateCircle.forEach(day => {
     day.addEventListener("click", function() {
-        popup.classList.toggle("nofade");
+        console.log("clicked");
+        try{
+            popup.classList.remove("nofade");
+        }
+        catch{
+            // do nothing
+        } 
+        try{
+            overlay.classList.remove("inactive");
+        }
+        catch{
+            // do nothing
+        } 
+
+        // set the CSS for the popup and overlay to active and set their layer to front
+        overlay.classList.add("active");
+        overlay.style.zIndex = "999";
+
+        popup.classList.add("nofade");
         popup.style.zIndex = "9999";
 
         let dateString = `Your meals for ${months[currMonth]} ${day.innerHTML}, ${currYear}`;
@@ -70,10 +120,24 @@ dateCircle.forEach(day => {
     })
 })
 
+// overlay exit popup functionality
+overlay.addEventListener('click', function(){
+    // remove the 'active' css style and send to back layer
+    popup.classList.remove("nofade");
+    popup.classList.add("fade");
+
+    overlay.classList.remove("active");
+    overlay.classList.add("inactive");
+})
+
 // back button functionality
 const backButton = document.querySelector("#close");
 
 backButton.addEventListener("click", function() {
-    popup.classList.toggle("fade");
-    popup.style.zIndex = "-1";
+    // remove the 'active' css style 
+    popup.classList.remove("nofade");
+    popup.classList.add("fade");
+
+    overlay.classList.remove("active");
+    overlay.classList.add("inactive");
 })

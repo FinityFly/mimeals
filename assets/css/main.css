@@ -2385,9 +2385,11 @@ button,
   background-attachment: fixed;
   filter: blur(5px);
   -webkit-filter: blur(5px); }
+  /* for homepage */
   .bg.im-1 {
     background-image: url(../../images/bg.jpg);
     background-repeat: no-repeat; }
+  /* for homepage */
   .bg.im-2 {
     background-image: url(../../images/shakshouka.png);
     background-repeat: repeat; }
@@ -2398,7 +2400,7 @@ button,
   color: #3d4449;
 }
 
-.calendar-wrapper{
+.calendar-wrapper {
   /* position: relative; */
   width: 100%;
   background: #fff;
@@ -2412,10 +2414,10 @@ button,
   justify-content: space-between;
 }
 
-.calendar-header.icons{
+.calendar-header.icons {
   display: flex;
 }
-.calendar-header.icons span{
+.calendar-header.icons span {
   height: 38px;
   width: 38px;
   margin: 0 1px;
@@ -2428,32 +2430,33 @@ button,
   border-radius: 50%;
 }
 .icons span:last-child{
-  margin-right: -10px;
+  margin-right: 10px;
 }
 .calendar-header h1 {
   padding-top: 50px;
   text-align: center;
 }
-.calendar-header.icons span:hover{
-  background: #f2f2f2;
+.calendar-header.icons:hover {
+  background: #ef6969c2;
+  border-radius: 50%;
 }
-.calendar-header.current-date{
+.calendar-header.current-date {
   font-size: 1.45rem;
   font-weight: 500;
 }
-.calendar{
+.calendar {
   padding: 20px;
 }
-.calendar ul{
+.calendar ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   text-align: center;
 }
-.calendar .days{
+.calendar .days {
   margin-bottom: 20px;
 }
-.calendar li{
+.calendar li {
   color: #333;
   width: calc(100% / 7);
   font-size: 1.07rem;
@@ -2494,10 +2497,11 @@ button,
 }
 
 .icons {
-  cursor: pointer;
   text-align: right; }
-  .icons span {
-  cursor: pointer; }
+  
+.icons span {
+  cursor: pointer; 
+  padding: 15px; }
 
 .popup {
   background-color: #ffffff;
@@ -2518,14 +2522,17 @@ button,
 
 .popup.fade {
   opacity: 0;
+  pointer-events: none;
 }
 
 .popup.nofade {
   opacity: 1;
+  pointer-events: all;
 }
 
 .popup h1 {
   padding: 20px;
+  
 }
 
 .popup button {
@@ -2541,4 +2548,26 @@ button,
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+/* for bg blur */
+.overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+/* bg blur on */
+.overlay.active{
+  backdrop-filter: blur(1.5px);
+  opacity: 1;
+  pointer-events: all;
+}
+/* bg blur off */
+.overlay.inactive{
+  backdrop-filter: none;
+  opacity: 0;
 }
