@@ -53,7 +53,6 @@ async function loadRecipes(n) {
                         </div>
                         <p>${description}</p>
                         <ul class="actions fit">
-                            <li><a href="#" class="button primary fit icon solid fa-download">Add Recipe</a></li>
                             <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
                         </ul>
                         <script>
@@ -69,6 +68,3 @@ async function loadRecipes(n) {
 }
 
 await loadRecipes(2);
-
-// add recipe button
-// const 

@@ -11,6 +11,10 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<script type="text/javascript">
+			
+		</script>
 	</head>
 	<body class="is-preload">
 
@@ -62,8 +66,7 @@
 												</div>
 												<p>Bratwurst is a German sausage made from pork, beef, or veal, seasoned with nutmeg, coriander, and caraway seeds. It is typically grilled or pan-fried and served with sauerkraut, mustard, and other toppings.</p>
 												<ul class="actions fit">
-													<li><a href="#" class="button primary fit icon solid fa-download">Add Recipe</a></li>
-													<li><a href="#" class="button fit icon solid fa-search">Visit Website</a></li>
+													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
 												</ul>
 											</div>
 											
@@ -80,8 +83,7 @@
 												</div>
 												<p>Vietnamese beef pho is a flavorful and aromatic soup made with beef broth, rice noodles, and a variety of herbs and spices, including star anise, cinnamon, and ginger. It is typically served with thinly sliced beef, bean sprouts, and lime wedges, and is a popular dish in Vietnamese cuisine.</p>
 												<ul class="actions fit">
-													<li><a href="#" class="button primary fit icon solid fa-download">Add to Recipes</a></li>
-													<li><a href="#" class="button fit icon solid fa-search">Visit Website</a></li>
+													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
 												</ul>
 											</div>
 											<div class="col-6 col-12-small">
@@ -96,8 +98,7 @@
 												</div>
 												<p>Moqueca is a traditional Brazilian seafood stew made with fish or shrimp, coconut milk, tomatoes, onions, garlic, and coriander. The dish is typically served with rice and farofa (toasted manioc flour) and is known for its bold and complex flavors. Moqueca is a delicious and satisfying dish that reflects the diverse culinary traditions of Brazil.</p>
 												<ul class="actions fit">
-													<li><a href="#" class="button primary fit icon solid fa-download">Add to Recipes</a></li>
-													<li><a href="#" class="button fit icon solid fa-search">Visit Website</a></li>
+													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
 												</ul>
 											</div>
 											
@@ -113,8 +114,7 @@
 												</div>
 												<p>Shakshouka is a Middle Eastern dish made of eggs poached in a spicy tomato sauce with onions, peppers, and spices such as cumin and paprika. It is often served with bread for dipping and is a popular breakfast dish in many countries in the region. Shakshouka is a flavorful and satisfying dish that has become popular around the world for its unique combination of spices and textures.</p>
 												<ul class="actions fit">
-													<li><a href="#" class="button primary fit icon solid fa-download">Add to Recipes</a></li>
-													<li><a href="#" class="button fit icon solid fa-search">Visit Website</a></li>
+													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
 												</ul>
 											</div>
 										</div>
@@ -218,7 +218,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script type="module" src="assets/js/explorer.js"></script>
+			<script type="module" src="assets/js/guest-explorer.js"></script>
 
 	</body>
 </html>

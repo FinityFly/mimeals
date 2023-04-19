@@ -43,6 +43,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 								<section>
 									<header class="main">
 										<h1>Saved Recipes</h1>
+										<h5>View youw saved meaws hewe </h5>
+										<div>
+										
+										</div>
+										<hr>
 									</header>
 
 									<!-- get saved recipes -->
@@ -52,11 +57,40 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									<!-- alt : mimeals empty dish photo: a dashed line black and white picture of a bowl of rice/salad/burger/eating utensil -->
 
 									<body>
-										<p>View youw saved meaws hewe </p>
-										<button id = 'create-meal' class = 'primary icon solid fa-plus'>UWU Cweate a meaw?</button>
-										<a href="meal-explorer.php" class = 'button icon solid fa-search'>Explorer</a></li>
+										
+										<ul class="actions fit">
+											<button id = 'create-meal' class = 'primary large icon solid fa-plus'>UWU Cweate a meaw?</button>
+											<a href="meal-explorer.php" class = 'button large icon solid fa-search'>Explorer</a></li>
+										</ul>
 									</body>
+
+									<!-- sort options top right and load more columns -->
+
+									<div class = 'col-8'> 
+										<!-- <img src="images/pho.png" alt="" /> -->
+										<p>Vietnamese beef pho is a flavorful and aromatic soup made with beef broth, rice noodles, and a variety of herbs and spices, including star anise, cinnamon, and ginger. It is typically served with thinly sliced beef, bean sprouts, and lime wedges, and is a popular dish in Vietnamese cuisine.</p>
+										<ul class="actions fit">
+											<li><a href="#" class="button primary fit icon solid fa-download">Add to Recipes</a></li>
+											<!-- warp to calendar page with key? -->
+											<li><a href="#" class="button fit icon solid fa-search">Visit Website</a></li>
+										</ul>
+									</div>
 								</section>
+								<!-- Create Meal Popup -->
+
+								<!-- create loger scrolling popup -->
+
+
+
+								<div class="popup">
+										<a id="close" class="button small">Back</a>
+										<h1>Make a Custom Recipe<h1>
+										<div class="input-field">
+											<input type="text" placeholder="Meal Name" name="name-input" required="required">
+										</div>
+								</div>
+								<!-- Overlay -->
+								<div class = 'overlay' id="overlay"></div> 
 						</div>
 					</div>
 
