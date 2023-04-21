@@ -12,7 +12,6 @@ input.addEventListener("change", function() {
   imagesArray.forEach((image, index) => {
     images += `<div class="image">
                 <img src="${URL.createObjectURL(image)}" alt="image">
-                <span onclick="deleteImage(${index})">&times;</span>
               </div>`
 })
 output.innerHTML = images
