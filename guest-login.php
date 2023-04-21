@@ -12,6 +12,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script src="https://accounts.google.com/gsi/client" async defer></script>
 	</head>
 	<body class="is-preload">
 
@@ -34,6 +36,21 @@
 							<form action="includes/login-submit.php" method="POST">
 								<p>WELCOME BACK!</p>
 								<h1>Log In</h1>
+								<div id="g_id_onload"
+									data-client_id="112292982135-khaaqnggo4jrq876abcedmh3qprjkbv2.apps.googleusercontent.com"
+									data-login_uri="http://localhost/sdp/dashboard.php"
+									data-auto_prompt="false">
+								</div>
+								<div class="g_id_signin"
+									data-onsuccess="onSignIn()"
+									data-type="standard"
+									data-size="large"
+									data-theme="outline"
+									data-text="sign_in_with"
+									data-shape="rectangular"
+									data-logo_alignment="center">
+								</div>
+								<hr>
 								<div class="input-field">
 									<input type="text" placeholder="email" name="email-input" required="required">
 								</div>
@@ -124,6 +141,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script type="module" src="assets/js/google.js"></script>
 
 	</body>
 </html>
