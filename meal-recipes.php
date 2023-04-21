@@ -65,29 +65,37 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									</body>
 
 									<!-- sort options top right and load more columns -->
+								<!-- 	load recipes							 -->
+								<section>
+									<!-- Allow user to sort recipes and select number of selected recipes -->
+									
+								</section>
 
-									<div class = 'col-8'> 
-										<!-- <img src="images/pho.png" alt="" /> -->
-										<p>Vietnamese beef pho is a flavorful and aromatic soup made with beef broth, rice noodles, and a variety of herbs and spices, including star anise, cinnamon, and ginger. It is typically served with thinly sliced beef, bean sprouts, and lime wedges, and is a popular dish in Vietnamese cuisine.</p>
-										<ul class="actions fit">
-											<li><a href="#" class="button primary fit icon solid fa-download">Add to Recipes</a></li>
-											<!-- warp to calendar page with key? -->
-											<li><a href="#" class="button fit icon solid fa-search">Visit Website</a></li>
-										</ul>
-									</div>
 								</section>
 								<!-- Create Meal Popup -->
 
-								<!-- create loger scrolling popup -->
+								<!-- create longer scrolling popup -->
 
 
 
 								<div class="popup">
-										<a id="close" class="button small">Back</a>
-										<h1>Make a Custom Recipe<h1>
-										<div class="input-field">
-											<input type="text" placeholder="Meal Name" name="name-input" required="required">
-										</div>
+									<a id="close" class="button small">Back</a>
+									<h1>Make a Custom Recipe<h1>
+									<div class="input-field">
+<!-- 										 name vs id??-->
+										<input type="text" placeholder="Meal Name" name="name-input" required="required">
+									</div>
+									<input type = 'file' id = 'recipePhoto' name = 'recipePhoto' accept = 'image/png, image/jpeg">
+									
+									<!-- 	https://www.youtube.com/watch?v=EaBSeNSc-2c&t=0s		https://www.youtube.com/watch?v=lzK8vM_wdoY			 -->
+<!-- 							https://medium.com/@mignunez/how-to-upload-and-preview-an-image-with-javascript-749b92711b91																								  -->
+																																												 
+									<!-- 	center it -->
+									<img src = 'recipePicture' alt = 'Recipe Image'>
+									
+								<!-- 	ensure it is centered -->
+									<a id = 'saveRecipe' class = 'button primary'> Save Meal </a>
+										
 								</div>
 								<!-- Overlay -->
 								<div class = 'overlay' id="overlay"></div> 
