@@ -66,7 +66,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 									<!-- sort options top right and load more columns -->
 
-									<div class = 'col-8'> 
+									<div class = 'saved-Recipe'> 
 										<!-- <img src="images/pho.png" alt="" /> -->
 										<p>Vietnamese beef pho is a flavorful and aromatic soup made with beef broth, rice noodles, and a variety of herbs and spices, including star anise, cinnamon, and ginger. It is typically served with thinly sliced beef, bean sprouts, and lime wedges, and is a popular dish in Vietnamese cuisine.</p>
 										<ul class="actions fit">
@@ -74,6 +74,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 											<!-- warp to calendar page with key? -->
 											<li><a href="#" class="button fit icon solid fa-search">Visit Website</a></li>
 										</ul>
+										<br>
 									</div>
 								</section>
 								<!-- Create Meal Popup -->
