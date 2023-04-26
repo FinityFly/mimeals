@@ -122,22 +122,19 @@ dateCircle.forEach(day => {
 
 // overlay exit popup functionality
 overlay.addEventListener('click', function(){
-    // remove the 'active' css style and send to back layer
-    popup.classList.remove("nofade");
-    popup.classList.add("fade");
-
-    overlay.classList.remove("active");
-    overlay.classList.add("inactive");
+    popupOff();
 })
 
 // back button functionality
 const backButton = document.querySelector("#close");
-
 backButton.addEventListener("click", function() {
+    popupOff();
+})
+
+function popupOff(){
     // remove the 'active' css style 
     popup.classList.remove("nofade");
     popup.classList.add("fade");
-
     overlay.classList.remove("active");
     overlay.classList.add("inactive");
-})
+}

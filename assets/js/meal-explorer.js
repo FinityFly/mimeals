@@ -82,26 +82,29 @@ addRecipeButtons.forEach(button => {
 });
 
 function addRecipe(id, title, image) {
-    console.log('STARTING ADDING RECIPE');
+    console.log('STARTING ADDING RECIPE')
+    console.log(title);
+    let data = {'recipeId': id, 'recipeTitle': title, 'recipeImage': image};
     $.ajax({
         processData: false,
-        contentType: false,
+        async: false,
+        "timeout": 10000,
         'url': './includes/add-recipe.php', 
         'type': 'POST',
         'dataType': 'json',
-        'data': {'recipeId': id, 'recipeTitle': title, 'recipeImage': image}, 
+        'data': JSON.stringify(data),
         'success': function(res) {
             console.log("SUCCESS");
             console.log(res);
-            if (res.status) {
-                if (res.added) {
-                    console.log("item added");
-                    // $("span#success"+recipeId).attr("innerHTML","Item added to your personal list");
-                } else {
-                    console.log("item already added")
-                    // $("span#success"+recipeId).attr("innerHTML","This item is already on your list");
-                }
-            }
+            // if (res.status) {
+            //     if (res.added) {
+            //         console.log("item added");
+            //         // $("span#success"+recipeId).attr("innerHTML","Item added to your personal list");
+            //     } else {
+            //         console.log("item already added")
+            //         // $("span#success"+recipeId).attr("innerHTML","This item is already on your list");
+            //     }
+            // }
         },
         'error': function(res) {
             console.log("ERROR");
