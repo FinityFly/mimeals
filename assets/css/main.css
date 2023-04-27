@@ -2519,6 +2519,20 @@ button,
   transition: opacity 0.2 ease-in-out;
   -webkit-transition: opacity 0.2s ease-in-out;
 }
+/*   .image.fit {
+    display: block;
+    margin: 0 0 2em 0;
+    width: 100%; }
+    .image.fit img {
+      width: 100%; } */
+
+.popup.image.fit{
+  display: block;
+  margin: 0 0 2em 0;
+  width: 100%; }
+  .popup.image.fit img {
+    
+    width: 100%; }
 
 .popup.fade {
   opacity: 0;
