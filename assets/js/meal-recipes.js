@@ -1,13 +1,10 @@
-// might have to add on document load here
 const overlay = document.querySelector("#overlay");
 overlay.classList.add("inactive");
 
 // Popup functionality
 const popup = document.querySelector(".popup");
 
-
-
-
+// Create Meal Button
 const createMeal = document.querySelector('#create-meal')
 createMeal.addEventListener('click',function(){
     try{
@@ -37,9 +34,8 @@ const backButton = document.querySelector("#close");
 backButton.addEventListener("click", function() {
     popupOff();
 })
-
 function popupOff(){
-    // remove the 'active' css style 
+    // disable the popup by changing css class
     popup.classList.remove("nofade");
     popup.classList.add("fade");
     overlay.classList.remove("active");
@@ -48,15 +44,14 @@ function popupOff(){
 
 
 // get image
-const input = document.querySelector("#recipePhoto")
-const output = document.querySelector("output")
-let imagesArray = []
+const input = document.querySelector("#recipePhoto");
+const output = document.querySelector("#imageOutput");
 input.addEventListener("change", function() {
-  const file = input.files
-  imagesArray.push(file[0])
-})
-
-
+  const file = input.files;
+  const fileURL = URL.createObjectURL(file[0]);
+  console.log(fileURL);
+  output.src = fileURL;
+});
 
 // const recipeLoad = document.querySelector('row')
 // let div = document.createElement('div');

@@ -82,16 +82,16 @@ addRecipeButtons.forEach(button => {
 });
 
 function addRecipe(id, title, image) {
-    console.log('STARTING ADDING RECIPE')
-    console.log(title);
-    let data = {'recipeId': id, 'recipeTitle': title, 'recipeImage': image};
+    console.log('STARTING ADDING RECIPE'); 
+    // var data = {'recipeId': id, 'recipeTitle': title, 'recipeImage': image};
+    var data = {'recipeId': '152368'}
     $.ajax({
         processData: false,
-        async: false,
-        "timeout": 10000,
+        async: true,
         'url': './includes/add-recipe.php', 
         'type': 'POST',
         'dataType': 'json',
+        timeout: 3000,
         'data': JSON.stringify(data),
         'success': function(res) {
             console.log("SUCCESS");
@@ -112,5 +112,5 @@ function addRecipe(id, title, image) {
             // this is what happens if the request fails.
             // $("span#success"+recipeId).attr("innerHTML","An error occureed");
         }
-    })
+    });
 };

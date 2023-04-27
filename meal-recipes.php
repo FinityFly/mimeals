@@ -60,15 +60,19 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										
 										<ul class="actions fit">
 											<button id = 'create-meal' class = 'primary large icon solid fa-plus'>UWU Cweate a meaw?</button>
+											<hb>
 											<a href="meal-explorer.php" class = 'button large icon solid fa-search'>Explorer</a></li>
 										</ul>
 									</body>
 
 									<!-- sort options top right and load more columns -->
 
+									<!-- display recipes -->
 									<div class = 'saved-Recipe'> 
-										<!-- <img src="images/pho.png" alt="" /> -->
-										<p>Vietnamese beef pho is a flavorful and aromatic soup made with beef broth, rice noodles, and a variety of herbs and spices, including star anise, cinnamon, and ginger. It is typically served with thinly sliced beef, bean sprouts, and lime wedges, and is a popular dish in Vietnamese cuisine.</p>
+
+
+										<h1></h1>
+										<p id = 'recipeDescription'></p>
 										
 										<ul class="actions fit">
 											<li><a href="#" class="button primary fit icon solid fa-download">Add to Recipes</a></li>
@@ -83,17 +87,15 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 								<div class="popup">
 									<a id="close" class="button small">Back</a>
 									<h1>Make a Custom Recipe<h1>
-									<div class="input-field">
+									<div class="input-field" id = 'um'>
 											<!--name vs id??-->
 										<input type="text" placeholder="Meal Name" name="name-input" required="required">
 									</div>
 									<input type = 'file' id = 'recipePhoto' name = 'recipePhoto' accept = 'image/png, image/jpeg'>
-									
+									<span class="image fit"><img id="imageOutput"/></span>
 									<!-- 	https://www.youtube.com/watch?v=EaBSeNSc-2c&t=0s		https://www.youtube.com/watch?v=lzK8vM_wdoY			 -->
-<!-- 							https://medium.com/@mignunez/how-to-upload-and-preview-an-image-with-javascript-749b92711b91																								  -->
-																																												 
-									<!-- 	center it -->
-									<img src = 'recipePicture' alt = 'Recipe Image'>
+									<!-- https://medium.com/@mignunez/how-to-upload-and-preview-an-image-with-javascript-749b92711b91																								  -->
+																					
 									
 								<!-- 	ensure it is centered -->
 									<a id = 'saveRecipe' class = 'button primary'> Save Meal </a>

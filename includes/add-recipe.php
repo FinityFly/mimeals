@@ -1,8 +1,16 @@
 <?php
 include "db-conn.php";
-echo $_POST['recipeId'];
-// $json = json_decode($_POST);
+// print_r($_POST);
+echo "sup!";
+print_r($_POST[0]);
+// $json = json_decode($_POST, true);
 // echo $json;
+$recipeId = $_POST['recipeId'];
+
+$request = file_get_contents("php://input"); // gets the raw data
+$params = json_decode($request,true); // true for return as array
+print_r($params);
+
 if (isset($_POST['recipeId'])) {
     // $json = json_decode($_POST);
     echo "hi!";
