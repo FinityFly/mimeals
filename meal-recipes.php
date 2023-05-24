@@ -1,7 +1,17 @@
 <?php
 session_start();
 
+include 'includes/db-conn.php';
+$userId = $_SESSION['id'];
+// from the added recipes db, retrieve the recipe data from entries that have the same user ID as the current user
+
+$sql = "SELECT * FROM `addedrecipes`  WHERE id = '$userId'";
+// how is this data going to be formatted? IDK
+$result = mysqli_query($conn, $sql);
+
+
 if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
+
 ?>
 
 <!DOCTYPE HTML>
@@ -45,10 +55,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<h1>Saved Recipes</h1>
 										<h5>View youw saved meaws hewe </h5>
 										<div>
-										
+
 										</div>
 										<hr>
 									</header>
+
+
 
 									<!-- get saved recipes -->
 									<!-- for recipe in saved recipes, display: -->
@@ -57,10 +69,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									<!-- alt : mimeals empty dish photo: a dashed line black and white picture of a bowl of rice/salad/burger/eating utensil -->
 
 									<body>
-										
 										<ul class="actions fit">
 											<button id = 'create-meal' class = 'primary large icon solid fa-plus'>UWU Cweate a meaw?</button>
-											<hb>
+
 											<a href="meal-explorer.php" class = 'button large icon solid fa-search'>Explorer</a></li>
 										</ul>
 									</body>
@@ -68,19 +79,45 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									<!-- sort options top right and load more columns -->
 
 									<!-- display recipes -->
-									<div class = 'saved-Recipe'> 
-
-
-										<h1></h1>
-										<p id = 'recipeDescription'></p>
-										
-										<ul class="actions fit">
-											<li><a href="#" class="button primary fit icon solid fa-download">Add to Recipes</a></li>
-											<!-- warp to calendar page with key? -->
-											<li><a href="#" class="button fit icon solid fa-search">Visit Website</a></li>
-										</ul>
-										<br>
+									<!-- add an indent to the right -->
+									<div class="row">
+											<div class="col-8">
+												<a href="#"><span class="image fit"><img src="images/bratwurst.png" alt="" /></span></a>
+												<div class="row">
+													<div class="col-9">
+														<a href="#"><span class="image fit"><h2>Bratwurst</h2></a>
+													</div>
+													<div class="off-9-small" style="text-align:right;white-space:nowrap;">
+														<a href="#" class="button primary small icon solid fa-heart">69420</a>
+													</div>
+												</div>
+												<p>Bratwurst is a German sausage made from pork, beef, or veal, seasoned with nutmeg, coriander, and caraway seeds. It is typically grilled or pan-fried and served with sauerkraut, mustard, and other toppings.</p>
+												<ul class="actions fit">
+													<li><a id="bratwurst" class="button primary fit icon solid fa-download addRecipe">Add Recipe</a></li>
+													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
+												</ul>
+											</div>
 									</div>
+									<div class="row">
+											<div class="col-6">
+												<a href="#"><span class="image fit"><img src="images/bratwurst.png" alt="" /></span></a>
+												<div class="row">
+													<div class="col-9">
+														<a href="#"><span class="image fit"><h2>Bratwurst</h2></a>
+													</div>
+													<div class="off-9-small" style="text-align:right;white-space:nowrap;">
+														<a href="#" class="button primary small icon solid fa-heart">69420</a>
+													</div>
+												</div>
+												<p>Bratwurst is a German sausage made from pork, beef, or veal, seasoned with nutmeg, coriander, and caraway seeds. It is typically grilled or pan-fried and served with sauerkraut, mustard, and other toppings.</p>
+												<ul class="actions fit">
+													<li><a id="bratwurst" class="button primary fit icon solid fa-download addRecipe">Add Recipe</a></li>
+													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
+												</ul>
+											</div>
+									</div>
+
+
 								</section>
 
 								<!-- Create Custom Meal Popup -->
@@ -95,9 +132,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									<span class="image fit"><img id="imageOutput"/></span>
 									<!-- 	https://www.youtube.com/watch?v=EaBSeNSc-2c&t=0s		https://www.youtube.com/watch?v=lzK8vM_wdoY			 -->
 									<!-- https://medium.com/@mignunez/how-to-upload-and-preview-an-image-with-javascript-749b92711b91																								  -->
-																					
-									
-								<!-- 	ensure it is centered -->
+
+
+									<!--ensure it is centered -->
 									<a id = 'saveRecipe' class = 'button primary'> Save Meal </a>
 								</div>
 								<!-- Overlay -->
@@ -131,9 +168,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									</ul>
 								</nav>
 
-							
 
-						
+
+
 
 							<!-- Section -->
 								<section>
