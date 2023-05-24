@@ -3,14 +3,14 @@ session_start();
 
 include 'includes/db-conn.php';
 $userId = $_SESSION['id'];
-// from the added recipes db, retrieve the recipe data from entries that have the same user ID as the current user
-
-$sql = "SELECT * FROM `addedrecipes`  WHERE id = '$userId'";
-// how is this data going to be formatted? IDK
-$result = mysqli_query($conn, $sql);
-
 
 if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
+
+// from the added recipes db, retrieve the recipe data from entries that have the same user ID as the current user
+$sql = "SELECT * FROM `addedRecipes` WHERE userId = '$userId'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+// print_r($row);
 
 ?>
 
@@ -53,7 +53,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 								<section>
 									<header class="main">
 										<h1>Saved Recipes</h1>
-										<h5>View youw saved meaws hewe </h5>
+										<h5>View your saved meals here </h5>
 										<div>
 
 										</div>
@@ -70,7 +70,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 									<body>
 										<ul class="actions fit">
-											<button id = 'create-meal' class = 'primary large icon solid fa-plus'>UWU Cweate a meaw?</button>
+											<button id = 'create-meal' class = 'primary large icon solid fa-plus'>Create a meal?</button>
 
 											<a href="meal-explorer.php" class = 'button large icon solid fa-search'>Explorer</a></li>
 										</ul>
@@ -98,6 +98,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 												</ul>
 											</div>
 									</div>
+									
 									<div class="row">
 											<div class="col-6">
 												<a href="#"><span class="image fit"><img src="images/bratwurst.png" alt="" /></span></a>

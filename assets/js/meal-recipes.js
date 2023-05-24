@@ -1,3 +1,6 @@
+console.log($rows)
+
+
 const overlay = document.querySelector("#overlay");
 overlay.classList.add("inactive");
 

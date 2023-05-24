@@ -79,7 +79,7 @@ async function loadRecipes(n) {
 
 await loadRecipes(2);
 
-const addRecipeButtons = document.querySelectorAll("#addRecipe");
+const addRecipeButtons = document.querySelectorAll('#addRecipe');
 
 addRecipeButtons.forEach(button => {
     let recipeId = button.getAttribute("data-recipe-id");
@@ -91,34 +91,30 @@ addRecipeButtons.forEach(button => {
 });
 
 function addRecipe(id, title, image) {
-    console.log('STARTING ADDING RECIPE'); 
     var data = {'recipeId': id, 'recipeTitle': title, 'recipeImage': image};
+    var recipeButton = document.querySelector(`[data-recipe-id="${id}"]`);
     $.ajax({
         processData: false,
         async: true,
         'url': './includes/add-recipe.php', 
         'type': 'POST',
         'dataType': 'json',
-        // timeout: 3000,
         'data': JSON.stringify(data),
         'success': function(res) {
             console.log("SUCCESS");
             console.log(res);
-            // if (res.status) {
-            //     if (res.added) {
-            //         console.log("item added");
-            //         // $("span#success"+recipeId).attr("innerHTML","Item added to your personal list");
-            //     } else {
-            //         console.log("item already added")
-            //         // $("span#success"+recipeId).attr("innerHTML","This item is already on your list");
-            //     }
-            // }
+            if (res.status) {
+                if (res.added) {
+                    recipeButton.innerHTML = "Recipe added!";
+                } else {
+                    recipeButton.innerHTML = "Already added";
+                }
+            }
         },
         'error': function(res) {
             console.log("ERROR");
             console.log(res);
-            // this is what happens if the request fails.
-            // $("span#success"+recipeId).attr("innerHTML","An error occureed");
+            recipeButton.innerHTML = "Error";
         }
     });
 };
