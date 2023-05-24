@@ -7,9 +7,9 @@ $userId = $_SESSION['id'];
 if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 // from the added recipes db, retrieve the recipe data from entries that have the same user ID as the current user
-$sql = "SELECT * FROM `addedRecipes` WHERE userId = '$userId'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
+// $sql = "SELECT * FROM `addedRecipes` WHERE userId = '$userId'";
+// $result = mysqli_query($conn, $sql);
+// $row = mysqli_fetch_assoc($result);
 // print_r($row);
 
 ?>
@@ -80,24 +80,6 @@ $row = mysqli_fetch_assoc($result);
 
 									<!-- display recipes -->
 									<!-- add an indent to the right -->
-									<div class="row">
-											<div class="col-8">
-												<a href="#"><span class="image fit"><img src="images/bratwurst.png" alt="" /></span></a>
-												<div class="row">
-													<div class="col-9">
-														<a href="#"><span class="image fit"><h2>Bratwurst</h2></a>
-													</div>
-													<div class="off-9-small" style="text-align:right;white-space:nowrap;">
-														<a href="#" class="button primary small icon solid fa-heart">69420</a>
-													</div>
-												</div>
-												<p>Bratwurst is a German sausage made from pork, beef, or veal, seasoned with nutmeg, coriander, and caraway seeds. It is typically grilled or pan-fried and served with sauerkraut, mustard, and other toppings.</p>
-												<ul class="actions fit">
-													<li><a id="bratwurst" class="button primary fit icon solid fa-download addRecipe">Add Recipe</a></li>
-													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
-												</ul>
-											</div>
-									</div>
 									
 									<div class="row">
 											<div class="col-6">

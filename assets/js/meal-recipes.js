@@ -1,5 +1,23 @@
-console.log($rows)
+function getRecipes() {
+    $.ajax({
+        processData: false,
+        async: true,
+        'url': './includes/get-recipe.php', 
+        'type': 'POST',
+        // 'dataType': 'json',
+        // 'data': JSON.stringify(data),
+        'success': function(res) {
+            console.log("SUCCESS");
+            console.log(res);
+        },
+        'error': function(res) {
+            console.log("ERROR");
+            console.log(res);
+        }
+    });
+}
 
+getRecipes();
 
 const overlay = document.querySelector("#overlay");
 overlay.classList.add("inactive");
