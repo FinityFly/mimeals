@@ -1,8 +1,17 @@
+
+
+
+
+
+
+
 import Recipe from './recipeObj.js';
 
 const container = document.querySelector('.row');
 
 let apiKey = "dc09bd6aec87426f9b4a4c30ddaf204f"; // put into dotenv later
+let apiKey2 = "3f043de69de544e6b333d34d97e988c7";
+apiKey = apiKey2;
 
 async function fetchResponse(query) {
     let response = await fetch(query);
@@ -83,15 +92,14 @@ addRecipeButtons.forEach(button => {
 
 function addRecipe(id, title, image) {
     console.log('STARTING ADDING RECIPE'); 
-    // var data = {'recipeId': id, 'recipeTitle': title, 'recipeImage': image};
-    var data = {'recipeId': '152368'}
+    var data = {'recipeId': id, 'recipeTitle': title, 'recipeImage': image};
     $.ajax({
         processData: false,
         async: true,
         'url': './includes/add-recipe.php', 
         'type': 'POST',
         'dataType': 'json',
-        timeout: 3000,
+        // timeout: 3000,
         'data': JSON.stringify(data),
         'success': function(res) {
             console.log("SUCCESS");

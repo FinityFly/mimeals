@@ -1,24 +1,16 @@
 <?php
+session_start();
 include "db-conn.php";
-// print_r($_POST);
-echo "sup!";
-print_r($_POST[0]);
-// $json = json_decode($_POST, true);
-// echo $json;
-$recipeId = $_POST['recipeId'];
 
 $request = file_get_contents("php://input"); // gets the raw data
-$params = json_decode($request,true); // true for return as array
-print_r($params);
+$post = json_decode($request, true); // true for return as array
 
-if (isset($_POST['recipeId'])) {
-    // $json = json_decode($_POST);
-    echo "hi!";
+if (isset($post['recipeId'])) {
     if ($bucketlist < 1) {
         $userId = $_SESSION['id'];
-        $recipeId = $_POST['recipeId'];
-        $recipeTitle = $_POST['recipeTitle'];
-        $recipeImage = $_POST['recipeImage'];
+        $recipeId = $post['recipeId'];
+        $recipeTitle = $post['recipeTitle'];
+        $recipeImage = $post['recipeImage'];
         $sql = "INSERT INTO `addedRecipes` (`id`, `userId`, `recipeId`, `recipeTitle`, `recipeImage`)  VALUES (NULL,'$userId','$recipeId','$recipeTitle','$recipeImage');";
         mysqli_query($conn, $sql);
         $error = [
