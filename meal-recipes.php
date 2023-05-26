@@ -81,30 +81,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									<!-- display recipes -->
 									<!-- add an indent to the right -->
 									
-									<div class="row">
-											<div class="col-6">
-												<a href="#"><span class="image fit"><img src="images/bratwurst.png" alt="" /></span></a>
-												<div class="row">
-													<div class="col-9">
-														<a href="#"><span class="image fit"><h2>Bratwurst</h2></a>
-													</div>
-													<div class="off-9-small" style="text-align:right;white-space:nowrap;">
-														<a href="#" class="button primary small icon solid fa-heart">69420</a>
-													</div>
-												</div>
-												<p>Bratwurst is a German sausage made from pork, beef, or veal, seasoned with nutmeg, coriander, and caraway seeds. It is typically grilled or pan-fried and served with sauerkraut, mustard, and other toppings.</p>
-												<ul class="actions fit">
-													<li><a id="bratwurst" class="button primary fit icon solid fa-download addRecipe">Add Recipe</a></li>
-													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
-												</ul>
-											</div>
-									</div>
+									<div class="row"></div>
 
 
 								</section>
 
 								<!-- Create Custom Meal Popup -->
-								<div class="popup">
+								<div class="meal-popup">
 									<a id="close" class="button small">Back</a>
 									<h1>Make a Custom Recipe<h1>
 									<div class="input-field" id = 'um'>
@@ -119,6 +102,32 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 									<!--ensure it is centered -->
 									<a id = 'saveRecipe' class = 'button primary'> Save Meal </a>
+								</div>
+
+								<div class="calendar-popup">
+									<a id="close" class="button small">Back</a>
+									<h1>Recipe Adder<h1>
+									<div class="calendar-wrapper">
+										<div class="calendar-header">
+											<h1 class="current-date"></h1>
+											<div class="icons">
+												<span id="prev" class="material-symbols-rounded">chevron_left</span>
+												<span id="next" class="material-symbols-rounded">chevron_right</span>
+											</div>
+										</div>
+										<div class="calendar">
+											<ul class="weeks">
+												<li>Sun</li>
+												<li>Mon</li>
+												<li>Tue</li>
+												<li>Wed</li>
+												<li>Thu</li>
+												<li>Fri</li>
+												<li>Sat</li>
+											</ul>
+											<ul class="days"></ul>
+										</div>
+									</div>
 								</div>
 								<!-- Overlay -->
 								<div class = 'overlay' id="overlay"></div> 

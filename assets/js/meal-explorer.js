@@ -1,7 +1,3 @@
-
-
-
-
 import Recipe from './recipeObj.js';
 
 const container = document.querySelector('.row');

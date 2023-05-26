@@ -90,7 +90,7 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
 });
 
 // date popup window
-const popup = document.querySelector(".popup");
+const popup = document.querySelector(".date-popup");
 
 dateCircle.forEach(day => {
     day.addEventListener("click", function() {

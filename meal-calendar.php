@@ -97,18 +97,18 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									</div>
 									<div class="calendar">
 										<ul class="weeks">
-										<li>Sun</li>
-										<li>Mon</li>
-										<li>Tue</li>
-										<li>Wed</li>
-										<li>Thu</li>
-										<li>Fri</li>
-										<li>Sat</li>
+											<li>Sun</li>
+											<li>Mon</li>
+											<li>Tue</li>
+											<li>Wed</li>
+											<li>Thu</li>
+											<li>Fri</li>
+											<li>Sat</li>
 										</ul>
 										<ul class="days"></ul>
 									</div>
 
-									<div class="popup">
+									<div class="date-popup">
 										<a id="close" class="button small">Back</a>
 										<h1 id="datestring"><h1>
 										<!-- HEADER
@@ -127,7 +127,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										</ul>
 									</div>
 									<!-- overlay to also exit popup -->
-									<!-- <div class = 'overlay inactive' id="overlay"></div> -->
 									<div class = 'overlay' id="overlay"></div> 
 								</div>
 
