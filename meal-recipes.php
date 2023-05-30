@@ -15,7 +15,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 // test
 // $DairyFree = 'checked';
-// $DairyFree = '';
+$recipeTitle = '';
+$DairyFree = '';
 ?>
 
 <!DOCTYPE HTML>
@@ -30,7 +31,14 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 		<link rel="icon" type="image/x-icon" href="./images/mimealsfavicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
+		<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script> -->
 	</head>
 	<body class="is-preload">
 
@@ -58,100 +66,124 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									<header class="main">
 										<h1>Saved Recipes</h1>
 										<h5>View your saved meals here </h5>
-										<div>
-
-										</div>
 										<hr>
 									</header>
 
-
-
-									<!-- get saved recipes -->
-									<!-- for recipe in saved recipes, display: -->
-
-									<!-- image of food, aligned left, food name to the right -->
-									<!-- alt : mimeals empty dish photo: a dashed line black and white picture of a bowl of rice/salad/burger/eating utensil -->
-
 									<body>
 										<ul class="actions fit">
-											<button id = 'create-meal' class = 'primary large icon solid fa-plus'>Create a meal?</button>
-
-											<a href="meal-explorer.php" class = 'button large icon solid fa-search'>Explorer</a></li>
+											<li><button id = 'create-meal' class = 'primary large icon solid fa-plus'>Create a recipe</button></li>
+											<li><a href="meal-explorer.php" class = 'button large icon solid fa-search' style = 'text-align:center'>Explorer</a></li>
 										</ul>
 									</body>
-
-									<!-- sort options top right and load more columns -->
-
-<<<<<<< Updated upstream
-									<!-- display recipes -->
-									<!-- add an indent to the right -->
 									
+									<!-- Load Recipes -->
 									<div class="row"></div>
 
-
-=======
->>>>>>> Stashed changes
 								</section>
-
-								<!-- Create Custom Meal Popup -->
+								<!-- Meal popup -->
 								<div class="meal-popup">
 									<a id="close" class="button small">Back</a>
 									<h1>Make a Custom Recipe<h1>
-									
+									<!-- <img src = 'images/preloader.gif'> -->
+									<form>
+										<!-- Modal body -->
+										<div>
+											<!-- text -->
+											<div class="recipe-form">
+												<div class="input-field">
+													<input type="text" placeholder="Recipe Title" id = 'recipeTitle' required="required">
+												</div>
+												<div class="input-field">
+													<textarea id="recipeDescription" placeholder="Enter your recipe description" id = 'recipeDescription' rows="6"></textarea>
+												</div>
+												<!-- <input type = 'file' id = 'recipePhoto' name = 'recipePhoto' accept = 'image/png, image/jpeg'>
+												<span class="image fit"><img id="imageOutput"/></span> -->
 
+											
+											<!-- stats -->
+												<div class="row">
+													<div class="col-6 col-12-small" style="text-align:center">
+														<!-- prep time  -->
+														<div class="input-field">
+															<input type="number" placeholder="Preperation Time (days)" id = 'prepTimeDays' required="required" maxlength="2" size="2" min="0">
+														</div>
+														<div class="input-field">
+															<input type="number" placeholder="Preperation Time (hours)" id = 'prepTimeHours' required="required" maxlength="2" size="2" min="0">
+														</div>
+														<div class="input-field">
+															<input type="number" placeholder="Preperation Time (minutes)" id = 'prepTimeMins' required="required" maxlength="2" size="2" min="0">
+														</div>
+													</div>
 
+													<div class="col-6 col-12-small" style="text-align:center">
+														<!-- cook time -->
+														<div class="input-field">
+															<input type="number" placeholder="Cooking Time (days)" id = 'cookTimeDays' required="required" maxlength="2" size="2" min="0">
+														</div>
+														<div class="input-field">
+															<input type="number" placeholder="Cooking Time (hours)" id = 'cookTimeHours' required="required" maxlength="2" size="2" min="0">
+														</div>
+														<div class="input-field">
+															<input type="number" placeholder="Cooking Time (minutes)" id = 'cookTimeMins' required="required" maxlength="2" size="2" min="0">
+														</div>
+													</div>
+												</div>
 
-									<form action="meal-recipes.php" method="post">
+												<!-- Ingredients List -->
+												<div class="input-field">
+													<textarea id="ingredients" placeholder="Enter your recipe ingredients" rows="6"></textarea>
+												</div>
+												<!-- price per serving and number of servings -->
+												<div class="input-field">
+													<input type="number" placeholder="Number of Servings" id = 'numServings' required="required" maxlength="2" size="2" min="0">
+												</div>
+												<div class="input-field">
+													<input type="number" placeholder="Price per Serving ($)" id = 'priceServing' required="required" maxlength="2" size="2" min="0">
+												</div>
+
+												<!-- Recipe Steps -->
+												<div class="input-field">
+													<textarea id="recipeSteps" placeholder="Enter your recipe steps" rows="6"></textarea>
+												</div>
+												
+												<div class='row'>
+													<div class="col-6 col-12-small">
+														<input type="checkbox" id="dairyFree">
+														<label for="dairyFree">Dairy Free</label>
+													</div>
+													<div class="col-6 col-12-small">
+														<input type="checkbox" id="glutenFree">
+														<label for="glutenFree">Gluten Free</label>
+													</div>
+													<div class="col-6 col-12-small">
+														<input type="checkbox" id="vegan" >
+														<label for="vegan">Vegan</label>
+													</div>
+													<div class="col-6 col-12-small">
+														<input type="checkbox" id="vegetarian" >
+														<label for="vegetarian">Vegetarian</label>
+													</div>
+													<div class="col-6 col-12-small">
+														<input type="checkbox" id="lowFODMAP" >
+														<label for="Low FODMAP">Low FODMAP</label>
+													</div>
+												</div>
+												
+												<input type = 'file' id = 'recipePhoto' accept = 'image/png, image/jpeg'>
+												<span class="image fit"><img id="imageOutput"/></span>
+
+												<div class="login-button">
+													<!-- uh maybe change to button -->
+													<input type="submit" id ='save-meal' style="text-align:center" class = 'button primary'>
+												</div>
 										
-										<!-- recipe name -->
-										<div class="input-field">
-										<input type="text" placeholder="Recipe name" name="recipe-name" required="required">
+											</div>
 										</div>
-
-										<!-- recipe description -->
-										<div class="input-field">
-											<input type="text" placeholder="Recipe description" name="password-input" required="required">
-										</div>	
-										<!-- the php for dairyfree variable is 'chekced', then the thing is already checked by default.-->
-										<input type="checkbox" class = '' id = 'DairyFree' name = 'DairyFree'<?php echo $DairyFree ?>>
-										<label for='DairyFree' style= 'padding-left: 10px;'>Dairy Free</label>
-										
-										<!-- <div class="input-field">
-											<input type="checkbox" id = 'DairyFree'>
-										</div>	 -->
-										<!-- <input type = 'file' id = 'recipePhoto' name = 'recipePhoto' accept = 'image/png, image/jpeg'> -->
-										
-										<!-- other nutritional info -->
-										<!-- <div class="table-wrapper">
-										<table>
-											<tbody>
-												<tr>
-													<td><b>Dairy Free:</b> <input type="checkbox" id = 'DairyFree'> </td>
-													<td><b>Gluten Free:</b> <input type="checkbox" id = 'GlutenFree'></td>
-													<td><b>Vegan:</b> <input type="checkbox" id = 'Vegan'></td>
-													<td><b>Vegetarian:</b> <input type="checkbox" id = 'Vegetarian'></td>
-													<td><b>Low FODMAP:</b> <input type="checkbox" id = 'Low FODMAP'></span></td>
-												</tr>
-											</tfoot>
-										</table>
-										</div> -->
-									<!-- <span class="image fit"><img id="imageOutput"/></span> -->
-
-									<input type="submit" id ='save-meal' name = 'meow submit' class = 'button primary' >
 									</form>
-									<?php
-									// validate/clean the input
-									$_POST['recipeName']
-									// send to  
 									
-									?>
-									
-									<!-- 	https://www.youtube.com/watch?v=EaBSeNSc-2c&t=0s		https://www.youtube.com/watch?v=lzK8vM_wdoY			 -->
-									<!-- https://medium.com/@mignunez/how-to-upload-and-preview-an-image-with-javascript-749b92711b91																								  -->
-
-
+								
 								</div>
-
+									
 								<div class="calendar-popup">
 									<a id="close" class="button small">Back</a>
 									<h1>Recipe Adder<h1>
@@ -174,7 +206,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 												<li>Sat</li>
 											</ul>
 											<ul class="days"></ul>
-										</div>
+										</div> 
 									</div>
 								</div>
 								<!-- Overlay -->

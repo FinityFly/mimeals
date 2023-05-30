@@ -1020,6 +1020,7 @@ label {
   margin: 0 0 1em 0; }
 
 input[type="text"],
+input[type="number"],
 input[type="password"],
 input[type="email"],
 input[type="tel"],
@@ -1040,8 +1041,13 @@ textarea {
   outline: 0;
   padding: 0 1em;
   text-decoration: none;
-  width: 100%; }
+  width: 100%;
+
+  min-height: 50px;
+  resize: none;
+}
   input[type="text"]:invalid,
+  input[type="number"]:invalid,
   input[type="password"]:invalid,
   input[type="email"]:invalid,
   input[type="tel"]:invalid,
@@ -1051,6 +1057,7 @@ textarea {
   textarea:invalid {
     box-shadow: none; }
   input[type="text"]:focus,
+  input[type="number"]:focus,
   input[type="password"]:focus,
   input[type="email"]:focus,
   input[type="tel"]:focus,
@@ -1078,6 +1085,7 @@ select {
     display: none; }
 
 input[type="text"],
+input[type="number"],
 input[type="password"],
 input[type="email"],
 input[type="tel"],
@@ -2319,6 +2327,13 @@ button,
   padding: 10px;
 }
 
+.recipe-form .input-field {
+  padding: 20px;
+}
+.recipe-form .login-button {
+  padding: 10px;
+} */
+
 .container {
   margin: auto;
   text-align: center; }
@@ -2566,8 +2581,8 @@ button,
 
 .meal-popup {
   background-color: #ffffff;
-  width: 80%;
-  height: 80%;
+  width: 94%;
+  height: 94%;
   padding: 30px;
   position: fixed;
   transform: translate(-50%, -50%);
@@ -2579,6 +2594,8 @@ button,
   opacity: 0;
   transition: opacity 0.2 ease-in-out;
   -webkit-transition: opacity 0.2s ease-in-out;
+
+  overflow-y: scroll;
 }
 /*   .image.fit {
     display: block;
@@ -2640,6 +2657,8 @@ button,
   opacity: 0;
   transition: opacity 0.2 ease-in-out;
   -webkit-transition: opacity 0.2s ease-in-out;
+
+  overflow-y: scroll;
 }
 /*   .image.fit {
     display: block;

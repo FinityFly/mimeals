@@ -353,6 +353,9 @@
 															</div>
 															<!-- Break -->
 															<div class="col-12">
+
+	
+
 																<select name="demo-category" id="demo-category">
 																	<option value="">- Category -</option>
 																	<option value="1">Manufacturing</option>

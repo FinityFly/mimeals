@@ -179,7 +179,12 @@ if (isset($_GET['id'])) {
 										<a href="#" class="button primary large">Add Recipe</a>
 										<a href="#" id="sourceUrl" class="button primary large">Visit Website</a>
 										<a href="#" class="button large">Download</a>
-										<a href="#" class="button large">Print</a>
+										<a href="#" class="button large" id ="print-button">Print</a>
+										<script>
+										document.getElementById("print-button").addEventListener("click", function() {
+											window.print();
+										});
+										</script>
 										<a href="#" class="button large">Share</a>
 									</div>
 									<hr>
