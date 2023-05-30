@@ -12,6 +12,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 // $row = mysqli_fetch_assoc($result);
 // print_r($row);
 
+
+// test
+// $DairyFree = 'checked';
+// $DairyFree = '';
 ?>
 
 <!DOCTYPE HTML>
@@ -78,30 +82,74 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 									<!-- sort options top right and load more columns -->
 
+<<<<<<< Updated upstream
 									<!-- display recipes -->
 									<!-- add an indent to the right -->
 									
 									<div class="row"></div>
 
 
+=======
+>>>>>>> Stashed changes
 								</section>
 
 								<!-- Create Custom Meal Popup -->
 								<div class="meal-popup">
 									<a id="close" class="button small">Back</a>
 									<h1>Make a Custom Recipe<h1>
-									<div class="input-field" id = 'um'>
-											<!--name vs id??-->
-										<input type="text" placeholder="Meal Name" name="name-input" required="required">
-									</div>
-									<input type = 'file' id = 'recipePhoto' name = 'recipePhoto' accept = 'image/png, image/jpeg'>
-									<span class="image fit"><img id="imageOutput"/></span>
+									
+
+
+
+									<form action="meal-recipes.php" method="post">
+										
+										<!-- recipe name -->
+										<div class="input-field">
+										<input type="text" placeholder="Recipe name" name="recipe-name" required="required">
+										</div>
+
+										<!-- recipe description -->
+										<div class="input-field">
+											<input type="text" placeholder="Recipe description" name="password-input" required="required">
+										</div>	
+										<!-- the php for dairyfree variable is 'chekced', then the thing is already checked by default.-->
+										<input type="checkbox" class = '' id = 'DairyFree' name = 'DairyFree'<?php echo $DairyFree ?>>
+										<label for='DairyFree' style= 'padding-left: 10px;'>Dairy Free</label>
+										
+										<!-- <div class="input-field">
+											<input type="checkbox" id = 'DairyFree'>
+										</div>	 -->
+										<!-- <input type = 'file' id = 'recipePhoto' name = 'recipePhoto' accept = 'image/png, image/jpeg'> -->
+										
+										<!-- other nutritional info -->
+										<!-- <div class="table-wrapper">
+										<table>
+											<tbody>
+												<tr>
+													<td><b>Dairy Free:</b> <input type="checkbox" id = 'DairyFree'> </td>
+													<td><b>Gluten Free:</b> <input type="checkbox" id = 'GlutenFree'></td>
+													<td><b>Vegan:</b> <input type="checkbox" id = 'Vegan'></td>
+													<td><b>Vegetarian:</b> <input type="checkbox" id = 'Vegetarian'></td>
+													<td><b>Low FODMAP:</b> <input type="checkbox" id = 'Low FODMAP'></span></td>
+												</tr>
+											</tfoot>
+										</table>
+										</div> -->
+									<!-- <span class="image fit"><img id="imageOutput"/></span> -->
+
+									<input type="submit" id ='save-meal' name = 'meow submit' class = 'button primary' >
+									</form>
+									<?php
+									// validate/clean the input
+									$_POST['recipeName']
+									// send to  
+									
+									?>
+									
 									<!-- 	https://www.youtube.com/watch?v=EaBSeNSc-2c&t=0s		https://www.youtube.com/watch?v=lzK8vM_wdoY			 -->
 									<!-- https://medium.com/@mignunez/how-to-upload-and-preview-an-image-with-javascript-749b92711b91																								  -->
 
 
-									<!--ensure it is centered -->
-									<a id = 'saveRecipe' class = 'button primary'> Save Meal </a>
 								</div>
 
 								<div class="calendar-popup">

@@ -75,9 +75,11 @@ await loadRecipes(2);
 const addRecipeButtons = document.querySelectorAll('#addRecipe');
 
 addRecipeButtons.forEach(button => {
+    
     let recipeId = button.getAttribute("data-recipe-id");
     let recipeTitle = button.getAttribute("data-recipe-title");
     let recipeImage = button.getAttribute("data-recipe-image");
+    console.log(recipeId);
     button.addEventListener("click", function() {
         addRecipe(recipeId, recipeTitle, recipeImage);
     });
