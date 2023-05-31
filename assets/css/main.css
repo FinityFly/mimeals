@@ -2328,11 +2328,11 @@ button,
 }
 
 .recipe-form .input-field {
-  padding: 20px;
+  padding: 10px;
 }
 .recipe-form .login-button {
   padding: 10px;
-} */
+}
 
 .container {
   margin: auto;
@@ -2413,6 +2413,10 @@ button,
   position: absolute;
   /* z-index: 1; */
   color: #3d4449;
+  /* backdrop-filter: blur(100px); */
+  background-color: rgba(239, 241, 242, 0.5);
+  padding: 20px 40px;
+  border-radius: 10px;
 }
 
 .calendar-wrapper {
@@ -2448,7 +2452,13 @@ button,
   margin-right: 10px;
 }
 .calendar-header h1 {
-  padding-top: 50px;
+  padding-top: 30px;
+  margin: 0 0;
+  text-align: center;
+}
+.calendar-header h6 {
+  padding-top: 30px;
+  margin: 0 0;
   text-align: center;
 }
 .calendar-header.icons:hover {
@@ -2476,8 +2486,12 @@ button,
   width: calc(100% / 7);
   font-size: 1.07rem;
 }
+.calendar .weeks {
+  padding: 10px;
+  margin-bottom: 10px;
+}
 .calendar .weeks li{
-  font-weight: 500;
+  font-weight: 100;
   cursor: default;
 }
 .calendar .days li{
@@ -2509,6 +2523,10 @@ button,
 }
 .days li:not(.active):hover::before{
   background: #f2f2f2;
+}
+
+.days.selected{
+  color: #fff; 
 }
 
 .icons {
@@ -2726,3 +2744,30 @@ button,
   backdrop-filter: none;
   opacity: 0;
 }
+
+#submit-response{
+  display: none;
+}
+.close{
+  float:right;
+  font-size:21px;
+  font-weight:700;
+  line-height:1;
+  color:#000;
+  text-shadow:0 1px 0 #fff;
+  filter:alpha(opacity=20);
+  opacity:.2}
+  .close:focus,.close:hover{
+    color:#000;
+    text-decoration:none;
+    cursor:pointer;
+    filter:alpha(opacity=50);
+    opacity:.5}
+button.close{
+  padding:0;
+  cursor:pointer;
+  background:0 0;
+  border:0;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none}

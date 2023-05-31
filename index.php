@@ -29,7 +29,7 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="index.php" class="logo"><strong>MiMeals</strong></a>
+								<p><b><a href="dashboard.php" class="logo">MiMeals</a></b> | <u>Calendar</u></p>
 									<ul class="icons">
 										<!-- social media icons -->
 										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>

@@ -29,7 +29,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 							<!-- Header -->
 								<header id="header">
-								<a href="index.php" class="logo"><strong>MiMeals</strong></a>
+								<p><b><a href="dashboard.php" class="logo">MiMeals</a></b> | <u>Explorer</u></p>
 									<ul class="icons">
 										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
@@ -53,7 +53,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 											<p>Our platform is user-friendly, allowing you to easily filter and search for recipes based on dietary restrictions, cooking time, and ingredients. You can also save your favorite recipes for later, and share them with friends and family on social media. Plus, with new recipes added regularly, there's always something new and exciting to discover.</p>
 											<p>Whether you're a seasoned foodie or a beginner cook, our recipe explorer is the perfect tool for expanding your culinary horizons and discovering new and exciting dishes. So why not take a journey around the world with us and let your taste buds be your guide? Start exploring today and get ready to experience a world of flavors like never before.</p>
 										</div>
-
+										<hr>
 										<div class="row">
 
 											<div class="col-6 col-12-small">

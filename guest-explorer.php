@@ -27,7 +27,7 @@
 
 							<!-- Header -->
 								<header id="header">
-								<a href="index.php" class="logo"><strong>MiMeals</strong></a>
+								<p><b><a href="index.php" class="logo">MiMeals</a></b> | <u>Explorer</u></p>
 									<ul class="icons">
 										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>

@@ -73,14 +73,16 @@ function getRecipes() {
                 let liTag = "";
 
                 for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
-                    liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+                    // liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+                    liTag += `<li class="inactive" id = '${lastDateofLastMonth - i + 1}'>${lastDateofLastMonth - i + 1}</li>`;
+
                 }
 
                 for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
                     // adding active class to li if the current day, month, and year matched
                     let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                                 && currYear === new Date().getFullYear() ? "active" : "";
-                    liTag += `<li class="${isToday}">${i}</li>`;
+                    // liTag += `<li class=active id = ${isToday}"${isToday}">${i}</li>`;
                 }
 
                 for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
@@ -90,6 +92,44 @@ function getRecipes() {
                 daysTag.innerHTML = liTag;
             }
             renderCalendar();
+
+            var dateCircle = document.querySelectorAll(".days li");
+
+            prevNextIcon.forEach(icon => { // getting prev and next icons
+                icon.addEventListener("click", () => { // adding click event on both icons
+                    // if clicked icon is previous icon then decrement current month by 1 else increment it by 1
+                    currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
+
+                    if(currMonth < 0 || currMonth > 11) { // if current month is less than 0 or greater than 11
+                        // creating a new date of current year & month and pass it as date value
+                        date = new Date(currYear, currMonth, new Date().getDate());
+                        currYear = date.getFullYear(); // updating current year with new date year
+                        currMonth = date.getMonth(); // updating current month with new date month
+                    } else {
+                        date = new Date(); // pass the current date as date value
+                    }
+                    renderCalendar(); // calling renderCalendar function
+                    dateCircle = document.querySelectorAll(".days li");
+
+                    dateCircle.forEach(day => {
+                        day.addEventListener("click", function() {
+                            console.log("clicked");
+                            
+                        })
+                    })
+                });
+            });
+
+            // date popup window
+            const popup = document.querySelector(".date-popup");
+
+            dateCircle.forEach(day => {
+                day.addEventListener("click", function() {
+                    console.log("clicked");
+                    // add selected class
+                    day.classList.toggle('selected');
+                })
+            })
         },
         'error': function(res) {
             console.log("ERROR");
@@ -97,6 +137,19 @@ function getRecipes() {
         }
     });
 }
+
+// // get those with thing and submit...
+// const saveMealDate = document.querySelector('#saveMealDate');
+// saveMealDate.addEventListener('click', function(){
+//     // get all those with the element attribute as saved and record their date
+//     selectedDates = document.querySelectorAll('[class = "days selected"]');
+//      
+
+
+
+
+// })
+
 
 getRecipes();
 
@@ -113,7 +166,6 @@ const calendarPopup = document.querySelector(".calendar-popup");
 // Create Meal Button
 const createMeal = document.querySelector('#create-meal')
 createMeal.addEventListener('click', function(){
-    console.log('making a meal');
     try {
         mealPopup.classList.remove("nofade");
     } catch {
@@ -165,42 +217,84 @@ input.addEventListener("change", function() {
 const saveMeal = document.querySelector('#save-meal');
 saveMeal.addEventListener("click", function() {
 
-    // issue: if the form isnt done, the user can still click the button to submit what already exists.
-    console.log('submitted......?');
-    const recipeTitle = document.querySelector('recipeTitle').value;
-    const recipeDescription =  document.querySelector('recipeDescription').value;
+    const recipeTitle = document.querySelector('#recipeTitle').value;
+    if (recipeTitle == '') {
+        return;
+    }
 
-    // recipe stats
-    const prepTimeDays =  document.querySelector('prepTimeDays').value;
-    const prepTimeHours =  document.querySelector('prepTimeHours').value;
-    const prepTimeMins =  document.querySelector('prepTimeMins').value;
+    const recipeDescription = document.querySelector('#recipeDescription').value;
+    if (recipeDescription == '') {
+        recipeDescription = 'No description provided';
+    }
+
+    // recipe stats 
+    const prepTimeDays = parseInt(document.querySelector('#prepTimeDays').value);
+    const prepTimeHours = parseInt(document.querySelector('#prepTimeHours').value);
+    const prepTimeMins = parseInt(document.querySelector('#prepTimeMins').value);
     
-    const cookTimeDays =  document.querySelector('cookTimeDays').value;
-    const cookTimeHours =  document.querySelector('cookTimeHours').value;
-    const cookTimeMins =  document.querySelector('cookTimeMins').value;
+    const cookTimeDays = parseInt(document.querySelector('#cookTimeDays').value);
+    const cookTimeHours = parseInt(document.querySelector('#cookTimeHours').value);
+    const cookTimeMins = parseInt(document.querySelector('#cookTimeMins').value);
 
-    let prepTime = prepTimeMins + prepTimeHours * 60 + prepTimeDays * 24 * 60;
-    let cookTime = cookTimeMins + cookTimeHours * 60 + cookTimeDays * 24 * 60;
-    let totalTime = prepTime + cookTime;
+    if (prepTimeDays == 'NaN' && prepTimeHours == 'NaN' && prepTimeMins == 'NaN') {
+        let box = document.querySelector('#submit-response');
+        let boxText = document.querySelector('#submit-response p');
+        box.style.display = 'block'
+        boxText.innerHTML = 'Please enter a valid preparation time';
+        return;
+    }
+    if (cookTimeDays == 'NaN' && cookTimeHours == 'NaN' && cookTimeMins == 'NaN') {
+        let box = document.querySelector('#submit-response');
+        let boxText = document.querySelector('#submit-response p');
+        box.style.display = 'block'
+        boxText.innerHTML = 'Please enter a valid cooking time';
+        return;
+    }
 
-    const numServings =  document.querySelector('numServings').value;
-    const priceServing =  document.querySelector('priceServing').value;
+    if (prepTimeDays == "NaN") {prepTimeDays = 0}
+    if (prepTimeHours == "NaN") {prepTimeHours = 0}
+    if (prepTimeMins == "NaN") {prepTimeMins = 0}
+    if (cookTimeDays == "NaN") {cookTimeDays = 0}
+    if (cookTimeHours == "NaN") {cookTimeHours = 0}
+    if (cookTimeMins == "NaN") {cookTimeMins = 0}
 
-    //    image
-    //   ....
+    let prepTime = (prepTimeMins + prepTimeHours * 60 + prepTimeDays * 24 * 60).toString();
+    let cookTime = (cookTimeMins + cookTimeHours * 60 + cookTimeDays * 24 * 60).toString();
+    let totalTime = (prepTime + cookTime).toString();
+
+    const numServings = document.querySelector('#numServings').value;
+    if (numServings == 'NaN') {
+        return;
+    }
+
+    const priceServing = document.querySelector('#priceServing').value;
+    if (recipeTitle == 'NaN') {
+        return;
+    }
+
+    // image
+    let imageFiles = document.querySelector("#recipePhoto").files;
+    const imageURL = URL.createObjectURL(imageFiles[0]);
     
-    const ingredients =  document.querySelector('ingredients').value;
-    const recipeSteps =  document.querySelector('recipeSteps').value;
+    
+    const ingredients = document.querySelector('#ingredients').value;
+    if (recipeTitle == '') {
+        return;
+    }
 
-    //checkboxes
-    const dairyFree =  document.querySelector('dairyFree').checked;
-    const glutenFree =  document.querySelector('glutenFree').checked;
-    const vegan =  document.querySelector('vegan').checked;
-    const vegetarian =  document.querySelector('vegetarian').checked;
-    const lowFODMAP =  document.querySelector('lowFODMAP').checked;
+    const instructions = document.querySelector('#recipeSteps').value;
+    if (instructions == '') {
+        return;
+    }
 
-    var data = {'recipeTitle': recipeTitle, 'recipeDescription': recipeDescription, 'prepTime': prepTime, 'cookTime': cookTime, 'totalTime' : totalTime, 'image' :image, 'numServings': numServings, 'priceServing': priceServing, 'ingredients': ingredients, 'recipeSteps': recipeSteps, 'dairyFree': dairyFree, 'glutenFree': glutenFree, 'vegan': vegan, 'vegetarian': vegetarian, 'lowFODMAP': lowFODMAP};
-    console.log('oe');
+    // checkboxes
+    const dairyFree = (document.querySelector('#dairyFree').checked) ? '1' : '0';
+    const glutenFree = (document.querySelector('#glutenFree').checked) ? '1' : '0';
+    const vegan = (document.querySelector('#vegan').checked) ? '1' : '0';
+    const vegetarian = (document.querySelector('#vegetarian').checked) ? '1' : '0';
+    const lowFODMAP = (document.querySelector('#lowFODMAP').checked) ? '1' : '0';
+
+    var data = {'recipeTitle': recipeTitle, 'recipeDescription': recipeDescription, 'prepTime': prepTime, 'cookTime': cookTime, 'totalTime': totalTime, 'image': imageURL, 'numServings': numServings, 'priceServing': priceServing, 'ingredients': ingredients, 'instructions': instructions, 'dairyFree': dairyFree, 'glutenFree': glutenFree, 'vegan': vegan, 'vegetarian': vegetarian, 'lowFODMAP': lowFODMAP};
     console.log('here is the forms recorded data:', data);
 
     $.ajax({
@@ -220,6 +314,6 @@ saveMeal.addEventListener("click", function() {
             console.log(res);
         }
     });
-    
+    console.log('10');
 
 });
