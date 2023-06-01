@@ -165,8 +165,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 												<span class="image fit"><img id="imageOutput"/></span>
 
 												<div class="login-button" style="text-align:center">
-													<!-- uh maybe change to button -->
-													<input type="button" id ='save-meal' class = 'button primary'>
+													<input type="submit" id ='save-meal' class = 'button primary icon solid fa-check'>
 												</div>
 
 												<!-- <div class="box">
@@ -202,7 +201,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 												<li>Sat</li>
 											</ul>
 											<ul class="days"></ul>
-										</div> 
+										</div>
+									</div>
+									<div class="confirm-meals">
+										<a style="display: none" class ='button primary icon solid fa-check'>Plan Meals</a>
 									</div>
 								</div>
 								<!-- Overlay -->

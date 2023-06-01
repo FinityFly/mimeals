@@ -2510,7 +2510,7 @@ button,
 .days li::before{
   position: absolute;
   content: "";
-  left: 53%;
+  left: 54%;
   top: 50%;
   height: 50px;
   width: 50px;
@@ -2525,8 +2525,8 @@ button,
   background: #f2f2f2;
 }
 
-.days.selected{
-  color: #fff; 
+.days li.selected::before{
+  background: #dbdbdb;
 }
 
 .icons {
@@ -2599,8 +2599,8 @@ button,
 
 .meal-popup {
   background-color: #ffffff;
-  width: 94%;
-  height: 94%;
+  width: 80%;
+  height: 80%;
   padding: 30px;
   position: fixed;
   transform: translate(-50%, -50%);
@@ -2708,19 +2708,12 @@ button,
   
 }
 
-.calendar-popup button {
-  display: block;
-  margin: 0 0 20px auto;
-  background-color: transparent;
-  font-size: 30px;
-  color: #ffffff;
-  background: #ef6969;
-  border-radius: 100%;
-  width: 40px;
-  height: 40px;
-  border: none;
-  outline: none;
-  cursor: pointer;
+.calendar-popup .confirm-meals {
+  padding: 6%;
+}
+
+.calendar-popup .confirm-meals a {
+  display: hide;
 }
 
 /* for bg blur */

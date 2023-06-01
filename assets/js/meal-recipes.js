@@ -1,3 +1,6 @@
+let confirmMealsButton = document.querySelector('.confirm-meals a');
+let numToggles = [];
+
 function getRecipes() {
     $.ajax({
         processData: false,
@@ -27,12 +30,9 @@ function getRecipes() {
                 }
             }
             var planMeal = document.querySelectorAll('#planMeal');
+            var recipeId, recipeTitle, recipeImage;
             planMeal.forEach(button => {
-                let recipeId = button.getAttribute("data-recipe-id");
-                let recipeTitle = button.getAttribute("data-recipe-title");
-                let recipeImage = button.getAttribute("data-recipe-image");
-                console.log(recipeId);
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function(e) {
                     try {
                         calendarPopup.classList.remove("nofade");
                     } catch {
@@ -42,7 +42,10 @@ function getRecipes() {
                         overlay.classList.remove("inactive");
                     } catch {
                         // do nothing
-                    } 
+                    }
+                    recipeId = button.getAttribute("data-recipe-id");
+                    recipeTitle = button.getAttribute("data-recipe-title");
+                    recipeImage = button.getAttribute("data-recipe-image");
                     // set the CSS for the popup and overlay to active and set their layer to front
                     overlay.classList.add("active");
                     overlay.style.zIndex = "999";
@@ -73,8 +76,8 @@ function getRecipes() {
                 let liTag = "";
 
                 for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
-                    // liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
-                    liTag += `<li class="inactive" id = '${lastDateofLastMonth - i + 1}'>${lastDateofLastMonth - i + 1}</li>`;
+                    liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+                    // liTag += `<li class="inactive" id = '${lastDateofLastMonth - i + 1}'>${lastDateofLastMonth - i + 1}</li>`;
 
                 }
 
@@ -82,7 +85,7 @@ function getRecipes() {
                     // adding active class to li if the current day, month, and year matched
                     let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                                 && currYear === new Date().getFullYear() ? "active" : "";
-                    // liTag += `<li class=active id = ${isToday}"${isToday}">${i}</li>`;
+                    liTag += `<li class="${isToday}">${i}</li>`;
                 }
 
                 for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
@@ -110,11 +113,21 @@ function getRecipes() {
                     }
                     renderCalendar(); // calling renderCalendar function
                     dateCircle = document.querySelectorAll(".days li");
-
+                    
+                    numToggles = [];
                     dateCircle.forEach(day => {
                         day.addEventListener("click", function() {
-                            console.log("clicked");
-                            
+                            day.classList.toggle('selected');
+                            if (day.classList.contains('selected')) {
+                                numToggles.push(day.innerHTML);
+                            } else {
+                                numToggles.splice(numToggles.indexOf(day.innerHTML), 1);
+                            }
+                            if (numToggles.length > 0) {
+                                confirmMealsButton.style.display = "block";
+                            } else {
+                                confirmMealsButton.style.display = "none";
+                            }
                         })
                     })
                 });
@@ -125,9 +138,42 @@ function getRecipes() {
 
             dateCircle.forEach(day => {
                 day.addEventListener("click", function() {
-                    console.log("clicked");
-                    // add selected class
                     day.classList.toggle('selected');
+                    if (day.classList.contains('selected')) {
+                        numToggles.push(day.innerHTML);
+                    } else {
+                        numToggles.splice(numToggles.indexOf(day.innerHTML), 1);
+                    }
+                    if (numToggles.length > 0) {
+                        confirmMealsButton.style.display = "block";
+                    } else {
+                        confirmMealsButton.style.display = "none";
+                    }
+                })
+            })
+
+            confirmMealsButton.addEventListener("click", function() {
+                numToggles.forEach(d => {
+                    let timestamp = new Date(currYear, currMonth, parseInt(d));
+                    console.log(timestamp.valueOf());
+                    let data = {'recipeId': recipeId, 'recipeTitle': recipeTitle, 'recipeImage': recipeImage, 'time': timestamp.valueOf()};
+                    $.ajax({
+                        processData: false,
+                        async: true,
+                        'url': './includes/plan-meal.php', 
+                        'type': 'POST',
+                        'dataType': 'json',
+                        'data': JSON.stringify(data),
+                        'success': function(res) {
+                            console.log("SUCCESS");
+                            console.log(res);
+                            popupOff()
+                        },
+                        'error': function(res) {
+                            console.log("ERROR");
+                            console.log(res);
+                        }
+                    });
                 })
             })
         },
@@ -307,13 +353,12 @@ saveMeal.addEventListener("click", function() {
         'success': function(res) {
             console.log("SUCCESS");
             console.log(res);
-            // close recipe creater popup window
+            popupOff();
         },
         'error': function(res) {
             console.log("ERROR");
             console.log(res);
         }
     });
-    console.log('10');
 
 });
