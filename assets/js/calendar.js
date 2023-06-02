@@ -142,31 +142,23 @@ function getRecipes() {
     $.ajax({
         processData: false,
         async: true,
-        'url': './includes/get-recipe.php', 
+        'url': './includes/get-planned.php', 
         'type': 'POST',
         'success': function(res) {
             console.log("SUCCESS");
             res = JSON.parse(res);
-            console.log(res);
-            const container = document.querySelector('.row');
-            for (let i = 0; i < res['recipes'].length; i++) {
-                let div = document.createElement('div');
-                let recipe = res['recipes'][i];
-                let redirect = `./guest-recipe.php?id=${recipe.recipeId}`;
-                let html = `
-                <div class="col-6 col-12-small">
-                    <div class="row">
-                        <input type="checkbox" id="${id}">
-                        <label for="dairyFree">Dairy Free</label>
-                        <a href="${redirect}"><span class="image fit"><img src="${recipe.image}" alt="" /></span></a>    
-                    </div>
-                </div>`
-                div.innerHTML = html;
-                // localStorage.setItem(recipe.id, JSON.stringify(recipe));
-                while (div.children.length > 0) {
-                    container.appendChild(div.children[0]);
+            const calendar = document.querySelectorAll('.days li');
+            res['recipes'].forEach(meal => {
+                let d = new Date(parseInt(meal['time']));
+                if (d.getMonth() == currMonth) {
+                    calendar.forEach(day => {
+                        if (d.getDate().toString() == day.innerHTML) {
+                            console.log(day);
+                            day.classList.add('planned');
+                        }
+                    })
                 }
-            }
+            })
         },
         'error': function(res) {
             console.log("ERROR");
@@ -174,3 +166,4 @@ function getRecipes() {
         }
     });
 }
+getRecipes();

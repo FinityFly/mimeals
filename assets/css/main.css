@@ -2529,6 +2529,10 @@ button,
   background: #dbdbdb;
 }
 
+.days li.planned::before {
+  background: #fac0bb;
+}
+
 .icons {
   text-align: right; }
   
@@ -2705,7 +2709,6 @@ button,
 
 .calendar-popup h1 {
   padding: 20px;
-  
 }
 
 .calendar-popup .confirm-meals {
