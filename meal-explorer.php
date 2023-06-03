@@ -56,7 +56,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<hr>
 										<div class="row">
 
-											<div class="col-6 col-12-small">
+											<!-- <div class="col-6 col-12-small">
 												<a href="#"><span class="image fit"><img src="images/bratwurst.png" alt="" /></span></a>
 												<div class="row">
 													<div class="col-9 col-12-small">
@@ -71,9 +71,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 													<li><a id="bratwurst" class="button primary fit icon solid fa-download addRecipe">Add Recipe</a></li>
 													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
 												</ul>
-											</div>
+											</div> -->
 											
-											<div class="col-6 col-12-small">
+											<!-- <div class="col-6 col-12-small">
 
 												<a href="#"><span class="image fit"><img src="images/pho.png" alt="" /></span></a>
 												<div class="row">
@@ -105,9 +105,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 													<li><a id="addRecipe" class="button primary fit icon solid fa-download">Add to Recipes</a></li>
 													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
 												</ul>
-											</div>
+											</div> -->
 											
-											<div class="col-6 col-12-small">
+											<!-- <div class="col-6 col-12-small">
 												<a href="#"><span class="image fit"><img src="images/shakshouka.png" alt="" /></span></a>
 												<div class="row">
 													<div class="col-9 col-12-small">
@@ -122,7 +122,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 													<li><a id="addRecipe" class="button primary fit icon solid fa-download">Add to Recipes</a></li>
 													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
 												</ul>
-											</div>
+											</div> -->
 										</div>
 
 									<!-- Pagination -->

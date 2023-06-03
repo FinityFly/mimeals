@@ -41,6 +41,7 @@
 									data-login_uri="http://localhost/sdp/dashboard.php"
 									data-auto_prompt="false">
 								</div>
+								<!-- Google Sign-in -->
 								<div class="g_id_signin"
 									data-onsuccess="onSignIn()"
 									data-type="standard"
@@ -69,7 +70,7 @@
 									Not registered? <a href="guest-signup.php">create an account</a>
 								</p>
 								<p class="message">
-									Forgot your password? <a href="guest-forgor.php">reset password</a>
+									Forgot your password? <a href="reset-password.php">reset password</a>
 								</p>
 							</form>
 						</div>
@@ -96,34 +97,11 @@
 								<ul>
 									<li><a href="index.php">Homepage</a></li>
 									<li><a href="guest-explorer.php">Explore</a></li>
-									<li><a href="guest-showcase.php">Showcase Page (delete later)</a></li>
+									<!-- <li><a href="guest-showcase.php">Showcase Page (delete later)</a></li> -->
 									<li><a href="guest-login.php">Login</a></li>
 									<li><a href="guest-signup.php">Sign Up</a></li>
-									<!-- <li>
-										<span class="opener">Another Submenu</span>
-										<ul>
-											<li><a href="#">Lorem Dolor</a></li>
-											<li><a href="#">Ipsum Adipiscing</a></li>
-										</ul>
-									</li> -->
 								</ul>
 							</nav>
-
-						<!-- Section -->
-							<!-- <section>
-								<header class="major">
-									<h2>Ante interdum</h2>
-								</header>
-								<div class="mini-posts">
-									<article>
-										<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-										<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-									</article>
-								</div>
-								<ul class="actions">
-									<li><a href="#" class="button">More</a></li>
-								</ul>
-							</section> -->
 
 						<!-- Footer -->
 							<footer id="footer">

@@ -184,18 +184,6 @@ function getRecipes() {
     });
 }
 
-// // get those with thing and submit...
-// const saveMealDate = document.querySelector('#saveMealDate');
-// saveMealDate.addEventListener('click', function(){
-//     // get all those with the element attribute as saved and record their date
-//     selectedDates = document.querySelectorAll('[class = "days selected"]');
-//      
-
-
-
-
-// })
-
 
 getRecipes();
 

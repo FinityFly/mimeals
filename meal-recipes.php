@@ -59,20 +59,20 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										</ul>
 									</body>
 									
-									<!-- Load Recipes -->
+									<!-- Load Recipes Here-->
 									<div class="row"></div>
 
 								</section>
+
 								<!-- Meal popup -->
 								<div class="meal-popup">
 									<a id="close" class="button small">Back</a>
 									
 									<h1>Make a Custom Recipe<h1>
-									<!-- <img src = 'images/preloader.gif'> -->
 									<form>
 										<!-- Modal body -->
 										<div>
-											<!-- text -->
+											<!-- Recipe Identity -->
 											<div class="recipe-form">
 												<div class="input-field">
 													<input type="text" placeholder="Recipe Title" id = 'recipeTitle' required="required">
@@ -80,14 +80,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 												<div class="input-field">
 													<textarea id="recipeDescription" placeholder="Enter your recipe description" id = 'recipeDescription' rows="6"></textarea>
 												</div>
-												<!-- <input type = 'file' id = 'recipePhoto' name = 'recipePhoto' accept = 'image/png, image/jpeg'>
-												<span class="image fit"><img id="imageOutput"/></span> -->
 
-											
-												<!-- stats -->
+												<!-- Recipe 'Times' -->
 												<div class="row">
 													<div class="col-6 col-12-small" style="text-align:center">
-														<!-- prep time  -->
+														<!-- Prep time  -->
 														<h6>Prep Time</h6>
 														<div class="input-field">
 															<input type="number" placeholder="Preperation Time (days)" id = 'prepTimeDays' maxlength="2" size="2" min="0">
@@ -101,7 +98,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 													</div>
 
 													<div class="col-6 col-12-small" style="text-align:center">
-														<!-- cook time -->
+														<!-- Cook time -->
 														<h6>Cook Time</h6>
 														<div class="input-field">
 															<input type="number" placeholder="Cooking Time (days)" id = 'cookTimeDays' maxlength="2" size="2" min="0">
@@ -117,7 +114,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 												<hr style="margin: 10px 20px">
 
-												<!-- price per serving and number of servings -->
+												<!-- Price per serving and Number of servings -->
 												<div class="input-field">
 													<input type="number" placeholder="Number of Servings (#)" id = 'numServings' required="required" maxlength="2" size="2" min="0">
 												</div>
@@ -167,10 +164,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 												<div class="login-button" style="text-align:center">
 													<input type="submit" id ='save-meal' class = 'button primary icon solid fa-check'>
 												</div>
-
-												<!-- <div class="box">
-													<p id="submit-response"></p>
-												</div> -->
 										
 											</div>
 										</div>

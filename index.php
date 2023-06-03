@@ -46,18 +46,18 @@
 										<h2>Your meal planning website</h2>
 										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life.</p>
 										<a href="guest-signup.php" class="button primary big">Get Started</a>
-										<a href="#" class="button big">Learn More</a>
+										<!-- <a href="#" class="button big">Learn More</a> -->
 									</div>
 								</section>
 
 								<section>
 									<article>
 										<span class="image fit right">
-											<img src="images/gordon.jpeg" alt="" />
+											<img src="images/bratwurst.png" alt="" />
 										</span>
 										<h3>Why use MiMeals?</h3>
 										<p>With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
-										<a href="#" class="button">More</a>
+										<!-- <a href="#" class="button">More</a> -->
 									</article>
 								</section>
 
@@ -68,11 +68,11 @@
 										<h2>Your journey begins here</h2>
 										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life.</p>
 										<a href="guest-signup.php" class="button primary big">Get Started</a>
-										<a href="#" class="button big">Learn More</a>
+										<!-- <a href="#" class="button big">Learn More</a> -->
 									</div>
 								</section>
 								<section>
-									<header class="major">
+									<!-- <header class="major">
 										<h2>Ipsum sed dolor</h2>
 									</header>
 									<div class="posts">
@@ -84,7 +84,7 @@
 												<li><a href="#" class="button">More</a></li>
 											</ul>
 										</article>
-									</div>
+									</div> -->
 								</section>
 
 						</div>
@@ -109,7 +109,7 @@
 									<ul>
 										<li><a href="index.php">Homepage</a></li>
 										<li><a href="guest-explorer.php">Explore</a></li>
-										<li><a href="guest-showcase.php">Showcase Page (delete later)</a></li>
+										<!-- <li><a href="guest-showcase.php">Showcase Page (delete later)</a></li> -->
 										<li><a href="guest-login.php">Login</a></li>
 										<li><a href="guest-signup.php">Sign Up</a></li>
 										

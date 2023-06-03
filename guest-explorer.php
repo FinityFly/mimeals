@@ -54,69 +54,7 @@
 
 										<div class="row">
 
-											<div class="col-6 col-12-small">
-												<a href="#"><span class="image fit"><img src="images/bratwurst.png" alt="" /></span></a>
-												<div class="row">
-													<div class="col-9 col-12-small">
-														<a href="#"><span class="image fit"><h2>Bratwurst</h2></a>
-													</div>
-													<div class="off-9-small col-12-small" style="text-align:right;white-space:nowrap;">
-														<a href="#" class="button primary small icon solid fa-heart">69420</a>
-													</div>
-												</div>
-												<p>Bratwurst is a German sausage made from pork, beef, or veal, seasoned with nutmeg, coriander, and caraway seeds. It is typically grilled or pan-fried and served with sauerkraut, mustard, and other toppings.</p>
-												<ul class="actions fit">
-													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
-												</ul>
-											</div>
 											
-											<div class="col-6 col-12-small">
-
-												<a href="#"><span class="image fit"><img src="images/pho.png" alt="" /></span></a>
-												<div class="row">
-													<div class="col-9 col-12-small">
-														<a href="#"><span class="image fit"><h2>Beef Pho</h2></a>
-													</div>
-													<div class="off-9-small col-12-small" style="text-align:right;white-space:nowrap;">
-														<a href="#" class="button primary small icon solid fa-heart">69420</a>
-													</div>
-												</div>
-												<p>Vietnamese beef pho is a flavorful and aromatic soup made with beef broth, rice noodles, and a variety of herbs and spices, including star anise, cinnamon, and ginger. It is typically served with thinly sliced beef, bean sprouts, and lime wedges, and is a popular dish in Vietnamese cuisine.</p>
-												<ul class="actions fit">
-													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
-												</ul>
-											</div>
-											<div class="col-6 col-12-small">
-												<a href="#"><span class="image fit"><img src="images/moqueca.png" alt="" /></span></a>
-												<div class="row">
-													<div class="col-9 col-12-small">
-														<a href="#"><span class="image fit"><h2>Moqueca</h2></a>
-													</div>
-													<div class="off-9-small col-12-small" style="text-align:right;white-space:nowrap;">
-														<a href="#" class="button primary small icon solid fa-heart">69420</a>
-													</div>
-												</div>
-												<p>Moqueca is a traditional Brazilian seafood stew made with fish or shrimp, coconut milk, tomatoes, onions, garlic, and coriander. The dish is typically served with rice and farofa (toasted manioc flour) and is known for its bold and complex flavors. Moqueca is a delicious and satisfying dish that reflects the diverse culinary traditions of Brazil.</p>
-												<ul class="actions fit">
-													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
-												</ul>
-											</div>
-											
-											<div class="col-6 col-12-small">
-												<a href="#"><span class="image fit"><img src="images/shakshouka.png" alt="" /></span></a>
-												<div class="row">
-													<div class="col-9 col-12-small">
-														<a href="#"><span class="image fit"><h2>Shakshouka</h2></a>
-													</div>
-													<div class="off-9-small col-12-small" style="text-align:right;white-space:nowrap;">
-														<a href="#" class="button primary small icon solid fa-heart">69420</a>
-													</div>
-												</div>
-												<p>Shakshouka is a Middle Eastern dish made of eggs poached in a spicy tomato sauce with onions, peppers, and spices such as cumin and paprika. It is often served with bread for dipping and is a popular breakfast dish in many countries in the region. Shakshouka is a flavorful and satisfying dish that has become popular around the world for its unique combination of spices and textures.</p>
-												<ul class="actions fit">
-													<li><a href="https://www.youtube.com/watch?v=8SIiGo3TVKE" class="button fit icon solid fa-search">Visit Website</a></li>
-												</ul>
-											</div>
 										</div>
 
 									<!-- Pagination -->
@@ -158,14 +96,14 @@
 									<ul>
 										<li><a href="index.php">Homepage</a></li>
 										<li><a href="guest-explorer.php">Explore</a></li>
-										<li><a href="guest-showcase.php">Showcase Page (delete later)</a></li>
+										<!-- <li><a href="guest-showcase.php">Showcase Page (delete later)</a></li> -->
 										<li><a href="guest-login.php">Login</a></li>
 										<li><a href="guest-signup.php">Sign Up</a></li>
 									</ul>
 								</nav>
 
 							<!-- Section -->
-								<section>
+								<!-- <section>
 									<header class="major">
 										<h2>Ante interdum</h2>
 									</header>
@@ -186,7 +124,7 @@
 									<ul class="actions">
 										<li><a href="#" class="button">More</a></li>
 									</ul>
-								</section>
+								</section> -->
 
 							<!-- Section -->
 								<section>

@@ -53,32 +53,51 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 											<p>Time to make your life a bit easier!</p>
 										</header>
 										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life. With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
-										<ul class="actions">
-											<li><a href="guest-signup.php" class="button big">Get Started</a></li>
-										</ul>
+										<!-- <ul class="actions">
+											<li><a href="meal-explorer.php" class="button big">Get Started</a></li>
+										</ul> -->
 									</div>
-									<span class="image object right">
+									<!-- <span class="image object right">
 										<img src="images/gordon.jpeg" alt="" />
-									</span>
-								</section>
-								<section>
-									<header class="major">
-										<h2>Ipsum sed dolor</h2>
-									</header>
-									<!-- what -->
-									<div class="posts">
-										<article>
-											<!-- remove the image, replace with button css -->
-											<a href="meal-calendar.php" class="image"><img src="images/pic01.jpg" alt="" /></a>
-											<h3>Plan a meal</h3>
-											<p></p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
-										</article>
-									</div>
+									</span> -->
 								</section>
 
+
+
+
+								<!-- options -->
+								<div class ='row'>
+								<div class="col-4 col-12-medium">
+										<header class="major">
+											<h2>Find a new meal</h2>
+										</header>
+										<div class="posts">
+												<article>
+													<a href="meal-explorer.php" class="image"><img src="images/preloader.gif" alt="" /></a>
+												</article>
+										</div>
+									</div>
+									<div class="col-4 col-12-medium">
+										<header class="major">
+											<h2>View my saved meals</h2>
+										</header>
+										<div class="posts">
+												<article>
+													<a href="meal-recipes.php" class="image"><img src="images/calendarPic.jpg" alt="" /></a>
+												</article>
+										</div>
+									</div>
+									<div class="col-4 col-12-medium">
+										<header class="major">
+											<h2>Plan a meal</h2>
+										</header>
+										<div class="posts">
+												<article>
+													<a href="meal-calendar.php" class="image"><img src="images/calendarPic.jpg" alt="" /></a>
+												</article>
+										</div>
+									</div>
+								</div>
 						</div>
 					</div>
 

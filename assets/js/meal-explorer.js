@@ -70,7 +70,7 @@ async function loadRecipes(n) {
     }
 }
 
-await loadRecipes(2);
+await loadRecipes(6);
 
 const addRecipeButtons = document.querySelectorAll('#addRecipe');
 
