@@ -40,7 +40,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 <html>
 	<head>
-		<title >MiMeals | Homepage</title >
+		<title >MiMeals | Calendar</title >
 		<link rel="icon" type="image/x-icon" href="./images/mimealsfavicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />

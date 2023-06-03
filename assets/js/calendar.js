@@ -154,52 +154,23 @@ function getRecipes() {
     $.ajax({
         processData: false, 
         async: true,
-        'url': './includes/get-recipe.php', 
+        'url': './includes/get-planned.php', 
         'type': 'POST',
         'success': function(res) {
             console.log("SUCCESS");
             res = JSON.parse(res);
-            console.log(res);
-            console.log('number of recipes', res['recipes'].length);
-
-            const container = document.querySelector('.recipe-list');
-
-            for (let i = 0; i < res['recipes'].length; i++) {
-                let div = document.createElement('div');
-                let recipe = res['recipes'][i];
-                console.log(recipe);
-                console.log(recipe.recipeTitle);
-                console.log(recipe['recipeTitle']);
-
-                // let redirect = `./guest-recipe.php?id=${recipe.recipeId}`;
-                
-                // todo: css for hovering the thing: add a backgroiund, an onlcick and a hover
-                // make the edges pink too
-                // todo: downsize image
-                //         dont downsize just size it until it the row is full
-                //         i dont think we can check if it is full 
-                let html = `
-                <div class="col-6 col-12-small">
-                    <div class="planned-meal">
-
-                        
-
-                        <input type="checkbox" id="${recipe.recipeTitle}">
-                        <label for="${recipe.recipeTitle}">${recipe.recipeTitle}</label>
-
-                        
-
-
-                        <span class="image fit"><img src="${recipe.recipeImage}" alt="" /></span>
-                        
-                    </div>
-                </div>`
-                div.innerHTML = html;
-                // localStorage.setItem(recipe.id, JSON.stringify(recipe));
-                while (div.children.length > 0) {
-                    container.appendChild(div.children[0]);
+            const calendar = document.querySelectorAll('.days li');
+            res['recipes'].forEach(meal => {
+                let d = new Date(parseInt(meal['time']));
+                if (d.getMonth() == currMonth) {
+                    calendar.forEach(day => {
+                        if (d.getDate().toString() == day.innerHTML) {
+                            console.log(day);
+                            day.classList.add('planned');
+                        }
+                    })
                 }
-            }
+            })
         },
         'error': function(res) {
             console.log("ERROR");
@@ -207,5 +178,3 @@ function getRecipes() {
         }
     });
 }
-
-getRecipes()
