@@ -178,3 +178,4 @@ function getRecipes() {
         }
     });
 }
+getRecipes();

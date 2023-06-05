@@ -33,7 +33,6 @@ if (isset($_POST['email-input']) && isset($_POST['password-input'])) {
                 $sql = "SELECT * FROM users WHERE email='$uemail'";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
-                // ADD THE NEW ACCOUNT LANDING PAGE HERE LATER
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['name'] = $row['name'];
                 $_SESSION['id'] = $row['id'];

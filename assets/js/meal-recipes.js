@@ -350,3 +350,75 @@ saveMeal.addEventListener("click", function() {
     });
 
 });
+
+async function getRecipes(args, page, numRecipes) {
+    let recipes = [];
+    if (args.length == 0) {
+        // sort by popularity
+        let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=${numRecipes}`;
+        let data = await fetchResponse(query);
+        for (let i = 0; i < data.results.length; i++) {
+            recipes.push(await getRecipeData(data.results[i].id));
+        }
+    } else {
+        // do later
+        let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=${numRecipes}`;
+        let data = await fetchResponse(query);
+    }
+    return recipes;
+}
+
+function getPlanned(date) {
+    let data = {'date': date};
+    $.ajax({
+        processData: false,
+        async: true,
+        'url': './includes/plan-meal.php', 
+        'type': 'POST',
+        'dataType': 'json',
+        'data': JSON.stringify(data),
+        'success': function(res) {
+            console.log("SUCCESS");
+            console.log(res);
+            popupOff()
+        },
+        'error': function(res) {
+            console.log("ERROR");
+            console.log(res);
+        }
+    });
+}
+
+function loadPlanned(date) {
+    let recipes = getPlanned(date);
+    for (let i = 0; i < recipes.length; i++) {
+        let div = document.createElement('div');
+        let recipe = recipes[i];
+        let redirect = `./guest-recipe.php?id=${recipe.id}`;
+        let description = `${(recipe.cuisines.length > 0) ? recipe.cuisines[0] + ' / ' : ''}${recipe.readyInMinutes} minutes / ${recipe.servings} servings / ~$${recipe.pricePerServing}`;
+        let html = `<div class="col-6 col-12-small">
+                        <a href="${redirect}"><span class="image fit"><img src="${recipe.image}" alt="" /></span></a>
+                        <div class="row">
+                            <div class="col-9 col-12-small">
+                                <a href="${redirect}"><span class="image fit"><h2>${recipe.title}</h2></a>
+                            </div>
+                            <div class="off-9-small col-12-small" style="text-align:right;white-space:nowrap;">
+                                <a href="#" class="button primary small icon solid fa-heart">${recipe.aggregateLikes}</a>
+                            </div>
+                        </div>
+                        <p>${description}</p>
+                        <ul class="actions fit">
+                            <li><a id="addRecipe" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.title}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Add Recipe</a></li>
+                            <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
+                        </ul>
+                        <script>
+                            localStorage.setItem("firstname", "Smith");
+                        </script>
+                    </div>`
+        div.innerHTML = html;
+        localStorage.setItem(recipe.id, JSON.stringify(recipe));
+        while (div.children.length > 0) {
+            container.appendChild(div.children[0]);
+        }
+    }
+}
