@@ -1,15 +1,31 @@
 import Recipe from './recipeObj.js';
 
-const container = document.querySelector('.row');
+const container = document.querySelector('#allRecipes');
+const searchResults = document.querySelector('#searchResults');
+const pageContainer = document.querySelector('.pagination');
 
 let apiKey = "dc09bd6aec87426f9b4a4c30ddaf204f"; // put into dotenv later
 let apiKey2 = "3f043de69de544e6b333d34d97e988c7";
-apiKey = apiKey2;
+let apiKey3 = '';
+let apiKey4 ='';
+// apiKey = apiKey2;
 
 async function fetchResponse(query) {
     let response = await fetch(query);
     let data = await response.json();
     return data;
+}
+
+async function searchRecipes(query){
+    let searchQuery = `https://api.spoonacular.com/food/search?query=${query}&apiKey=${apiKey}`;
+    let data = await fetchResponse(searchQuery);
+    // console.log(data.searchResults[0].results);
+    let recipes = [];
+    for (let i = 0; i < data.searchResults[0].results.length; i++) {
+        recipes.push(await getRecipeData(data.searchResults[0].results[i].id));
+    }
+    return recipes;
+
 }
 
 // get the recipe 
@@ -37,9 +53,52 @@ async function getRecipes(args, page, numRecipes) {
     return recipes;
 }
 
+
+// generating a search from an input
+const searchMeal = document.querySelector('#search-meal');
+searchMeal.addEventListener("click", async function() {
+    const search = document.querySelector("#search").value;
+    
+        let recipes = await searchRecipes(search);
+        console.log(recipes);
+        for (let i = 0; i < recipes.length; i++) {
+            let div = document.createElement('div');
+            let recipe = recipes[i];
+            let redirect = `./guest-recipe.php?id=${recipe.id}`;
+            let description = `${(recipe.cuisines.length > 0) ? recipe.cuisines[0] + ' / ' : ''}${recipe.readyInMinutes} minutes / ${recipe.servings} servings / ~$${recipe.pricePerServing}`;
+            let html = `<div class="col-6 col-12-small">
+                            <a href="${redirect}"><span class="image fit"><img src="${recipe.image}" alt="" /></span></a>
+                            <div class="row">
+                                <div class="col-9 col-12-small">
+                                    <a href="${redirect}"><span class="image fit"><h2>${recipe.title}</h2></a>
+                                </div>
+                                <div class="off-9-small col-12-small" style="text-align:right;white-space:nowrap;">
+                                    <a href="#" class="button primary small icon solid fa-heart">${recipe.aggregateLikes}</a>
+                                </div>
+                            </div>
+                            <p>${description}</p>
+                            <ul class="actions fit">
+                                <li><a id="addRecipe" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.title}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Add Recipe</a></li>
+                                <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
+                            </ul>
+                            <script>
+                                localStorage.setItem("firstname", "Smith");
+                            </script>
+                        </div>`
+            div.innerHTML = html;
+            localStorage.setItem(recipe.id, JSON.stringify(recipe));
+            while (div.children.length > 0) {
+                searchResults.appendChild(div.children[0]);
+            }
+        }
+
+    
+});
+
+
 // Update an HTML 'row' container to display recipe info
-async function loadRecipes(n) {
-    let recipes = await getRecipes([], 0, n);
+async function loadRecipes(n, page = 0) {
+    let recipes = await getRecipes([], page, n);
     for (let i = 0; i < recipes.length; i++) {
         let div = document.createElement('div');
         let recipe = recipes[i];
@@ -72,7 +131,6 @@ async function loadRecipes(n) {
     }
 }
 
-await loadRecipes(6);
 
 // When any recipe's "add Recipe" buttons is clicked, 
 // pass the recipe's Id, Title, and Image to the addRecipe function, 
@@ -124,3 +182,76 @@ function addRecipe(id, title, image) {
         }
     });
 };
+let div = document.createElement('div');
+let numRecipesLoaded = 4;
+// here, n is the beginning number. There will be 10 pages loaded at a time
+function loadPages(n){
+    
+    n = parseInt(n);
+
+    
+    
+    let html = `<li><span class="button" id = prevPage>Prev</span></li>`
+    div.innerHTML = html;
+    pageContainer.appendChild(div.children[0]);
+
+    for (let i = 1; i < 6; i++) {
+        if (i==1){
+            html = `<li><a href="#" class="pagination page active" id ='${n+i}'>${n+i}</a></li>`
+        }else{
+            html = `<li><a href="#" class="pagination page" id ='${n+i}'>${n+i}</a></li>`
+        }
+        
+        
+        div.innerHTML = html;
+        pageContainer.appendChild(div.children[0]);
+        
+    }
+    
+    let next = `<li><span class="button" id = nextPage>Next</span></li>`
+    div.innerHTML = next;
+    pageContainer.appendChild(div.children[0]);
+
+    // whats the diff between const and var here... ig none
+
+    var prevPage = document.querySelector(`#prevPage`);
+    prevPage.addEventListener("click", () => {
+        if (n>0){
+            clearPages()
+            loadPages(n-1);
+            loadRecipes(numRecipesLoaded, n-1);
+        }
+    })
+
+    const pageButtons = document.querySelectorAll('.page');
+    pageButtons.forEach(button => {
+    button.addEventListener("click", function() {
+
+        clearPages()
+        loadPages(button.id);
+        loadRecipes(numRecipesLoaded, button.id);
+    });
+
+    var nextPage = document.querySelector(`#nextPage`);
+    nextPage.addEventListener("click", () => {
+        clearPages()
+        loadPages(n+1);
+        loadRecipes(numRecipesLoaded, n+1);
+    })
+    console.log(div.children.length);
+
+});
+
+    
+}
+
+
+function clearPages(){
+    // https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+    while (pageContainer.firstChild) {
+        pageContainer.removeChild(pageContainer.lastChild);
+    }
+}
+
+loadPages(0);
+loadRecipes(4, 0);

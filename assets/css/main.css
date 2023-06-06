@@ -1415,6 +1415,23 @@ ul.contact {
       color: inherit; }
 
 /* Pagination */
+
+/* yea apparaently this dont work i dont want to know why */
+.page {
+  -moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+  -webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+  -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+  border-bottom: dotted 1px;
+  color: #f56a6a;
+  text-decoration: none; }
+  a:hover {
+    border-bottom-color: #f56a6a;
+    color: #f56a6a !important; }
+    a:hover strong {
+      color: inherit; }
+
+
 ul.pagination {
   cursor: default;
   list-style: none;
@@ -1428,7 +1445,7 @@ ul.pagination {
       -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
       -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
       transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-      border-bottom: 0;
+      border-bottom: dotted 1px;
       border-radius: 0.375em;
       display: inline-block;
       font-size: 0.8em;
@@ -1438,7 +1455,9 @@ ul.pagination {
       margin: 0 0.125em;
       min-width: 2em;
       padding: 0 0.5em;
-      text-align: center; }
+      text-align: center; 
+      color: #f56a6a;
+      text-decoration: none;}
       ul.pagination li > .page.active {
         background-color: #f56a6a;
         color: #ffffff !important; }

@@ -351,22 +351,22 @@ saveMeal.addEventListener("click", function() {
 
 });
 
-async function getRecipes(args, page, numRecipes) {
-    let recipes = [];
-    if (args.length == 0) {
-        // sort by popularity
-        let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=${numRecipes}`;
-        let data = await fetchResponse(query);
-        for (let i = 0; i < data.results.length; i++) {
-            recipes.push(await getRecipeData(data.results[i].id));
-        }
-    } else {
-        // do later
-        let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=${numRecipes}`;
-        let data = await fetchResponse(query);
-    }
-    return recipes;
-}
+// async function getRecipes(args, page, numRecipes) {
+//     let recipes = [];
+//     if (args.length == 0) {
+//         // sort by popularity
+//         let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=${numRecipes}`;
+//         let data = await fetchResponse(query);
+//         for (let i = 0; i < data.results.length; i++) {
+//             recipes.push(await getRecipeData(data.results[i].id));
+//         }
+//     } else {
+//         // do later
+//         let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=${numRecipes}`;
+//         let data = await fetchResponse(query);
+//     }
+//     return recipes;
+// }
 
 function getPlanned(date) {
     let data = {'date': date};
