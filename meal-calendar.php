@@ -13,31 +13,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 <!DOCTYPE HTML>
 
-<!-- setup css specifically for this page -->
-
-<!--  -->
-
-<!-- https://www.youtube.com/watch?v=Z1BGAivZRlE -->
-
-<!-- https://www.geeksforgeeks.org/design-a-calendar-using-html-and-css/ -->
-
-<!-- https://www.mssqltips.com/sqlservertip/7552/events-calendar-html-sql-server-css/ -->
-
-
-<!-- http://www.dhtmlgoodies.com/packages/dhtml-suite-for-applications/demos/demo-calendar-1.html -->
-<!-- https://stackoverflow.com/questions/2161241/to-display-calendar-using-javascript-and-php -->
-
-
-<!-- add selectable dates -->
-<!-- add data to each day? -->
-<!-- allow user to click on each day -->
-<!-- highlight planned days (to distinguish between unplanned days) using color -->
-<!-- https://www.w3schools.com/howto/howto_css_calendar.asp -->
-
-
-
-<!-- https://stackoverflow.com/questions/6841379/is-there-java-hashmap-equivalent-in-php -->
-
 <html>
 	<head>
 		<title >MiMeals | Calendar</title >
@@ -68,25 +43,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 									</ul>
 								</header>
+							<!-- Today's stuff -->
 
-							<!-- Banner -->
-								<section id="banner">
-									<div class="content">
-										<header>
-											<h1>Welcome to Mimeals!</h1>
-											<p>Your meal planning website</p>
-										</header>
-										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life. With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
-										<ul class="actions">
-											<li><a href="guest-signup.php" class="button big">Get Started</a></li>
-										</ul>
-									</div>
-								</section>
-						
+							<!-- <h3>Today's Meals</h3> -->
+							<!-- show todays meals, else go to the other -->
 
-							<!-- functionality: add days from prev months, when clicking n that also changes past...? -->
-							<!-- functionality: do not allow meals to be planned for dates that already happened -->
-				
+
 							<!-- Calendar Part -->
 
 								<div class="calendar-wrapper">
@@ -110,23 +72,17 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<ul class="days"></ul>
 									</div>
 
+										<!-- Meal Plan Popup (Appears after Clicking a Date) -->
 									<div class="date-popup">
 										<a id="close" class="button small">Back</a>
 										<h1 id="datestring"><h1>
-										<!-- HEADER
-									
-										Includes total price, required ingredients, average health score, others (maybe nutrition info like calories)
-									
-										-->
+
+										<!-- stuff all the saved recipes here -->
+										<ul class="recipe-list"></ul>
 
 										<!-- RECIPE LIST -->
 										<a id="add-recipe" class="button primary fit slim icon solid fa-plus">Add recipe</a>
 										
-										<!-- MAYBE SEPARATE FOR BREAKFAST LUNCH AND DINNER -->
-										
-										<ul class="recipe-list">
-
-										</ul>
 									</div>
 									<!-- overlay to also exit popup -->
 									<div class = 'overlay' id="overlay"></div> 

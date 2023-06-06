@@ -33,8 +33,8 @@ if (isset($_POST['email-input']) && isset($_POST['password-input'])) {
             // if a pair of email/hashed password from the database matches
             // store the user's () in session variables
 
-            // these will be used for ()
             if ($row['email'] === $uemail && $row['password'] === $hashedPassword) {
+
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['name'] = $row['name'];
                 $_SESSION['id'] = $row['id'];

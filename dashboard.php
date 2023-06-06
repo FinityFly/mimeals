@@ -61,43 +61,49 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<img src="images/gordon.jpeg" alt="" />
 									</span> -->
 								</section>
+								
 
 
 
 
 								<!-- options -->
+								<section id="banner">
+								
+
+								</section>
 								<div class ='row'>
 								<div class="col-4 col-12-medium">
 										<header class="major">
 											<h2>Find a new meal</h2>
 										</header>
-										<div class="posts">
-												<article>
-													<a href="meal-explorer.php" class="image"><img src="images/preloader.gif" alt="" /></a>
-												</article>
+										<div class="posts" style = 'margin: auto;'>
+											<article>
+												<a href="meal-explorer.php" class="image"><img src="images/search 2.jpg" alt="" /></a>
+											</article>
 										</div>
 									</div>
 									<div class="col-4 col-12-medium">
 										<header class="major">
 											<h2>View my saved meals</h2>
 										</header>
-										<div class="posts">
-												<article>
-													<a href="meal-recipes.php" class="image"><img src="images/calendarPic.jpg" alt="" /></a>
-												</article>
+										<div class="posts" style = 'margin: auto;'>
+											<article>
+												<a href="meal-recipes.php" class="image"><img src="images/bookmark.jpg" alt="" /></a>
+											</article>
 										</div>
 									</div>
 									<div class="col-4 col-12-medium">
 										<header class="major">
 											<h2>Plan a meal</h2>
 										</header>
-										<div class="posts">
-												<article>
-													<a href="meal-calendar.php" class="image"><img src="images/calendarPic.jpg" alt="" /></a>
-												</article>
+										<div class="posts" style = 'margin: auto;'>
+											<article>
+												<a href="meal-calendar.php" class="image"><img src="images/calendarPic.jpg" alt="" /></a>
+											</article>
 										</div>
 									</div>
 								</div>
+								
 						</div>
 					</div>
 

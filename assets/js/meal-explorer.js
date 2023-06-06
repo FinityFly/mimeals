@@ -12,6 +12,7 @@ async function fetchResponse(query) {
     return data;
 }
 
+// get the recipe 
 async function getRecipeData(id) {
     let query = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
     let data = await fetchResponse(query);
@@ -36,6 +37,7 @@ async function getRecipes(args, page, numRecipes) {
     return recipes;
 }
 
+// Update an HTML 'row' container to display recipe info
 async function loadRecipes(n) {
     let recipes = await getRecipes([], 0, n);
     for (let i = 0; i < recipes.length; i++) {
@@ -72,8 +74,10 @@ async function loadRecipes(n) {
 
 await loadRecipes(6);
 
+// When any recipe's "add Recipe" buttons is clicked, 
+// pass the recipe's Id, Title, and Image to the addRecipe function, 
+// where it will be added to the user's saved meals database.
 const addRecipeButtons = document.querySelectorAll('#addRecipe');
-
 addRecipeButtons.forEach(button => {
     
     let recipeId = button.getAttribute("data-recipe-id");
@@ -85,9 +89,13 @@ addRecipeButtons.forEach(button => {
     });
 });
 
+
 function addRecipe(id, title, image) {
     var data = {'recipeId': id, 'recipeTitle': title, 'recipeImage': image};
     var recipeButton = document.querySelector(`[data-recipe-id="${id}"]`);
+    
+    // send the data to add-recipe.php, where the recipe will be added to
+    // the user's database of saved meals
     $.ajax({
         processData: false,
         async: true,
@@ -98,6 +106,9 @@ function addRecipe(id, title, image) {
         'success': function(res) {
             console.log("SUCCESS");
             console.log(res);
+            
+            // Upon a successful data transmission, update the button 
+            // visual to notify the user that their meal has been saved
             if (res.status) {
                 if (res.added) {
                     recipeButton.innerHTML = "Recipe added!";
