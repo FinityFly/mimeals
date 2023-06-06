@@ -71,21 +71,9 @@
 										<!-- <a href="#" class="button big">Learn More</a> -->
 									</div>
 								</section>
-								<section>
-									<!-- <header class="major">
-										<h2>Ipsum sed dolor</h2>
-									</header>
-									<div class="posts">
-										<article>
-											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-											<h3>Why use MiMeals?</h3>
-											<p>With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
-										</article>
-									</div> -->
-								</section>
+
+								<hr>
+								
 
 						</div>
 					</div>
@@ -107,11 +95,11 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="index.php">Homepage</a></li>
-										<li><a href="guest-explorer.php">Explore</a></li>
-										<li><a href="guest-showcase.php">Showcase Page (delete later)</a></li>
-										<li><a href="guest-login.php">Login</a></li>
-										<li><a href="guest-signup.php">Sign Up</a></li>
+									<li><a href="index.php">Homepage</a></li>
+									<!-- <li><a href="guest-explorer.php">Explore</a></li> -->
+									<!-- <li><a href="guest-showcase.php">Showcase Page (delete later)</a></li> -->
+									<li><a href="guest-login.php">Login</a></li>
+									<li><a href="guest-signup.php">Sign Up</a></li>
 										
 									</ul>
 								</nav>

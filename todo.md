@@ -1,13 +1,8 @@
 
 remake the like button on the guest recipe page
 
-to my udnerstanding, create-new-password.php is unused.
-
-dashboard.php is kinda lacking too.
-
 add pagination to meal explorer
 
-add search bar to search for recipes
 
 add twitter, facebook and insta links. Similarly, ensure that the same links are available on every page. Per example, some pages contain the medium and snapchat links
 

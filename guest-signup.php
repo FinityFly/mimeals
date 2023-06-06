@@ -82,7 +82,7 @@
 								</header>
 								<ul>
 									<li><a href="index.php">Homepage</a></li>
-									<li><a href="guest-explorer.php">Explore</a></li>
+									<!-- <li><a href="guest-explorer.php">Explore</a></li> -->
 									<!-- <li><a href="guest-showcase.php">Showcase Page (delete later)</a></li> -->
 									<li><a href="guest-login.php">Login</a></li>
 									<li><a href="guest-signup.php">Sign Up</a></li>
@@ -95,22 +95,6 @@
 									</li> -->
 								</ul>
 							</nav>
-
-						<!-- Section -->
-							<!-- <section>
-								<header class="major">
-									<h2>Ante interdum</h2>
-								</header>
-								<div class="mini-posts">
-									<article>
-										<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-										<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-									</article>
-								</div>
-								<ul class="actions">
-									<li><a href="#" class="button">More</a></li>
-								</ul>
-							</section> -->
 
 						<!-- Footer -->
 							<footer id="footer">

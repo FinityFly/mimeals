@@ -74,7 +74,7 @@ const renderCalendar = () => {
         // adding active class to li if the current day, month, and year matched
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                      && currYear === new Date().getFullYear() ? "active" : "";
-        liTag += `<li class="active">${i}</li>`;
+        liTag += `<li class="${isToday}">${i}</li>`;
         // liTag += `<li class="${isToday}" id = '${currMonth}'>${i}</li>`;
     }
 
@@ -129,25 +129,60 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
                 popup.classList.add("nofade");
                 popup.style.zIndex = "9999";
 
-                let dateString;
+                let d;
                 if (day.classList.contains("inactive")) {
                     if (parseInt(day.innerHTML) >= 26) {
                         if (currMonth == 0) {
-                            dateString = `Your meals for ${months[11]} ${day.innerHTML}, ${currYear}`;
+                            d = new Date(currYear-1, 11, parseInt(day.innerHTML));
                         } else {
-                            dateString = `Your meals for ${months[currMonth-1]} ${day.innerHTML}, ${currYear}`;
+                            d = new Date(currYear, currMonth-1, parseInt(day.innerHTML));
                         }
                     } else if (parseInt(day.innerHTML) <= 6) {
                         if (currMonth == 11) {
-                            dateString = `Your meals for ${months[0]} ${day.innerHTML}, ${currYear}`;
+                            d = new Date(currYear+1, 0, parseInt(day.innerHTML));
                         } else {
-                            dateString = `Your meals for ${months[currMonth+1]} ${day.innerHTML}, ${currYear}`;
+                            d = new Date(currYear, currMonth+1, parseInt(day.innerHTML));
                         }
                     }
                 } else {
-                    dateString = `Your meals for ${months[currMonth]} ${day.innerHTML}, ${currYear}`;
+                    d = new Date(currYear, currMonth, parseInt(day.innerHTML));
                 }
+                let dateString = `Your meals for ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
                 document.querySelector("#datestring").innerHTML = dateString;
+
+                const container = document.querySelector('.recipe-list');
+                if (d.getTime() in plannedRecipes) {
+                    for (let i = 0; i < plannedRecipes[d.getTime()].length; i++) {
+                        let div = document.createElement('div');
+                        let recipe = plannedRecipes[d.getTime()][i];
+                        console.log(recipe);
+                        let redirect = `./guest-recipe.php?id=${recipe.recipeId}`;
+                        let html = `<div class="box" style="display: flex; padding: 10px; margin: 10px;">
+                                        <div style="padding: 10px;">
+                                            <a href="${redirect}"><span class="image fit"><img src="${recipe.recipeImage}" alt="" /></span></a>
+                                        </div>
+                                        <div style="width: 50%; padding: 10px;">
+                                            <a href="${redirect}"><p style="font-size: 36px";>${recipe.recipeTitle}</p></a>
+                                        </div>
+                                        <div style="width: 50%; padding: 10px;">
+                                            <ul class="actions fit" style="display: inline-block; font-size : 26px;">
+                                                <li style="padding: 10px; top: 50%;"><a href="${redirect}" class="button primary fit small icon solid fa-eye">View Recipe</a></li>
+                                                <li style="padding: 10px;"><a href="${recipe.recipeImage}" class="button fit small icon solid fa-search">Visit Website</a></li>
+                                                <li style="padding: 10px;><a id="removeMeal" class="button fit icon solid fa-delete">Remove Meal</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>`
+                        div.innerHTML = html;
+                        localStorage.setItem(recipe.id, JSON.stringify(recipe));
+                        while (div.children.length > 0) {
+                            container.appendChild(div.children[0]);
+                        }
+                    }
+                    const removeMealButton = document.querySelector('#removeMeal');
+                    removeHealButton.addEventListener('click', function() {
+                        
+                    })
+                }
             })
         })
     });
@@ -228,7 +263,13 @@ dateCircle.forEach(day => {
                     container.appendChild(div.children[0]);
                 }
             }
+            const removeMealButton = document.querySelector('#removeMeal');
+            removeHealButton.addEventListener('click', function() {
+                
+            })
         }
+
+
     })
 })
 
@@ -251,32 +292,33 @@ function popupOff(){
     overlay.classList.add("inactive");
 }
 
-function getRecipes() {
-    $.ajax({
-        processData: false, 
-        async: true,
-        'url': './includes/get-planned.php', 
-        'type': 'POST',
-        'success': function(res) {
-            console.log("SUCCESS");
-            res = JSON.parse(res);
-            const calendar = document.querySelectorAll('.days li');
-            res['recipes'].forEach(meal => {
-                let d = new Date(parseInt(meal['time']));
-                if (d.getMonth() == currMonth) {
-                    calendar.forEach(day => {
-                        if (d.getDate().toString() == day.innerHTML) {
-                            console.log(day);
-                            day.classList.add('planned');
-                        }
-                    })
-                }
-            })
-        },
-        'error': function(res) {
-            console.log("ERROR");
-            console.log(res);
-        }
-    });
-}
-getRecipes();
+// function getRecipes() {
+//     $.ajax({
+//         processData: false, 
+//         async: true,
+//         'url': './includes/get-planned.php', 
+//         'type': 'POST',
+//         'success': function(res) {
+//             console.log("SUCCESS");
+//             res = JSON.parse(res);
+//             const calendar = document.querySelectorAll('.days li');
+//             res['recipes'].forEach(meal => {
+//                 let d = new Date(parseInt(meal['time']));
+//                 console.log(d);
+//                 if (d.getMonth() == currMonth) {
+//                     calendar.forEach(day => {
+//                         if (d.getDate().toString() == day.innerHTML) {
+//                             console.log(day);
+//                             day.classList.add('planned');
+//                         }
+//                     })
+//                 }
+//             })
+//         },
+//         'error': function(res) {
+//             console.log("ERROR");
+//             console.log(res);
+//         }
+//     });
+// }
+// getRecipes();

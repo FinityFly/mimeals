@@ -4,6 +4,8 @@ session_start();
 if (isset($_GET['id'])) { 
 	$id = $_GET['id'];
 }	
+
+// check if meal is already in db
 ?>
 
 <!DOCTYPE HTML>
@@ -180,7 +182,7 @@ if (isset($_GET['id'])) {
 									<div class="container">
 										<a href="#" class="button primary large">Add Recipe</a>
 										<a href="#" id="sourceUrl" class="button primary large">Visit Website</a>
-										<a href="#" class="button large">Download</a>
+										<!-- <a href="#" class="button large">Download</a> -->
 										<a href="#" class="button large" id ="print-button">Print</a>
 										<script>
 										document.getElementById("print-button").addEventListener("click", function() {
