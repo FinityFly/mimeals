@@ -50,18 +50,16 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									<!-- Content -->
 										<div>
 											<p>Introducing our recipe explorer - the ultimate tool for culinary exploration. With just a simple scroll, you can discover a vast array of recipes from every corner of the world, each one guaranteed to excite your taste buds and inspire your creativity in the kitchen. From the bold flavors of Latin American cuisine to the aromatic spices of Indian dishes, our recipe explorer allows you to take a global journey from the comfort of your own home.</p>
-											<p>Our platform is user-friendly, allowing you to easily filter and search for recipes based on dietary restrictions, cooking time, and ingredients. You can also save your favorite recipes for later, and share them with friends and family on social media. Plus, with new recipes added regularly, there's always something new and exciting to discover.</p>
-											<p>Whether you're a seasoned foodie or a beginner cook, our recipe explorer is the perfect tool for expanding your culinary horizons and discovering new and exciting dishes. So why not take a journey around the world with us and let your taste buds be your guide? Start exploring today and get ready to experience a world of flavors like never before.</p>
 										</div>
 										<hr>
 										<!-- search  -->
 										<div class="login-form">
-											<h3>Search for a meal</h3>
+											<h3>Recipe Search</h3>
 											<div class="input-field">
-												<input type="text" placeholder="Search Query" id = 'search' required="required">
+												<input type="text" placeholder="Search..." id = 'search' required="required">
 											</div>
 											<div class="login-button" style="text-align:center">
-												<input type="submit" id ='search-meal' class = 'button primary icon solid fa-check'>
+												<input type="submit" id ='search-meal' class = 'button primary icon solid fa-search'>
 											</div>
 
 
@@ -70,10 +68,15 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 										<hr>
 
-										<h3>Search for a meal</h3>
-
+										<h3>Popular Recipes</h3>
 										<!-- recommended all results -->
 										<div class="row" id = 'allResults'></div>
+
+										<div class="login-button" style="text-align:center">
+											<a class="button primary icon solid fa-arrow-down" id = 'loadMore'>Load More Recipes</a>
+											<!-- <input type="button" id ='loadMore' name = 'lm' class = 'button primary icon solid fa-search'>
+											<label for = 'lm'> </label> -->
+										</div>
 
 
 										

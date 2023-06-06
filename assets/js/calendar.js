@@ -74,7 +74,7 @@ const renderCalendar = () => {
         // adding active class to li if the current day, month, and year matched
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                      && currYear === new Date().getFullYear() ? "active" : "";
-        liTag += `<li class="${isToday}">${i}</li>`;
+        liTag += `<li class="active">${i}</li>`;
         // liTag += `<li class="${isToday}" id = '${currMonth}'>${i}</li>`;
     }
 
@@ -218,6 +218,7 @@ dateCircle.forEach(day => {
                                     <ul class="actions fit" style="display: inline-block; font-size : 26px;">
                                         <li style="padding: 10px; top: 50%;"><a href="${redirect}" class="button primary fit small icon solid fa-eye">View Recipe</a></li>
                                         <li style="padding: 10px;"><a href="${recipe.recipeImage}" class="button fit small icon solid fa-search">Visit Website</a></li>
+                                        <li style="padding: 10px;><a id="removeMeal" class="button fit icon solid fa-delete">Remove Meal</a></li>
                                     </ul>
                                 </div>
                             </div>`

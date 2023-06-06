@@ -8,7 +8,11 @@ let apiKey = "dc09bd6aec87426f9b4a4c30ddaf204f"; // put into dotenv later
 let apiKey2 = "3f043de69de544e6b333d34d97e988c7";
 let apiKey3 = '4621a74d2ad64a26adee0016e0be6c53';
 let apiKey4 ='cbcf41d0632a4583b2cbbe3c44a434ae';
-apiKey = apiKey4;
+let apiKey5 = 'a8c6d5e81bd44739b69f8400661a6b38';
+let apiKey6 = '1fcc4a609e8643ab8595fc540fd2e6a9';
+apiKey = apiKey5;
+let numRecipesLoaded = 2;
+let pagesLoaded= 0;
 
 async function fetchResponse(query) {
     let response = await fetch(query);
@@ -40,14 +44,14 @@ async function getRecipes(args, page, numRecipes) {
     let recipes = [];
     if (args.length == 0) {
         // sort by popularity
-        let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=${numRecipes}`;
+        let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*numRecipesLoaded}&number=${numRecipes}`;
         let data = await fetchResponse(query);
         for (let i = 0; i < data.results.length; i++) {
             recipes.push(await getRecipeData(data.results[i].id));
         }
     } else {
         // do later
-        let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=${numRecipes}`;
+        let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*numRecipesLoaded}&number=${numRecipes}`;
         let data = await fetchResponse(query);
     }
     return recipes;
@@ -60,8 +64,16 @@ searchMeal.addEventListener("click", async function() {
     const search = document.querySelector("#search").value;
     
         let recipes = await searchRecipes(search);
-        console.log(recipes);
-        for (let i = 0; i < recipes.length; i++) {
+        
+        let reps;
+        if (recipes.length < 2) {
+            reps = recipes.length;
+        } else {
+            reps = 2;
+        }
+
+
+        for (let i = 0; i < reps; i++) {
             let div = document.createElement('div');
             let recipe = recipes[i];
             let redirect = `./guest-recipe.php?id=${recipe.id}`;
@@ -193,75 +205,84 @@ function addRecipe(id, title, image) {
         }
     });
 };
-let div = document.createElement('div');
-let numRecipesLoaded = 4;
-// here, n is the beginning number. There will be 10 pages loaded at a time
-function loadPages(n){
+// let div = document.createElement('div');
+const loadMoreButton = document.querySelector(`#loadMore`);
+loadMoreButton.addEventListener("click", () => {
+    loadRecipes(numRecipesLoaded, pagesLoaded+numRecipesLoaded);
+    pagesLoaded+=2;
+})
+
+
+
+// // here, n is the beginning number. There will be 10 pages loaded at a time
+// function loadPages(n){
     
-    n = parseInt(n);
+//     n = parseInt(n);
 
     
     
-    let html = `<li><span class="button" id = prevPage>Prev</span></li>`
-    div.innerHTML = html;
-    pageContainer.appendChild(div.children[0]);
+//     let html = `<li><span class="button" id = prevPage>Prev</span></li>`
+//     div.innerHTML = html;
+//     pageContainer.appendChild(div.children[0]);
 
-    for (let i = -2; i < 3; i++) {
-        // html = `<li><a href="#" class="pagination page" id ='${3+n+i}'>${3+n+i}</a></li>`
-        if (i==-2){
-            html = `<li><a href="#" class="pagination page active" id ='${3+n+i}'>${3+n+i}</a></li>`
-        }else{
-            html = `<li><a href="#" class="pagination page" id ='${3+n+i}'>${3+n+i}</a></li>`
-        }
+//     for (let i = -2; i < 3; i++) {
+//         // html = `<li class="pagination page" id ='${3+n+i}'>${3+n+i}</li>`
+//         if (i==-2){
+//             html = `<li class="pagination page" id ='${3+n+i}'>${3+n+i}</li>`
+//             // html = `<li><a href="#" class="pagination page active" id ='${3+n+i}'>${3+n+i}</a></li>`
+//         }else{
+//             html = `<li class="pagination page" id ='${3+n+i}'>${3+n+i}</li>`
+//             // html = `<li><a href="#" class="pagination page" id ='${3+n+i}'>${3+n+i}</a></li>`
+//         }
         
         
-        div.innerHTML = html;
-        pageContainer.appendChild(div.children[0]);
+//         div.innerHTML = html;
+//         pageContainer.appendChild(div.children[0]);
         
-    }
+//     }
     
-    let next = `<li><span class="button" id = nextPage>Next</span></li>`
-    div.innerHTML = next;
-    pageContainer.appendChild(div.children[0]);
+//     let next = `<li><span class="button" id = nextPage>Next</span></li>`
+//     div.innerHTML = next;
+//     pageContainer.appendChild(div.children[0]);
 
-    const prevPage = document.querySelector(`#prevPage`);
-    prevPage.addEventListener("click", () => {
-        if (n>0){
-            clearPages()
-            loadPages(n-1);
-            loadRecipes(numRecipesLoaded+1, n-1);
-        }
-    })
+//     const prevPage = document.querySelector(`#prevPage`);
+//     prevPage.addEventListener("click", () => {
+//         if (n>0){
+//             clearPages()
+//             loadPages(n-1);
+//             loadRecipes(numRecipesLoaded+1, n-1);
+//         }
+//     })
 
-    const pageButtons = document.querySelectorAll('.page');
-    pageButtons.forEach(button => {
-    button.addEventListener("click", function() {
+//     const pageButtons = document.querySelectorAll('.page');
+//     pageButtons.forEach(button => {
+//     button.addEventListener("click", function() {
 
-        clearPages()
-        loadPages(button.id-1);
-        loadRecipes(numRecipesLoaded+1, button.id);
-    });
+//         clearPages()
+//         loadPages(button.id-1);
+//         loadRecipes(numRecipesLoaded+1, button.id);
+//     });
 
-    const nextPage = document.querySelector(`#nextPage`);
-    nextPage.addEventListener("click", () => {
-        clearPages()
-        loadPages(n+1);
-        loadRecipes(numRecipesLoaded, n+1);
-    })
-    console.log(div.children.length);
+//     const nextPage = document.querySelector(`#nextPage`);
+//     nextPage.addEventListener("click", () => {
+//         clearPages()
+//         loadPages(n+1);
+//         loadRecipes(numRecipesLoaded, n+1);
+//     })
+//     console.log(div.children.length);
 
-});
+// });
 
     
-}
+// }
 
 
-function clearPages(){
-    // https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
-    while (pageContainer.firstChild) {
-        pageContainer.removeChild(pageContainer.lastChild);
-    }
-}
+// function clearPages(){
+//     // https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+//     while (pageContainer.firstChild) {
+//         pageContainer.removeChild(pageContainer.lastChild);
+//     }
+// }
 
-loadPages(0);   
-// loadRecipes(numRecipesLoaded, 0);
+// loadPages(0);   
+loadRecipes(numRecipesLoaded, 0);
