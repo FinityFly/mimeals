@@ -1,6 +1,7 @@
 import Recipe from './recipeObj.js';
 
 const container = document.querySelector('.row');
+const pageContainer = document.querySelector('.pagination');
 
 let apiKey = "dc09bd6aec87426f9b4a4c30ddaf204f"; // put into dotenv later
 let apiKey2 = "3f043de69de544e6b333d34d97e988c7";
@@ -38,8 +39,8 @@ async function getRecipes(args, page, numRecipes) {
 }
 
 // Update an HTML 'row' container to display recipe info
-async function loadRecipes(n) {
-    let recipes = await getRecipes([], 0, n);
+async function loadRecipes(n, page = 0) {
+    let recipes = await getRecipes([], page, n);
     for (let i = 0; i < recipes.length; i++) {
         let div = document.createElement('div');
         let recipe = recipes[i];
@@ -72,7 +73,6 @@ async function loadRecipes(n) {
     }
 }
 
-await loadRecipes(6);
 
 // When any recipe's "add Recipe" buttons is clicked, 
 // pass the recipe's Id, Title, and Image to the addRecipe function, 
@@ -124,3 +124,74 @@ function addRecipe(id, title, image) {
         }
     });
 };
+
+// here, n is the beginning number. There will be 10 pages loaded at a time
+function loadPages(n){
+    n = parseInt(n);
+
+    let div = document.createElement('div');
+    let html = `<li><span class="button" id = prevPage>Prev</span></li>`
+    div.innerHTML = html;
+    pageContainer.appendChild(div.children[0]);
+
+    for (let i = 1; i < 6; i++) {
+        if (i==1){
+            html = `<li><a href="#" class="pagination page active" id ='${n+i}'>${n+i}</a></li>`
+        }else{
+            html = `<li><a href="#" class="pagination page" id ='${n+i}'>${n+i}</a></li>`
+        }
+        
+        
+        div.innerHTML = html;
+        pageContainer.appendChild(div.children[0]);
+        // while (div.children.length > 0) {
+        //     pageContainer.appendChild(div.children[0]);
+        // }
+    }
+    
+    let next = `<li><span class="button" id = nextPage>Next</span></li>`
+    div.innerHTML = next;
+    pageContainer.appendChild(div.children[0]);
+
+    // whats the diff between const and var here... ig none
+
+    var prevPage = document.querySelector(`#prevPage`);
+    prevPage.addEventListener("click", () => {
+        if (n>0){
+            clearPages()
+            loadPages(n-1);
+            loadRecipes(6, n-1);
+        }
+    })
+
+    const pageButtons = document.querySelectorAll('.page');
+    pageButtons.forEach(button => {
+    button.addEventListener("click", function() {
+
+        clearPages()
+        loadPages(button.id);
+        loadRecipes(6, button.id);
+    });
+
+    var nextPage = document.querySelector(`#nextPage`);
+    nextPage.addEventListener("click", () => {
+        clearPages()
+        loadPages(n+1);
+        loadRecipes(6, n+1);
+    })
+
+});
+
+    
+}
+
+
+function clearPages(){
+    // https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+    while (pageContainer.firstChild) {
+        pageContainer.removeChild(pageContainer.lastChild);
+    }
+}
+
+loadPages(0);
+loadRecipes(6, 0);
