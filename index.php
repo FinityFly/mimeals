@@ -109,7 +109,7 @@
 									<ul>
 										<li><a href="index.php">Homepage</a></li>
 										<li><a href="guest-explorer.php">Explore</a></li>
-										<!-- <li><a href="guest-showcase.php">Showcase Page (delete later)</a></li> -->
+										<li><a href="guest-showcase.php">Showcase Page (delete later)</a></li>
 										<li><a href="guest-login.php">Login</a></li>
 										<li><a href="guest-signup.php">Sign Up</a></li>
 										
