@@ -254,4 +254,4 @@ function clearPages(){
 }
 
 loadPages(0);
-loadRecipes(4, 0);
+loadRecipes(numRecipesLoaded, 0);
