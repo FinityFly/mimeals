@@ -249,3 +249,33 @@ function popupOff(){
     overlay.classList.remove("active");
     overlay.classList.add("inactive");
 }
+
+function getRecipes() {
+    $.ajax({
+        processData: false, 
+        async: true,
+        'url': './includes/get-planned.php', 
+        'type': 'POST',
+        'success': function(res) {
+            console.log("SUCCESS");
+            res = JSON.parse(res);
+            const calendar = document.querySelectorAll('.days li');
+            res['recipes'].forEach(meal => {
+                let d = new Date(parseInt(meal['time']));
+                if (d.getMonth() == currMonth) {
+                    calendar.forEach(day => {
+                        if (d.getDate().toString() == day.innerHTML) {
+                            console.log(day);
+                            day.classList.add('planned');
+                        }
+                    })
+                }
+            })
+        },
+        'error': function(res) {
+            console.log("ERROR");
+            console.log(res);
+        }
+    });
+}
+getRecipes();
