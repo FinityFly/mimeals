@@ -1,14 +1,14 @@
 import Recipe from './recipeObj.js';
 
-const container = document.querySelector('#allRecipes');
+const container = document.querySelector('#allResults');
 const searchResults = document.querySelector('#searchResults');
 const pageContainer = document.querySelector('.pagination');
 
 let apiKey = "dc09bd6aec87426f9b4a4c30ddaf204f"; // put into dotenv later
 let apiKey2 = "3f043de69de544e6b333d34d97e988c7";
-let apiKey3 = '';
-let apiKey4 ='';
-// apiKey = apiKey2;
+let apiKey3 = '4621a74d2ad64a26adee0016e0be6c53';
+let apiKey4 ='cbcf41d0632a4583b2cbbe3c44a434ae';
+apiKey = apiKey4;
 
 async function fetchResponse(query) {
     let response = await fetch(query);
@@ -81,9 +81,6 @@ searchMeal.addEventListener("click", async function() {
                                 <li><a id="addRecipe" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.title}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Add Recipe</a></li>
                                 <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
                             </ul>
-                            <script>
-                                localStorage.setItem("firstname", "Smith");
-                            </script>
                         </div>`
             div.innerHTML = html;
             localStorage.setItem(recipe.id, JSON.stringify(recipe));
@@ -91,6 +88,17 @@ searchMeal.addEventListener("click", async function() {
                 searchResults.appendChild(div.children[0]);
             }
         }
+        const addRecipeButtons = document.querySelectorAll('#addRecipe');
+        addRecipeButtons.forEach(button => {
+            
+            let recipeId = button.getAttribute("data-recipe-id");
+            let recipeTitle = button.getAttribute("data-recipe-title");
+            let recipeImage = button.getAttribute("data-recipe-image");
+            console.log(recipeId);
+            button.addEventListener("click", function() {
+                addRecipe(recipeId, recipeTitle, recipeImage);
+            });
+        });
 
     
 });
@@ -119,33 +127,35 @@ async function loadRecipes(n, page = 0) {
                             <li><a id="addRecipe" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.title}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Add Recipe</a></li>
                             <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
                         </ul>
-                        <script>
-                            localStorage.setItem("firstname", "Smith");
-                        </script>
                     </div>`
         div.innerHTML = html;
         localStorage.setItem(recipe.id, JSON.stringify(recipe));
         while (div.children.length > 0) {
             container.appendChild(div.children[0]);
         }
+        
+        
+
+
     }
+    const addRecipeButtons = document.querySelectorAll('#addRecipe');
+        addRecipeButtons.forEach(button => {
+            
+            let recipeId = button.getAttribute("data-recipe-id");
+            let recipeTitle = button.getAttribute("data-recipe-title");
+            let recipeImage = button.getAttribute("data-recipe-image");
+            console.log(recipeId);
+            button.addEventListener("click", function() {
+                addRecipe(recipeId, recipeTitle, recipeImage);
+            });
+        });
 }
 
 
 // When any recipe's "add Recipe" buttons is clicked, 
 // pass the recipe's Id, Title, and Image to the addRecipe function, 
 // where it will be added to the user's saved meals database.
-const addRecipeButtons = document.querySelectorAll('#addRecipe');
-addRecipeButtons.forEach(button => {
-    
-    let recipeId = button.getAttribute("data-recipe-id");
-    let recipeTitle = button.getAttribute("data-recipe-title");
-    let recipeImage = button.getAttribute("data-recipe-image");
-    console.log(recipeId);
-    button.addEventListener("click", function() {
-        addRecipe(recipeId, recipeTitle, recipeImage);
-    });
-});
+
 
 
 function addRecipe(id, title, image) {
@@ -195,11 +205,12 @@ function loadPages(n){
     div.innerHTML = html;
     pageContainer.appendChild(div.children[0]);
 
-    for (let i = 1; i < 6; i++) {
-        if (i==1){
-            html = `<li><a href="#" class="pagination page active" id ='${n+i}'>${n+i}</a></li>`
+    for (let i = -2; i < 3; i++) {
+        // html = `<li><a href="#" class="pagination page" id ='${3+n+i}'>${3+n+i}</a></li>`
+        if (i==-2){
+            html = `<li><a href="#" class="pagination page active" id ='${3+n+i}'>${3+n+i}</a></li>`
         }else{
-            html = `<li><a href="#" class="pagination page" id ='${n+i}'>${n+i}</a></li>`
+            html = `<li><a href="#" class="pagination page" id ='${3+n+i}'>${3+n+i}</a></li>`
         }
         
         
@@ -212,14 +223,12 @@ function loadPages(n){
     div.innerHTML = next;
     pageContainer.appendChild(div.children[0]);
 
-    // whats the diff between const and var here... ig none
-
-    var prevPage = document.querySelector(`#prevPage`);
+    const prevPage = document.querySelector(`#prevPage`);
     prevPage.addEventListener("click", () => {
         if (n>0){
             clearPages()
             loadPages(n-1);
-            loadRecipes(numRecipesLoaded, n-1);
+            loadRecipes(numRecipesLoaded+1, n-1);
         }
     })
 
@@ -228,11 +237,11 @@ function loadPages(n){
     button.addEventListener("click", function() {
 
         clearPages()
-        loadPages(button.id);
-        loadRecipes(numRecipesLoaded, button.id);
+        loadPages(button.id-1);
+        loadRecipes(numRecipesLoaded+1, button.id);
     });
 
-    var nextPage = document.querySelector(`#nextPage`);
+    const nextPage = document.querySelector(`#nextPage`);
     nextPage.addEventListener("click", () => {
         clearPages()
         loadPages(n+1);
@@ -253,5 +262,5 @@ function clearPages(){
     }
 }
 
-loadPages(0);
-loadRecipes(numRecipesLoaded, 0);
+loadPages(0);   
+// loadRecipes(numRecipesLoaded, 0);

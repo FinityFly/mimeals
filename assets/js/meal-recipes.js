@@ -351,23 +351,6 @@ saveMeal.addEventListener("click", function() {
 
 });
 
-// async function getRecipes(args, page, numRecipes) {
-//     let recipes = [];
-//     if (args.length == 0) {
-//         // sort by popularity
-//         let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=${numRecipes}`;
-//         let data = await fetchResponse(query);
-//         for (let i = 0; i < data.results.length; i++) {
-//             recipes.push(await getRecipeData(data.results[i].id));
-//         }
-//     } else {
-//         // do later
-//         let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*10}&number=${numRecipes}`;
-//         let data = await fetchResponse(query);
-//     }
-//     return recipes;
-// }
-
 function getPlanned(date) {
     let data = {'date': date};
     $.ajax({
@@ -411,9 +394,6 @@ function loadPlanned(date) {
                             <li><a id="addRecipe" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.title}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Add Recipe</a></li>
                             <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
                         </ul>
-                        <script>
-                            localStorage.setItem("firstname", "Smith");
-                        </script>
                     </div>`
         div.innerHTML = html;
         localStorage.setItem(recipe.id, JSON.stringify(recipe));

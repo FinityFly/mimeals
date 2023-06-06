@@ -54,19 +54,29 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 											<p>Whether you're a seasoned foodie or a beginner cook, our recipe explorer is the perfect tool for expanding your culinary horizons and discovering new and exciting dishes. So why not take a journey around the world with us and let your taste buds be your guide? Start exploring today and get ready to experience a world of flavors like never before.</p>
 										</div>
 										<hr>
+										<!-- search  -->
+										<div class="login-form">
+											<h3>Search for a meal</h3>
+											<div class="input-field">
+												<input type="text" placeholder="Search Query" id = 'search' required="required">
+											</div>
+											<div class="login-button" style="text-align:center">
+												<input type="submit" id ='search-meal' class = 'button primary icon solid fa-check'>
+											</div>
+
+
+										</div>
+										<div class = 'row' id = 'searchResults'></div>
+
+										<hr>
+
+										<h3>Search for a meal</h3>
 
 										<!-- recommended all results -->
 										<div class="row" id = 'allResults'></div>
 
 
-										<!-- search  -->
-										<div class="input-field">
-											<input type="text" placeholder="Search Query" id = 'search' required="required">
-										</div>
-										<div class="login-button" style="text-align:center">
-											<input type="submit" id ='search-meal' class = 'button primary icon solid fa-check'>
-										</div>
-										<div class = 'row' id = 'searchResults'></div>
+										
 
 									<!-- Pagination -->
 									<div class="container">
