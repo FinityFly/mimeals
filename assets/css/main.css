@@ -1247,6 +1247,11 @@ input[type="radio"] + label:before {
     width: 100%; }
     .image.fit img {
       width: 100%; }
+  .image.small {
+    display: block;
+    text-align: center;
+    height: 20%;
+  }
   .image.main {
     display: block;
     margin: 0 0 3em 0;
@@ -2574,6 +2579,8 @@ button,
   opacity: 0;
   transition: opacity 0.2 ease-in-out;
   -webkit-transition: opacity 0.2s ease-in-out;
+
+  overflow-y: scroll;
 }
 /*   .image.fit {
     display: block;
@@ -2619,6 +2626,12 @@ button,
   outline: none;
   cursor: pointer;
 }
+
+.recipe-list{
+  overflow-y: scroll;
+}
+
+
 
 .meal-popup {
   background-color: #ffffff;
@@ -2786,3 +2799,5 @@ button.close{
   -webkit-appearance:none;
   -moz-appearance:none;
   appearance:none}
+
+

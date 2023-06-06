@@ -124,6 +124,7 @@ async function loadRecipes(n, page = 0) {
                         </div>
                         <p>${description}</p>
                         <ul class="actions fit">
+                            <li><a href="${redirect}" class="button primary fit icon solid fa-eye">View Recipe</a></li>
                             <li><a id="addRecipe" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.title}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Add Recipe</a></li>
                             <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
                         </ul>

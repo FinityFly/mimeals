@@ -45,9 +45,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 								</header>
 							<!-- Today's stuff -->
 
-							<!-- <h3>Today's Meals</h3> -->
+							<section>
 							<!-- show todays meals, else go to the other -->
-
+								<header class="main">
+									<h1>Meal Calendar</h1>
+								</header>
 
 							<!-- Calendar Part -->
 
@@ -78,7 +80,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<h1 id="datestring"><h1>
 
 										<!-- stuff all the saved recipes here -->
-										<ul class="recipe-list"></ul>
+										<div class="recipe-list"></div>
 
 										<!-- RECIPE LIST -->
 										<a id="add-recipe" class="button primary fit slim icon solid fa-plus">Add recipe</a>
@@ -87,7 +89,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									<!-- overlay to also exit popup -->
 									<div class = 'overlay' id="overlay"></div> 
 								</div>
-
+							</section>
 						</div>
 					</div>
 

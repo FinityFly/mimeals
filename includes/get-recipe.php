@@ -1,4 +1,7 @@
 <?php
+
+// this one is for added/saved recipes
+
 session_start();
 include "db-conn.php";
 

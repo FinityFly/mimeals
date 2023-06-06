@@ -11,7 +11,8 @@ function getRecipes() {
             console.log("SUCCESS");
             res = JSON.parse(res);
             console.log(res);
-            const container = document.querySelector('.row');
+            const container = document.querySelector('#recipes');
+            console.log(container);
             for (let i = 0; i < res['recipes'].length; i++) {
                 let div = document.createElement('div');
                 let recipe = res['recipes'][i];
@@ -42,7 +43,7 @@ function getRecipes() {
                         overlay.classList.remove("inactive");
                     } catch {
                         // do nothing
-                    }
+                    } 
                     recipeId = button.getAttribute("data-recipe-id");
                     recipeTitle = button.getAttribute("data-recipe-title");
                     recipeImage = button.getAttribute("data-recipe-image");
@@ -85,7 +86,7 @@ function getRecipes() {
                     // adding active class to li if the current day, month, and year matched
                     let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                                 && currYear === new Date().getFullYear() ? "active" : "";
-                    liTag += `<li class="${isToday}">${i}</li>`;
+                    liTag += `<li class="active">${i}</li>`;
                 }
 
                 for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
@@ -113,7 +114,7 @@ function getRecipes() {
                     }
                     renderCalendar(); // calling renderCalendar function
                     dateCircle = document.querySelectorAll(".days li");
-                    
+
                     numToggles = [];
                     dateCircle.forEach(day => {
                         day.addEventListener("click", function() {
@@ -183,7 +184,6 @@ function getRecipes() {
         }
     });
 }
-
 
 getRecipes();
 

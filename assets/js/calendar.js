@@ -1,3 +1,43 @@
+var plannedRecipes = {};
+
+function getPlannedRecipes() {
+    $.ajax({
+        processData: false, 
+        async: true,
+        'url': './includes/get-planned.php', 
+        'type': 'POST',
+        'success': function(res) {
+            console.log("SUCCESS");
+            res = JSON.parse(res);
+            const calendar = document.querySelectorAll('.days li');
+
+            res['recipes'].forEach(meal => {
+                
+                let d = new Date(parseInt(meal['time']));
+                if (!(parseInt(meal['time']) in plannedRecipes)) {
+                    plannedRecipes[parseInt(meal['time'])] = [];
+                }
+                plannedRecipes[parseInt(meal['time'])].push(meal);
+                if (d.getMonth() == currMonth) {
+                    calendar.forEach(day => {
+                        if (d.getDate().toString() == day.innerHTML && !day.classList.contains("inactive")) {
+                            console.log(day);
+                            day.classList.add('planned');
+                        }
+                    })
+                }
+            })
+            return;
+        },
+        'error': function(res) {
+            console.log("ERROR");
+            console.log(res);
+        }
+    });
+}
+
+getPlannedRecipes();
+
 // might have to add on document load here
 const overlay = document.querySelector("#overlay");
 overlay.classList.add("inactive");
@@ -81,17 +121,32 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
                 catch{
                     // do nothing
                 } 
-        
+
                 // set the CSS for the popup and overlay to active and set their layer to front
                 overlay.classList.add("active");
                 overlay.style.zIndex = "999";
-        
+
                 popup.classList.add("nofade");
                 popup.style.zIndex = "9999";
 
-                // console.log(document.getElementById(day).id);
-        
-                let dateString = `Your meals for ${months[currMonth]} ${day.innerHTML}, ${currYear}`;
+                let dateString;
+                if (day.classList.contains("inactive")) {
+                    if (parseInt(day.innerHTML) >= 26) {
+                        if (currMonth == 0) {
+                            dateString = `Your meals for ${months[11]} ${day.innerHTML}, ${currYear}`;
+                        } else {
+                            dateString = `Your meals for ${months[currMonth-1]} ${day.innerHTML}, ${currYear}`;
+                        }
+                    } else if (parseInt(day.innerHTML) <= 6) {
+                        if (currMonth == 11) {
+                            dateString = `Your meals for ${months[0]} ${day.innerHTML}, ${currYear}`;
+                        } else {
+                            dateString = `Your meals for ${months[currMonth+1]} ${day.innerHTML}, ${currYear}`;
+                        }
+                    }
+                } else {
+                    dateString = `Your meals for ${months[currMonth]} ${day.innerHTML}, ${currYear}`;
+                }
                 document.querySelector("#datestring").innerHTML = dateString;
             })
         })
@@ -102,7 +157,7 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
 const popup = document.querySelector(".date-popup");
 
 dateCircle.forEach(day => {
-    day.addEventListener("click", function() {
+    day.addEventListener("click", function(e) {
         console.log("clicked");
         try{
             popup.classList.remove("nofade");
@@ -124,10 +179,55 @@ dateCircle.forEach(day => {
         popup.classList.add("nofade");
         popup.style.zIndex = "9999";
 
-        // console.log(document.getElementById(day).id);
-
-        let dateString = `Your meals for ${months[currMonth]} ${day.innerHTML}, ${currYear}`;
+        let d;
+        if (day.classList.contains("inactive")) {
+            if (parseInt(day.innerHTML) >= 26) {
+                if (currMonth == 0) {
+                    d = new Date(currYear-1, 11, parseInt(day.innerHTML));
+                } else {
+                    d = new Date(currYear, currMonth-1, parseInt(day.innerHTML));
+                }
+            } else if (parseInt(day.innerHTML) <= 6) {
+                if (currMonth == 11) {
+                    d = new Date(currYear+1, 0, parseInt(day.innerHTML));
+                } else {
+                    d = new Date(currYear, currMonth+1, parseInt(day.innerHTML));
+                }
+            }
+        } else {
+            d = new Date(currYear, currMonth, parseInt(day.innerHTML));
+        }
+        let dateString = `Your meals for ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
         document.querySelector("#datestring").innerHTML = dateString;
+
+        const container = document.querySelector('.recipe-list');
+        if (d.getTime() in plannedRecipes) {
+            for (let i = 0; i < plannedRecipes[d.getTime()].length; i++) {
+                let div = document.createElement('div');
+                let recipe = plannedRecipes[d.getTime()][i];
+                console.log(recipe);
+                let redirect = `./guest-recipe.php?id=${recipe.recipeId}`;
+                let html = `<div class="box" style="display: flex; padding: 10px; margin: 10px;">
+                                <div style="padding: 10px;">
+                                    <a href="${redirect}"><span class="image fit"><img src="${recipe.recipeImage}" alt="" /></span></a>
+                                </div>
+                                <div style="width: 50%; padding: 10px;">
+                                    <a href="${redirect}"><p style="font-size: 36px";>${recipe.recipeTitle}</p></a>
+                                </div>
+                                <div style="width: 50%; padding: 10px;">
+                                    <ul class="actions fit" style="display: inline-block; font-size : 26px;">
+                                        <li style="padding: 10px; top: 50%;"><a href="${redirect}" class="button primary fit small icon solid fa-eye">View Recipe</a></li>
+                                        <li style="padding: 10px;"><a href="${recipe.recipeImage}" class="button fit small icon solid fa-search">Visit Website</a></li>
+                                    </ul>
+                                </div>
+                            </div>`
+                div.innerHTML = html;
+                localStorage.setItem(recipe.id, JSON.stringify(recipe));
+                while (div.children.length > 0) {
+                    container.appendChild(div.children[0]);
+                }
+            }
+        }
     })
 })
 

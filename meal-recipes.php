@@ -49,7 +49,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<h1>Saved Recipes</h1>
 									</header>
 									<div>
-										<p>Welcome to "Recipes," your one-stop destination for organizing and accessing all your saved culinary treasures. This webpage serves as your digital collection, where you can conveniently store and retrieve recipes that you've discovered online or created yourself. Easily categorize your recipes, add personal notes, and effortlessly search for specific dishes or filter them based on ingredients, cooking time, or dietary preferences. With our user-friendly platform, managing your recipe collection has never been more convenient.</p>
+										<p>Welcome to Recipes, your one-stop destination for organizing and accessing all your saved culinary treasures. This webpage serves as your digital collection, where you can conveniently store and retrieve recipes that you've discovered online or created yourself. Easily categorize your recipes, add personal notes, and effortlessly search for specific dishes or filter them based on ingredients, cooking time, or dietary preferences. With our user-friendly platform, managing your recipe collection has never been more convenient.</p>
 									</div>
 									<hr>
 									<body>
@@ -59,16 +59,16 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										</ul>
 									</body>
 									
-									<!-- Load Recipes Here-->
-									<div class="row"></div>
+									<!-- Load Recipes -->
+									<div class="row" id="recipes"></div>
 
 								</section>
-
 								<!-- Meal popup -->
 								<div class="meal-popup">
 									<a id="close" class="button small">Back</a>
 									
 									<h1>Make a Custom Recipe<h1>
+									<!-- <img src = 'images/preloader.gif'> -->
 									<form>
 										<!-- Modal body -->
 										<div>
@@ -80,6 +80,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 												<div class="input-field">
 													<textarea id="recipeDescription" placeholder="Enter your recipe description" id = 'recipeDescription' rows="6"></textarea>
 												</div>
+												<!-- <input type = 'file' id = 'recipePhoto' name = 'recipePhoto' accept = 'image/png, image/jpeg'>
+												<span class="image fit"><img id="imageOutput"/></span> -->
 
 												<!-- Recipe 'Times' -->
 												<div class="row">
@@ -153,7 +155,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 													</div>
 													<div class="col-6 col-12-small">
 														<input type="checkbox" id="lowFODMAP" >
-														<label for="Low FODMAP">Low FODMAP</label>
+														<label for="lowFODMAP">Low FODMAP</label>
 													</div>
 												</div>
 												
@@ -164,6 +166,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 												<div class="login-button" style="text-align:center">
 													<input type="submit" id ='save-meal' class = 'button primary icon solid fa-check'>
 												</div>
+
+												<!-- <div class="box">
+													<p id="submit-response"></p>
+												</div> -->
 										
 											</div>
 										</div>
@@ -194,7 +200,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 												<li>Sat</li>
 											</ul>
 											<ul class="days"></ul>
-										</div>
+										</div> 
 									</div>
 									<div class="confirm-meals">
 										<a style="display: none" class ='button primary icon solid fa-check'>Plan Meals</a>
