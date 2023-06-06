@@ -66,7 +66,6 @@ const renderCalendar = () => {
 
     for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
         liTag += `<li class="inactive" >${lastDateofLastMonth - i + 1}</li>`;
-        // liTag += `<li class="inactive" id = '${lastDateofLastMonth.getMonth()}'>${lastDateofLastMonth - i + 1}</li>`;
         
     }
 
@@ -75,12 +74,10 @@ const renderCalendar = () => {
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                      && currYear === new Date().getFullYear() ? "active" : "";
         liTag += `<li class="${isToday}">${i}</li>`;
-        // liTag += `<li class="${isToday}" id = '${currMonth}'>${i}</li>`;
     }
 
     for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
         liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
-        // liTag += `<li class="inactive" id = '${firstDateofNextMonth.getMonth()}'>${i - lastDayofMonth + 1}</li>`
     
     }
     currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
@@ -291,34 +288,3 @@ function popupOff(){
     overlay.classList.remove("active");
     overlay.classList.add("inactive");
 }
-
-// function getRecipes() {
-//     $.ajax({
-//         processData: false, 
-//         async: true,
-//         'url': './includes/get-planned.php', 
-//         'type': 'POST',
-//         'success': function(res) {
-//             console.log("SUCCESS");
-//             res = JSON.parse(res);
-//             const calendar = document.querySelectorAll('.days li');
-//             res['recipes'].forEach(meal => {
-//                 let d = new Date(parseInt(meal['time']));
-//                 console.log(d);
-//                 if (d.getMonth() == currMonth) {
-//                     calendar.forEach(day => {
-//                         if (d.getDate().toString() == day.innerHTML) {
-//                             console.log(day);
-//                             day.classList.add('planned');
-//                         }
-//                     })
-//                 }
-//             })
-//         },
-//         'error': function(res) {
-//             console.log("ERROR");
-//             console.log(res);
-//         }
-//     });
-// }
-// getRecipes();

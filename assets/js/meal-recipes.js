@@ -22,6 +22,9 @@ function getAPIRecipes() {
         }
     });
 }
+
+var date, currYear, currMonth;
+
 function displayRecipes() {
     const container = document.querySelector('#recipes');
     let allRecipes = apiRecipes.concat(customRecipes);
@@ -62,8 +65,13 @@ function displayRecipes() {
             // set the CSS for the popup and overlay to active and set their layer to front
             overlay.classList.add("active");
             overlay.style.zIndex = "999";
+
+            renderCalendar();
+
             calendarPopup.classList.add("nofade");
             calendarPopup.style.zIndex = "9999";
+
+            getPlanned(recipeId);
         })
     });
     const daysTag = document.querySelector(".days"),
@@ -73,7 +81,7 @@ function displayRecipes() {
     console.log(daysTag);
 
     // getting new date, current year and month
-    let date = new Date(),
+    date = new Date(),
     currYear = date.getFullYear(),
     currMonth = date.getMonth();
 
@@ -90,7 +98,6 @@ function displayRecipes() {
 
         for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
             liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
-            // liTag += `<li class="inactive" id = '${lastDateofLastMonth - i + 1}'>${lastDateofLastMonth - i + 1}</li>`;
 
         }
 
@@ -98,7 +105,7 @@ function displayRecipes() {
             // adding active class to li if the current day, month, and year matched
             let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                         && currYear === new Date().getFullYear() ? "active" : "";
-            liTag += `<li class="active">${i}</li>`;
+            liTag += `<li class="${isToday}">${i}</li>`;
         }
 
         for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
@@ -404,54 +411,36 @@ saveMeal.addEventListener("click", function() {
     container.appendChild(div.children[0]);
 });
 
-function getPlanned(date) {
-    let data = {'date': date};
+function getPlanned(recipeId) {
+    let data = {'recipeId': recipeId};
     $.ajax({
         processData: false,
         async: true,
-        'url': './includes/plan-meal.php', 
+        'url': './includes/get-planned-recipe.php', 
         'type': 'POST',
         'dataType': 'json',
         'data': JSON.stringify(data),
         'success': function(res) {
             console.log("SUCCESS");
             console.log(res);
-            popupOff()
+            if (res['empty'] == false) {
+                const calendar = document.querySelectorAll('.days li');
+                res['recipes'].forEach(meal => {
+                    let d = new Date(parseInt(meal['time']));
+                    if (d.getMonth() == currMonth) {
+                        calendar.forEach(day => {
+                            if (d.getDate().toString() == day.innerHTML && !day.classList.contains("inactive")) {
+                                console.log(day);
+                                day.classList.add('planned');
+                            }
+                        })
+                    }
+                })
+            }
         },
         'error': function(res) {
             console.log("ERROR");
             console.log(res);
         }
     });
-}
-
-function loadPlanned(date) {
-    let recipes = getPlanned(date);
-    for (let i = 0; i < recipes.length; i++) {
-        let div = document.createElement('div');
-        let recipe = recipes[i];
-        let redirect = `./guest-recipe.php?id=${recipe.id}`;
-        let description = `${(recipe.cuisines.length > 0) ? recipe.cuisines[0] + ' / ' : ''}${recipe.readyInMinutes} minutes / ${recipe.servings} servings / ~$${recipe.pricePerServing}`;
-        let html = `<div class="col-6 col-12-small">
-                        <a href="${redirect}"><span class="image fit"><img src="${recipe.image}" alt="" /></span></a>
-                        <div class="row">
-                            <div class="col-9 col-12-small">
-                                <a href="${redirect}"><span class="image fit"><h2>${recipe.title}</h2></a>
-                            </div>
-                            <div class="off-9-small col-12-small" style="text-align:right;white-space:nowrap;">
-                                <a href="#" class="button primary small icon solid fa-heart">${recipe.aggregateLikes}</a>
-                            </div>
-                        </div>
-                        <p>${description}</p>
-                        <ul class="actions fit">
-                            <li><a id="addRecipe" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.title}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Add Recipe</a></li>
-                            <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
-                        </ul>
-                    </div>`
-        div.innerHTML = html;
-        localStorage.setItem(recipe.id, JSON.stringify(recipe));
-        while (div.children.length > 0) {
-            container.appendChild(div.children[0]);
-        }
-    }
 }

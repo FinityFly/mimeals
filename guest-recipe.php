@@ -5,9 +5,14 @@ if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 }	
 
-// check if meal is already in db
+
+// $url = 	
+$url ='http://localhost/sdp/guest-recipe.php?id='.$id;
+echo $url;
+
 ?>
 
+<?php echo $url?>
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -190,6 +195,27 @@ if (isset($_GET['id'])) {
 										});
 										</script>
 										<a href="#" class="button large">Share</a>
+
+																	<div class='social-share-btns-container'>
+																		<div class='social-share-btns'>
+
+																			<a class='share-btn share-btn-twitter' href='https://twitter.com/intent/tweet?text=<?php echo $url?>' rel='nofollow' target='_blank'>
+																			<i class='ion-social-twitter'></i>Tweet</a>
+																			
+																			<a class='share-btn share-btn-facebook' href='https://www.facebook.com/sharer/sharer.php?u=<?php echo $url?>' rel='nofollow' target='_blank'>
+																			<i class='ion-social-facebook'></i>Share</a>
+																			
+																			<a class='share-btn share-btn-reddit' href='http://www.reddit.com/submit?url=<?php echo $url?>' rel='nofollow' target='_blank'>
+																			<i class='ion-social-reddit'></i>Share</a>
+
+																			<a class='share-btn share-btn-mail' href='mailto:?subject=Look Fun Codepen Account&amp;amp;body=<?php echo $url?>' rel='nofollow' target='_blank' title='via email'><i class='ion-paper-airplane'></i>Share</a>
+																			</div>
+																		</div>
+
+
+
+
+
 									</div>
 									<hr>
 									<div>
