@@ -11,13 +11,14 @@ let apiKey3 = '4621a74d2ad64a26adee0016e0be6c53';
 let apiKey4 ='cbcf41d0632a4583b2cbbe3c44a434ae';
 let apiKey5 = 'a8c6d5e81bd44739b69f8400661a6b38';
 let apiKey6 = '1fcc4a609e8643ab8595fc540fd2e6a9';
-apiKey = apiKey;
+apiKey = apiKey2;
 
-let numRecipesLoaded = 2;
-let initialNumRecipes = 8;
-let pagesLoaded = 0;
+let numRecipesLoaded = 4, numRecipesLoaded_s = 4;
+let initialNumRecipes = 6;
+let pagesLoaded = 0, pagesLoaded_s = 0;
 
 const loader = document.getElementById("preloader");
+const loadMoreSearchButton = document.querySelector(`#loadMoreSearch`);
 
 async function fetchResponse(query) {
     let response = await fetch(query);
@@ -25,8 +26,8 @@ async function fetchResponse(query) {
     return data;
 }
 
-async function searchRecipes(query){
-    let searchQuery = `https://api.spoonacular.com/food/search?query=${query}&apiKey=${apiKey}`;
+async function searchRecipes(page, numRecipes, query){
+    let searchQuery = `https://api.spoonacular.com/food/search?query=${query}&apiKey=${apiKey}&offset=${page*numRecipesLoaded}&number=${numRecipes}`;
     let data = await fetchResponse(searchQuery);
     // console.log(data.searchResults[0].results);
     let recipes = [];
@@ -65,48 +66,18 @@ async function getRecipes(args, page, numRecipes) {
 
 // generating a search from an input
 const searchMeal = document.querySelector('#search-meal');
+var searchValue, prevSearchValue;
 searchMeal.addEventListener("click", async function() {
+
     loader.style.display = "block";
-    const search = document.querySelector("#search").value;
-    
-    let recipes = await searchRecipes(search);
-    
-    let reps;
-    if (recipes.length < 2) {
-        reps = recipes.length;
-    } else {
-        reps = 2;
+    searchValue = document.querySelector("#search").value;
+    if (prevSearchValue != searchValue && prevSearchValue != null) {
+        searchResults.replaceChildren;
+        numRecipesLoaded_s = 4;
+        pagesLoaded_s = 0;
     }
-
-
-    for (let i = 0; i < reps; i++) {
-        let div = document.createElement('div');
-        let recipe = recipes[i];
-        let redirect = `./guest-recipe.php?id=${recipe.id}`;
-        let description = `${(recipe.cuisines.length > 0) ? recipe.cuisines[0] + ' / ' : ''}${recipe.readyInMinutes} minutes / ${recipe.servings} servings / ~$${recipe.pricePerServing}`;
-        let html = `<div class="col-6 col-12-small">
-                        <a href="${redirect}"><span class="image fit"><img src="${recipe.image}" alt="" /></span></a>
-                        <div class="row">
-                            <div class="col-9 col-12-small">
-                                <a href="${redirect}"><span class="image fit"><h2>${recipe.title}</h2></a>
-                            </div>
-                            <div class="off-9-small col-12-small" style="text-align:right;white-space:nowrap;">
-                                <a href="#" class="button primary small icon solid fa-heart">${recipe.aggregateLikes}</a>
-                            </div>
-                        </div>
-                        <p>${description}</p>
-                        <ul class="actions fit" style="font-size: 12px">
-                            <li><a href="${redirect}" class="button primary fit icon solid fa-eye">View Recipe</a></li>
-                            <li><a id="addRecipe" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.title}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Add Recipe</a></li>
-                            <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
-                        </ul>
-                    </div>`
-        div.innerHTML = html;
-        localStorage.setItem(recipe.id, JSON.stringify(recipe));
-        while (div.children.length > 0) {
-            searchResults.appendChild(div.children[0]);
-        }
-    }
+    await loadSearchedRecipes(numRecipesLoaded_s, pagesLoaded_s, searchValue);
+    loadMoreSearchButton.style.display = 'absolute';
     loader.style.display = "none";
     const addRecipeButtons = document.querySelectorAll('#addRecipe');
     addRecipeButtons.forEach(button => {
@@ -119,7 +90,7 @@ searchMeal.addEventListener("click", async function() {
             addRecipe(recipeId, recipeTitle, recipeImage);
         });
     });
-    
+    prevSearchValue = searchValue;
 });
 
 
@@ -158,6 +129,7 @@ async function loadRecipes(n, page = 0) {
         
 
 
+
     }
     loader.style.display = "none";
     const addRecipeButtons = document.querySelectorAll('#addRecipe');
@@ -173,6 +145,39 @@ async function loadRecipes(n, page = 0) {
         });
 }
 
+
+async function loadSearchedRecipes(n, page=0, s) {
+    let recipes = await searchRecipes(page, n, s);
+
+    for (let i = 0; i < recipes; i++) {
+        let div = document.createElement('div');
+        let recipe = recipes[i];
+        let redirect = `./guest-recipe.php?id=${recipe.id}`;
+        let description = `${(recipe.cuisines.length > 0) ? recipe.cuisines[0] + ' / ' : ''}${recipe.readyInMinutes} minutes / ${recipe.servings} servings / ~$${recipe.pricePerServing}`;
+        let html = `<div class="col-6 col-12-small">
+                        <a href="${redirect}"><span class="image fit"><img src="${recipe.image}" alt="" /></span></a>
+                        <div class="row">
+                            <div class="col-9 col-12-small">
+                                <a href="${redirect}"><span class="image fit"><h2>${recipe.title}</h2></a>
+                            </div>
+                            <div class="off-9-small col-12-small" style="text-align:right;white-space:nowrap;">
+                                <a href="#" class="button primary small icon solid fa-heart">${recipe.aggregateLikes}</a>
+                            </div>
+                        </div>
+                        <p>${description}</p>
+                        <ul class="actions fit" style="font-size: 12px">
+                            <li><a href="${redirect}" class="button primary fit icon solid fa-eye">View Recipe</a></li>
+                            <li><a id="addRecipe" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.title}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Add Recipe</a></li>
+                            <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
+                        </ul>
+                    </div>`
+        div.innerHTML = html;
+        localStorage.setItem(recipe.id, JSON.stringify(recipe));
+        while (div.children.length > 0) {
+            searchResults.appendChild(div.children[0]);
+        }
+    }
+}
 
 // When any recipe's "add Recipe" buttons is clicked, 
 // pass the recipe's Id, Title, and Image to the addRecipe function, 
@@ -214,11 +219,20 @@ function addRecipe(id, title, image) {
         }
     });
 };
-// let div = document.createElement('div');
-const loadMoreButton = document.querySelector(`#loadMore`);
-loadMoreButton.addEventListener("click", () => {
+
+loadMoreSearchButton.addEventListener("click", () => {
+    loadMoreSearchButton.innerHTML = "Loading...";
+    loadSearchedRecipes(numRecipesLoaded_s, pagesLoaded_s+numRecipesLoaded_s, prevSearchValue);
+    pagesLoaded_s+=numRecipesLoaded_s;
+    loadMoreSearchButton.innerHTML = "Load More Recipes";
+})
+
+const loadMorePopularButton = document.querySelector(`#loadMorePopular`);
+loadMorePopularButton.addEventListener("click", () => {
+    loadMorePopularButton.innerHTML = "Loading...";
     loadRecipes(numRecipesLoaded, pagesLoaded+numRecipesLoaded);
-    pagesLoaded+=2;
+    pagesLoaded+=numRecipesLoaded;
+    loadMorePopularButton.innerHTML = "Load More Recipes";
 })
 
 
@@ -293,5 +307,7 @@ loadMoreButton.addEventListener("click", () => {
 //     }
 // }
 
-// loadPages(0);   
+// loadPages(0);
+// loader.style.display = "block";
 loadRecipes(initialNumRecipes, 0);
+// loader.style.display = "none";

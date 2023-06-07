@@ -69,6 +69,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										</div>
 										
 										<div class = 'row' id = 'searchResults'></div>
+										<div class="login-button" style="text-align:center">
+											<a class="button primary icon solid fa-arrow-down" id = 'loadMoreSearch' style="display: none">Load More Recipes</a>
+										</div>
 
 										<hr>
 
@@ -77,9 +80,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<div class="row" id = 'allResults'></div>
 
 										<div class="login-button" style="text-align:center">
-											<a class="button primary icon solid fa-arrow-down" id = 'loadMore'>Load More Recipes</a>
-											<!-- <input type="button" id ='loadMore' name = 'lm' class = 'button primary icon solid fa-search'>
-											<label for = 'lm'> </label> -->
+											<a class="button primary icon solid fa-arrow-down" id = 'loadMorePopular'>Load More Recipes</a>
 										</div>
 
 
