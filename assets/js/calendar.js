@@ -120,6 +120,9 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
                     // do nothing
                 } 
 
+                let recipeList = document.querySelector('.recipe-list');
+                recipeList.replaceChildren();
+
                 // set the CSS for the popup and overlay to active and set their layer to front
                 overlay.classList.add("active");
                 overlay.style.zIndex = "999";
@@ -163,10 +166,10 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
                                             <a href="${redirect}"><p style="font-size: 36px";>${recipe.recipeTitle}</p></a>
                                         </div>
                                         <div style="width: 50%; padding: 10px;">
-                                            <ul class="actions fit" style="display: inline-block; font-size : 26px;">
+                                            <ul class="actions fit" style="display: inline-block; font-size: 26px;">
                                                 <li style="padding: 10px; top: 50%;"><a href="${redirect}" class="button primary fit small icon solid fa-eye">View Recipe</a></li>
                                                 <li style="padding: 10px;"><a href="${recipe.recipeImage}" class="button fit small icon solid fa-search">Visit Website</a></li>
-                                                <li style="padding: 10px;"><a id="removeMeal" data-recipe-id="${recipe.recipeId}" class="button fit icon solid fa-ban">Remove Meal</a></li>
+                                                <li style="padding: 10px;"><a id="removeMeal" data-recipe-id="${recipe.recipeId}" class="button fit small icon solid fa-ban">Remove Meal</a></li>
                                             </ul>
                                         </div>
                                     </div>`
@@ -176,9 +179,35 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
                             container.appendChild(div.children[0]);
                         }
                     }
-                    const removeMealButton = document.querySelector('#removeMeal');
-                    removeHealButton.addEventListener('click', function() {
-                        
+                    const removeMealButton = document.querySelectorAll('#removeMeal');
+                    removeMealButton.forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            let rId = btn.getAttribute("data-recipe-id");
+                            var data = {'recipeId': rId, 'time': d.getTime().toString()};
+                            console.log(d.getTime());
+                            $.ajax({
+                                processData: false,
+                                async: true,
+                                'url': './includes/delete-planned.php', 
+                                'type': 'POST',
+                                'dataType': 'json',
+                                'data': JSON.stringify(data),
+                                'success': function(res) {
+                                    console.log("SUCCESS");
+                                    console.log(res);
+                                    if (res.deleted) {
+                                        btn.innerHTML = "Meal unplanned!";
+                                    } else {
+                                        btn.innerHTML = "Error, try again";
+                                    }
+                                },
+                                'error': function(res) {
+                                    console.log("ERROR");
+                                    console.log(res);
+                                    btn.innerHTML = "Error, try again";
+                                }
+                            });
+                        })
                     })
                 }
             })
@@ -254,7 +283,7 @@ dateCircle.forEach(day => {
                                     <ul class="actions fit" style="display: inline-block; font-size: 26px;">
                                         <li style="padding: 10px; top: 50%;"><a href="${redirect}" class="button primary fit small icon solid fa-eye">View Recipe</a></li>
                                         <li style="padding: 10px;"><a href="${recipe.recipeImage}" class="button fit small icon solid fa-search">Visit Website</a></li>
-                                        <li style="padding: 10px;"><a id="removeMeal" data-recipe-id="${recipe.recipeId}" class="button fit icon solid fa-ban">Remove Meal</a></li>
+                                        <li style="padding: 10px;"><a id="removeMeal" data-recipe-id="${recipe.recipeId}" class="button fit small icon solid fa-ban">Remove Meal</a></li>
                                     </ul>
                                 </div>
                             </div>`
@@ -268,7 +297,7 @@ dateCircle.forEach(day => {
             removeMealButton.forEach(btn => {
                 btn.addEventListener('click', function() {
                     let rId = btn.getAttribute("data-recipe-id");
-                    var data = {'recipeId': rId, 'time': d.getTime()};
+                    var data = {'recipeId': rId, 'time': d.getTime().toString()};
                     console.log(d.getTime());
                     $.ajax({
                         processData: false,

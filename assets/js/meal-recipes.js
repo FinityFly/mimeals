@@ -28,22 +28,24 @@ var date, currYear, currMonth;
 function displayRecipes() {
     const container = document.querySelector('#recipes');
     // let allRecipes = apiRecipes.concat(customRecipes);
-    for (let i = 0; i < apiRecipes.length; i++) {
-        let div = document.createElement('div');
-        let recipe = apiRecipes[i];
-        let redirect = `./guest-recipe.php?id=${recipe.recipeId}`;
-        let html = `<div class="col-6 col-12-small">
-                        <a href="${redirect}"><span class="image fit"><img src="${recipe.recipeImage}" alt="" /></span></a>
-                        <a href="${redirect}"><span class="image fit"><h2>${recipe.recipeTitle}</h2></a>
-                        <ul class="actions fit">
-                            <li style="padding: 10px;"><a id="planMeal" data-recipe-id="${recipe.recipeId}" data-recipe-title="${recipe.recipeTitle}" data-recipe-image="${recipe.recipeImage}" class="button primary fit icon solid fa-download">Plan Meal</a></li>
-                            <li style="padding: 10px;"><a id="removeMeal" data-recipe-id="${recipe.recipeId}" class="button fit icon solid fa-ban">Remove Meal</a></li>
-                        </ul>
-                    </div>`
-        div.innerHTML = html;
-        // localStorage.setItem(recipe.id, JSON.stringify(recipe));
-        while (div.children.length > 0) {
-            container.appendChild(div.children[0]);
+    if (apiRecipes != null) {
+        for (let i = 0; i < apiRecipes.length; i++) {
+            let div = document.createElement('div');
+            let recipe = apiRecipes[i];
+            let redirect = `./guest-recipe.php?id=${recipe.recipeId}`;
+            let html = `<div class="col-6 col-12-small">
+                            <a href="${redirect}"><span class="image fit"><img src="${recipe.recipeImage}" alt="" /></span></a>
+                            <a href="${redirect}"><span class="image fit"><h2>${recipe.recipeTitle}</h2></a>
+                            <ul class="actions fit">
+                                <li style="padding: 10px;"><a id="planMeal" data-recipe-id="${recipe.recipeId}" data-recipe-title="${recipe.recipeTitle}" data-recipe-image="${recipe.recipeImage}" class="button primary fit icon solid fa-download">Plan Meal</a></li>
+                                <li style="padding: 10px;"><a id="removeMeal" data-recipe-id="${recipe.recipeId}" class="button fit icon solid fa-ban">Remove Meal</a></li>
+                            </ul>
+                        </div>`
+            div.innerHTML = html;
+            // localStorage.setItem(recipe.id, JSON.stringify(recipe));
+            while (div.children.length > 0) {
+                container.appendChild(div.children[0]);
+            }
         }
     }
     if (customRecipes != null) {

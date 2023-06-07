@@ -14,7 +14,7 @@ let apiKey6 = '1fcc4a609e8643ab8595fc540fd2e6a9';
 apiKey = apiKey2;
 
 let numRecipesLoaded = 4, numRecipesLoaded_s = 4;
-let initialNumRecipes = 6;
+let initialNumRecipes = 4;
 let pagesLoaded = 0, pagesLoaded_s = 0;
 
 const loader = document.getElementById("preloader");

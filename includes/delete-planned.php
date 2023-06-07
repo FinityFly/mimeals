@@ -13,7 +13,7 @@ if (isset($post['recipeId'])) {
     $recipeId = $post['recipeId'];
     $time = $post['time'];
 
-    $sql = "DELETE FROM `plannedMeals` WHERE id NOT IN (SELECT MIN(id) FROM `plannedMeals` WHERE `userId` = '$userId' AND `recipeId` = '$recipeId' AND `time` = '$time' GROUP BY `userId`, `recipeId`, `time`) AND `userId` = '$userId' AND `recipeId` = '$recipeId' AND `time` = '$time'";
+    $sql = "DELETE FROM `plannedmeals` WHERE userId = '$userId' AND recipeId = '$recipeId' AND time = '$time';";
     // $sql = "DELETE TOP 1 FROM `plannedMeals` WHERE `userId` = '$userId' AND `recipeId` = '$recipeId' AND `time` = '$time'";
     mysqli_query($conn, $sql);
     $data = json_encode(array('deleted' => true));
