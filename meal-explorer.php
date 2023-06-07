@@ -25,6 +25,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 				<!-- Main -->
 					<div id="main">
+
+						<div id="preloader"></div>
+
 						<div class="inner">
 
 							<!-- Header -->
@@ -64,6 +67,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 
 										</div>
+										
 										<div class = 'row' id = 'searchResults'></div>
 
 										<hr>

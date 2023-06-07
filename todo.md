@@ -17,7 +17,11 @@ check the google doc for more stuff
 
 take care of the guest versions of the complciated pages, like guest-explroer.js instead of meal-explorer.js\
 
-fix calendar tab prev and next month bug
-
 on the guest recipe page, add the download option, and allow the save meal option (um this will take a while) I should do this.
 
+
+
+walker: 
+- ingredients page / shopping list
+- sort optionS: breakfast/lunch/dinner
+-share button

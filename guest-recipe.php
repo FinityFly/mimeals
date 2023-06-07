@@ -6,13 +6,11 @@ if (isset($_GET['id'])) {
 }	
 
 
-// $url = 	
 $url ='http://localhost/sdp/guest-recipe.php?id='.$id;
-echo $url;
+// echo $url;
 
 ?>
 
-<?php echo $url?>
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -26,7 +24,7 @@ echo $url;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 		<script>
 			function makeBulletList(arr, id) {
 				let ul = document.getElementById(id);
@@ -185,30 +183,31 @@ echo $url;
 										-->
 									<hr>
 									<div class="container">
-										<a href="#" class="button primary large">Add Recipe</a>
-										<a href="#" id="sourceUrl" class="button primary large">Visit Website</a>
+										<a href="#" class="button primary large icon solid fa-download">Add Recipe</a>
+										<a href="#" id="sourceUrl" class="button primary large icon solid fa-search">Visit Website</a>
 										<!-- <a href="#" class="button large">Download</a> -->
-										<a href="#" class="button large" id ="print-button">Print</a>
+										<a href="#" class="button large icon solid fa-print" id ="print-button">Print</a>
 										<script>
 										document.getElementById("print-button").addEventListener("click", function() {
 											window.print();
 										});
 										</script>
-										<a href="#" class="button large">Share</a>
 
-																	<div class='social-share-btns-container'>
+										<a class="button large icon solid fa-share" id="share-button">Share</a>
+
+																	<div class='social-share-btns-container' style="padding: 10px">
 																		<div class='social-share-btns'>
 
-																			<a class='share-btn share-btn-twitter' href='https://twitter.com/intent/tweet?text=<?php echo $url?>' rel='nofollow' target='_blank'>
+																			<a class='share-btn share-btn-twitter button small icon brands fa-twitter' href='https://twitter.com/intent/tweet?text=<?php echo 'Check this MiMeals recipe out!' . $url?>' rel='nofollow' target='_blank'>
 																			<i class='ion-social-twitter'></i>Tweet</a>
 																			
-																			<a class='share-btn share-btn-facebook' href='https://www.facebook.com/sharer/sharer.php?u=<?php echo $url?>' rel='nofollow' target='_blank'>
-																			<i class='ion-social-facebook'></i>Share</a>
+																			<a class='share-btn share-btn-facebook button small icon brands fa-facebook-f' href='https://www.facebook.com/sharer/sharer.php?u=<?php echo 'Check this MiMeals recipe out!' . $url?>' rel='nofollow' target='_blank'>
+																			<i class='ion-social-facebook'></i>Facebook</a>
 																			
-																			<a class='share-btn share-btn-reddit' href='http://www.reddit.com/submit?url=<?php echo $url?>' rel='nofollow' target='_blank'>
-																			<i class='ion-social-reddit'></i>Share</a>
+																			<a class='share-btn share-btn-reddit button small icon brands fa-reddit' href='http://www.reddit.com/submit?url=<?php echo 'Check this MiMeals recipe out!' . $url?>' rel='nofollow' target='_blank'>
+																			<i class='ion-social-reddit'></i>Reddit</a>
 
-																			<a class='share-btn share-btn-mail' href='mailto:?subject=Look Fun Codepen Account&amp;amp;body=<?php echo $url?>' rel='nofollow' target='_blank' title='via email'><i class='ion-paper-airplane'></i>Share</a>
+																			<a class='share-btn share-btn-mail button small icon solid fa-arrow-up' href='mailto:?subject=Look Fun Codepen Account&amp;amp;body=<?php echo 'Check this MiMeals recipe out!' . $url?>' rel='nofollow' target='_blank' title='via email'><i class='ion-paper-airplane'></i>Email</a>
 																			</div>
 																		</div>
 
@@ -276,8 +275,6 @@ echo $url;
 										}else{
 											echo 
 											'<li><a href="index.php">Homepage</a></li>
-											<li><a href="guest-explorer.php">Explore</a></li>
-											<li><a href="guest-showcase.php">Showcase Page (delete later)</a></li>
 											<li><a href="guest-login.php">Login</a></li>
 											<li><a href="guest-signup.php">Sign Up</a></li>';
 										}
@@ -317,5 +314,6 @@ echo $url;
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script src="assets/js/preloader.js"></script>
+			<script type="module" src='assets/js/guest-recipe.js'></script>
 	</body>
 </html>

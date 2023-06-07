@@ -27,16 +27,17 @@ var date, currYear, currMonth;
 
 function displayRecipes() {
     const container = document.querySelector('#recipes');
-    let allRecipes = apiRecipes.concat(customRecipes);
-    for (let i = 0; i < allRecipes.length; i++) {
+    // let allRecipes = apiRecipes.concat(customRecipes);
+    for (let i = 0; i < apiRecipes.length; i++) {
         let div = document.createElement('div');
-        let recipe = allRecipes[i];
+        let recipe = apiRecipes[i];
         let redirect = `./guest-recipe.php?id=${recipe.recipeId}`;
         let html = `<div class="col-6 col-12-small">
                         <a href="${redirect}"><span class="image fit"><img src="${recipe.recipeImage}" alt="" /></span></a>
                         <a href="${redirect}"><span class="image fit"><h2>${recipe.recipeTitle}</h2></a>
                         <ul class="actions fit">
-                            <li><a id="planMeal" data-recipe-id="${recipe.recipeId}" data-recipe-title="${recipe.recipeTitle}" data-recipe-image="${recipe.recipeImage}" class="button primary fit icon solid fa-download">Plan Meal</a></li>
+                            <li style="padding: 10px;"><a id="planMeal" data-recipe-id="${recipe.recipeId}" data-recipe-title="${recipe.recipeTitle}" data-recipe-image="${recipe.recipeImage}" class="button primary fit icon solid fa-download">Plan Meal</a></li>
+                            <li style="padding: 10px;"><a id="removeMeal" data-recipe-id="${recipe.recipeId}" class="button fit icon solid fa-ban">Remove Meal</a></li>
                         </ul>
                     </div>`
         div.innerHTML = html;
@@ -45,7 +46,28 @@ function displayRecipes() {
             container.appendChild(div.children[0]);
         }
     }
+    if (customRecipes != null) {
+        for (let i = 0; i < customRecipes.length; i++) {
+            let div = document.createElement('div');
+            let recipe = customRecipes[i];
+            let redirect = `./guest-recipe.php?id=${recipe.id}`;
+            let html = `<div class="col-6 col-12-small">
+                            <a href="${redirect}"><span class="image fit"><img src="${recipe.image}" alt="" /></span></a>
+                            <a href="${redirect}"><span class="image fit"><h2>${recipe.recipeTitle}</h2></a>
+                            <ul class="actions fit">
+                                <li style="padding: 10px;"><a id="planMeal" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.recipeTitle}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Plan Meal</a></li>
+                                <li style="padding: 10px;"><a id="removeCustomMeal" data-recipe-id="${recipe.id}" class="button fit icon solid fa-ban">Remove Meal</a></li>
+                            </ul>
+                        </div>`
+            div.innerHTML = html;
+            // localStorage.setItem(recipe.id, JSON.stringify(recipe));
+            while (div.children.length > 0) {
+                container.appendChild(div.children[0]);
+            }
+        }
+    }
     var planMeal = document.querySelectorAll('#planMeal');
+    console.log(planMeal);
     var recipeId, recipeTitle, recipeImage;
     planMeal.forEach(button => {
         button.addEventListener('click', function(e) {
@@ -113,64 +135,65 @@ function displayRecipes() {
         }
         currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
         daysTag.innerHTML = liTag;
+        
+        var dateCircle = document.querySelectorAll(".days li");
+
+        prevNextIcon.forEach(icon => { // getting prev and next icons
+            icon.addEventListener("click", () => { // adding click event on both icons
+                // if clicked icon is previous icon then decrement current month by 1 else increment it by 1
+                currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
+
+                if(currMonth < 0 || currMonth > 11) { // if current month is less than 0 or greater than 11
+                    // creating a new date of current year & month and pass it as date value
+                    date = new Date(currYear, currMonth, new Date().getDate());
+                    currYear = date.getFullYear(); // updating current year with new date year
+                    currMonth = date.getMonth(); // updating current month with new date month
+                } else {
+                    date = new Date(); // pass the current date as date value
+                }
+                renderCalendar(); // calling renderCalendar function
+                dateCircle = document.querySelectorAll(".days li");
+
+                numToggles = [];
+                dateCircle.forEach(day => {
+                    day.addEventListener("click", function() {
+                        day.classList.toggle('selected');
+                        if (day.classList.contains('selected')) {
+                            numToggles.push(day.innerHTML);
+                        } else {
+                            numToggles.splice(numToggles.indexOf(day.innerHTML), 1);
+                        }
+                        if (numToggles.length > 0) {
+                            confirmMealsButton.style.display = "block";
+                        } else {
+                            confirmMealsButton.style.display = "none";
+                        }
+                    })
+                })
+            });
+        });
+
+        // date popup window
+        // const popup = document.querySelector(".date-popup");
+
+        dateCircle.forEach(day => {
+            day.addEventListener("click", function() {
+                day.classList.toggle('selected');
+                if (day.classList.contains('selected')) {
+                    numToggles.push(day.innerHTML);
+                } else {
+                    numToggles.splice(numToggles.indexOf(day.innerHTML), 1);
+                }
+                if (numToggles.length > 0) {
+                    confirmMealsButton.style.display = "block";
+                } else {
+                    confirmMealsButton.style.display = "none";
+                }
+            })
+        })
     }
     renderCalendar();
 
-    var dateCircle = document.querySelectorAll(".days li");
-
-    prevNextIcon.forEach(icon => { // getting prev and next icons
-        icon.addEventListener("click", () => { // adding click event on both icons
-            // if clicked icon is previous icon then decrement current month by 1 else increment it by 1
-            currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
-
-            if(currMonth < 0 || currMonth > 11) { // if current month is less than 0 or greater than 11
-                // creating a new date of current year & month and pass it as date value
-                date = new Date(currYear, currMonth, new Date().getDate());
-                currYear = date.getFullYear(); // updating current year with new date year
-                currMonth = date.getMonth(); // updating current month with new date month
-            } else {
-                date = new Date(); // pass the current date as date value
-            }
-            renderCalendar(); // calling renderCalendar function
-            dateCircle = document.querySelectorAll(".days li");
-
-            numToggles = [];
-            dateCircle.forEach(day => {
-                day.addEventListener("click", function() {
-                    day.classList.toggle('selected');
-                    if (day.classList.contains('selected')) {
-                        numToggles.push(day.innerHTML);
-                    } else {
-                        numToggles.splice(numToggles.indexOf(day.innerHTML), 1);
-                    }
-                    if (numToggles.length > 0) {
-                        confirmMealsButton.style.display = "block";
-                    } else {
-                        confirmMealsButton.style.display = "none";
-                    }
-                })
-            })
-        });
-    });
-
-    // date popup window
-    const popup = document.querySelector(".date-popup");
-
-    dateCircle.forEach(day => {
-        day.addEventListener("click", function() {
-            day.classList.toggle('selected');
-            if (day.classList.contains('selected')) {
-                numToggles.push(day.innerHTML);
-            } else {
-                numToggles.splice(numToggles.indexOf(day.innerHTML), 1);
-            }
-            if (numToggles.length > 0) {
-                confirmMealsButton.style.display = "block";
-            } else {
-                confirmMealsButton.style.display = "none";
-            }
-        })
-    })
 
     confirmMealsButton.addEventListener("click", function() {
         numToggles.forEach(d => {
@@ -196,7 +219,69 @@ function displayRecipes() {
             });
         })
     })
+
+    const deleteRecipeButton = document.querySelectorAll('#removeMeal');
+    deleteRecipeButton.forEach(btn => {
+        btn.addEventListener('click', function() {
+            let rId = btn.getAttribute("data-recipe-id");
+            var data = {'recipeId': rId};
+            $.ajax({
+                processData: false,
+                async: true,
+                'url': './includes/delete-recipe.php', 
+                'type': 'POST',
+                'dataType': 'json',
+                'data': JSON.stringify(data),
+                'success': function(res) {
+                    console.log("SUCCESS");
+                    console.log(res);
+                    if (res.deleted) {
+                        btn.innerHTML = "Recipe deleted!";
+                    } else {
+                        btn.innerHTML = "Error, try again";
+                    }
+                },
+                'error': function(res) {
+                    console.log("ERROR");
+                    console.log(res);
+                    btn.innerHTML = "Error, try again";
+                }
+            });
+        })
+    })
+
+    const deleteCustomRecipeButton = document.querySelectorAll('#removeCustomMeal');
+
+    deleteCustomRecipeButton.forEach(btn => {
+        btn.addEventListener('click', function() {
+            let rId = btn.getAttribute("data-recipe-id");
+            var data = {'recipeId': rId};
+            $.ajax({
+                processData: false,
+                async: true,
+                'url': './includes/delete-custom-recipe.php', 
+                'type': 'POST',
+                'dataType': 'json',
+                'data': JSON.stringify(data),
+                'success': function(res) {
+                    console.log("SUCCESS");
+                    console.log(res);
+                    if (res.deleted) {
+                        btn.innerHTML = "Recipe deleted!";
+                    } else {
+                        btn.innerHTML = "Error, try again";
+                    }
+                },
+                'error': function(res) {
+                    console.log("ERROR");
+                    console.log(res);
+                    btn.innerHTML = "Error, try again";
+                }
+            });
+        })
+    })
 }
+
 function getCustomRecipes() {
     $.ajax({
         processData: false,

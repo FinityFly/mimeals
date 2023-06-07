@@ -83,7 +83,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<div class="recipe-list"></div>
 
 										<!-- RECIPE LIST -->
-										<a id="add-recipe" class="button primary fit slim icon solid fa-plus">Add recipe</a>
+										<a id="add-recipe" href="meal-recipes.php" class="button primary fit slim icon solid fa-plus">Add recipe</a>
 										
 									</div>
 									<!-- overlay to also exit popup -->

@@ -1,5 +1,6 @@
 import Recipe from './recipeObj.js';
 
+var Application = {'loading': false};
 const container = document.querySelector('#allResults');
 const searchResults = document.querySelector('#searchResults');
 const pageContainer = document.querySelector('.pagination');
@@ -10,9 +11,13 @@ let apiKey3 = '4621a74d2ad64a26adee0016e0be6c53';
 let apiKey4 ='cbcf41d0632a4583b2cbbe3c44a434ae';
 let apiKey5 = 'a8c6d5e81bd44739b69f8400661a6b38';
 let apiKey6 = '1fcc4a609e8643ab8595fc540fd2e6a9';
-apiKey = apiKey5;
+apiKey = apiKey;
+
 let numRecipesLoaded = 2;
-let pagesLoaded= 0;
+let initialNumRecipes = 8;
+let pagesLoaded = 0;
+
+const loader = document.getElementById("preloader");
 
 async function fetchResponse(query) {
     let response = await fetch(query);
@@ -61,63 +66,66 @@ async function getRecipes(args, page, numRecipes) {
 // generating a search from an input
 const searchMeal = document.querySelector('#search-meal');
 searchMeal.addEventListener("click", async function() {
+    loader.style.display = "block";
     const search = document.querySelector("#search").value;
     
-        let recipes = await searchRecipes(search);
-        
-        let reps;
-        if (recipes.length < 2) {
-            reps = recipes.length;
-        } else {
-            reps = 2;
-        }
+    let recipes = await searchRecipes(search);
+    
+    let reps;
+    if (recipes.length < 2) {
+        reps = recipes.length;
+    } else {
+        reps = 2;
+    }
 
 
-        for (let i = 0; i < reps; i++) {
-            let div = document.createElement('div');
-            let recipe = recipes[i];
-            let redirect = `./guest-recipe.php?id=${recipe.id}`;
-            let description = `${(recipe.cuisines.length > 0) ? recipe.cuisines[0] + ' / ' : ''}${recipe.readyInMinutes} minutes / ${recipe.servings} servings / ~$${recipe.pricePerServing}`;
-            let html = `<div class="col-6 col-12-small">
-                            <a href="${redirect}"><span class="image fit"><img src="${recipe.image}" alt="" /></span></a>
-                            <div class="row">
-                                <div class="col-9 col-12-small">
-                                    <a href="${redirect}"><span class="image fit"><h2>${recipe.title}</h2></a>
-                                </div>
-                                <div class="off-9-small col-12-small" style="text-align:right;white-space:nowrap;">
-                                    <a href="#" class="button primary small icon solid fa-heart">${recipe.aggregateLikes}</a>
-                                </div>
+    for (let i = 0; i < reps; i++) {
+        let div = document.createElement('div');
+        let recipe = recipes[i];
+        let redirect = `./guest-recipe.php?id=${recipe.id}`;
+        let description = `${(recipe.cuisines.length > 0) ? recipe.cuisines[0] + ' / ' : ''}${recipe.readyInMinutes} minutes / ${recipe.servings} servings / ~$${recipe.pricePerServing}`;
+        let html = `<div class="col-6 col-12-small">
+                        <a href="${redirect}"><span class="image fit"><img src="${recipe.image}" alt="" /></span></a>
+                        <div class="row">
+                            <div class="col-9 col-12-small">
+                                <a href="${redirect}"><span class="image fit"><h2>${recipe.title}</h2></a>
                             </div>
-                            <p>${description}</p>
-                            <ul class="actions fit">
-                                <li><a id="addRecipe" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.title}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Add Recipe</a></li>
-                                <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
-                            </ul>
-                        </div>`
-            div.innerHTML = html;
-            localStorage.setItem(recipe.id, JSON.stringify(recipe));
-            while (div.children.length > 0) {
-                searchResults.appendChild(div.children[0]);
-            }
+                            <div class="off-9-small col-12-small" style="text-align:right;white-space:nowrap;">
+                                <a href="#" class="button primary small icon solid fa-heart">${recipe.aggregateLikes}</a>
+                            </div>
+                        </div>
+                        <p>${description}</p>
+                        <ul class="actions fit" style="font-size: 12px">
+                            <li><a href="${redirect}" class="button primary fit icon solid fa-eye">View Recipe</a></li>
+                            <li><a id="addRecipe" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.title}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Add Recipe</a></li>
+                            <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
+                        </ul>
+                    </div>`
+        div.innerHTML = html;
+        localStorage.setItem(recipe.id, JSON.stringify(recipe));
+        while (div.children.length > 0) {
+            searchResults.appendChild(div.children[0]);
         }
-        const addRecipeButtons = document.querySelectorAll('#addRecipe');
-        addRecipeButtons.forEach(button => {
-            
-            let recipeId = button.getAttribute("data-recipe-id");
-            let recipeTitle = button.getAttribute("data-recipe-title");
-            let recipeImage = button.getAttribute("data-recipe-image");
-            console.log(recipeId);
-            button.addEventListener("click", function() {
-                addRecipe(recipeId, recipeTitle, recipeImage);
-            });
+    }
+    loader.style.display = "none";
+    const addRecipeButtons = document.querySelectorAll('#addRecipe');
+    addRecipeButtons.forEach(button => {
+        
+        let recipeId = button.getAttribute("data-recipe-id");
+        let recipeTitle = button.getAttribute("data-recipe-title");
+        let recipeImage = button.getAttribute("data-recipe-image");
+        console.log(recipeId);
+        button.addEventListener("click", function() {
+            addRecipe(recipeId, recipeTitle, recipeImage);
         });
-
+    });
     
 });
 
 
 // Update an HTML 'row' container to display recipe info
 async function loadRecipes(n, page = 0) {
+    loader.style.display = "block";
     let recipes = await getRecipes([], page, n);
     for (let i = 0; i < recipes.length; i++) {
         let div = document.createElement('div');
@@ -135,10 +143,10 @@ async function loadRecipes(n, page = 0) {
                             </div>
                         </div>
                         <p>${description}</p>
-                        <ul class="actions fit">
+                        <ul class="actions fit" style="font-size: 12px">
                             <li><a href="${redirect}" class="button primary fit icon solid fa-eye">View Recipe</a></li>
                             <li><a id="addRecipe" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.title}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Add Recipe</a></li>
-                            <li><a href="${recipe.sourceUrl}" class="button fit icon solid fa-search">Visit Website</a></li>
+                            <li><a href="${recipe.sourceUrl}" class="button icon solid fa-search">Visit Website</a></li>
                         </ul>
                     </div>`
         div.innerHTML = html;
@@ -151,6 +159,7 @@ async function loadRecipes(n, page = 0) {
 
 
     }
+    loader.style.display = "none";
     const addRecipeButtons = document.querySelectorAll('#addRecipe');
         addRecipeButtons.forEach(button => {
             
@@ -285,4 +294,4 @@ loadMoreButton.addEventListener("click", () => {
 // }
 
 // loadPages(0);   
-loadRecipes(numRecipesLoaded, 0);
+loadRecipes(initialNumRecipes, 0);

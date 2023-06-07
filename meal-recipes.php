@@ -203,7 +203,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										</div> 
 									</div>
 									<div class="confirm-meals">
-										<a style="display: none" class ='button primary icon solid fa-check'>Plan Meals</a>
+										<a href="meal-calendar.php" style="display: none" class ='button primary icon solid fa-check'>Plan Meals</a>
 									</div>
 								</div>
 								<!-- Overlay -->
