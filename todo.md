@@ -25,3 +25,8 @@ walker:
 - ingredients page / shopping list
 - sort optionS: breakfast/lunch/dinner
 -share button
+
+
+
+add the help page
+-make a new folder, copy paste the text and format from userguide 2.0 (SDD)
