@@ -39,7 +39,7 @@ if (isset($_POST['email-input'])) {
                 // Gonna need to change this URL later 
                 $url = "http://localhost/sdp/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
 
-                $expires = date("U") + 1800; // one hour
+                $expires = date("U") + 1800; // one hour reset expiry date
 
                 // delete previous password reset results for this email
                 $sql = "DELETE FROM pwdReset WHERE email='$uemail'";

@@ -93,8 +93,10 @@ const renderCalendar = () => {
     }
     currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
+
 }
 renderCalendar();
+clickDate();
 
 // Functionality to select previous and next month from calendar
 prevNextIcon.forEach(icon => { // getting prev and next icons
