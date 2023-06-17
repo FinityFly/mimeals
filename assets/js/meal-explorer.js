@@ -44,7 +44,7 @@ async function searchRecipes(pageOffset, numRecipesToLoad, query){
      * @param  {String} query  user's input for their recommended meal
    */
 
-    // page is the number of refreshes, so page*numRecipesLoaded is the 
+    // page is the number of refreshes, so page*numRecipesLoaded is the offset
     let searchQuery = `https://api.spoonacular.com/food/search?query=${query}&apiKey=${apiKey}&offset=${pageOffset*numRecipesToLoad}&number=${numRecipesToLoad}`;
     let data = await fetchResponse(searchQuery);
     console.log(data.searchResults[0].results);
@@ -58,7 +58,6 @@ async function searchRecipes(pageOffset, numRecipesToLoad, query){
 
 }
 
-// get a recipe's data
 async function getRecipeData(id) {
     /**
      * retrieves rthe recipe data of a givem recipe

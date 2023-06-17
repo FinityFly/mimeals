@@ -30,6 +30,8 @@
 								<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 							</ul>
 						</header>
+
+						<!-- User enters email to reset password -->
 						<div class="login-form">
 							<form action="includes/reset-request.php" method="POST">
 								<p>UH OH...</p>
