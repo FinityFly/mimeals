@@ -43,16 +43,46 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 									</ul>
 								</header>
-							<!-- Today's stuff -->
+
+							<!-- Future Meals (TODO)-->
+							
+							
+							<!-- <section>
+								<span class="image fit"><h1>Upcoming Planned Meals</h1>
+								<div class = 'row'>
+									
+									<div class="col-6 col-12-small">
+									
+										<div class="row">
+											<div class="col-12-small">
+												<span class="image fit"><h2>June 1, 2023</h2>
+											</div>
+											
+										</div>
+										<div class="col-3">
+											<span class="image fit"><h2>Bratwurst</h2>
+											<a href="${redirect}"><span class="image"><img src="images/bratwurst.png" alt="" /></span></a>
+											
+										</div>
+										
+										<ul class="actions fit" style="font-size: 12px">
+											<li><a href="${redirect}" class="button primary fit icon solid fa-eye">View Recipe</a></li>
+											<li><a id="addRecipe" data-recipe-id="${recipe.id}" data-recipe-title="${recipe.title}" data-recipe-image="${recipe.image}" class="button primary fit icon solid fa-download">Add Recipe</a></li>
+											<li><a href="${recipe.sourceUrl}" class="button icon solid fa-search">Visit Website</a></li>
+										</ul>
+									</div>
+
+								</div>
+									
+							</section> -->
+							
 
 							<section>
-							<!-- show todays meals, else go to the other -->
 								<header class="main">
 									<h1>Meal Calendar</h1>
 								</header>
 
 							<!-- Calendar Part -->
-
 								<div class="calendar-wrapper">
 									<div class="calendar-header">
 										<h1 class="current-date"></h1>
@@ -74,7 +104,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<ul class="days"></ul>
 									</div>
 
-										<!-- Meal Plan Popup (Appears after Clicking a Date) -->
+									<!-- Meal Plan Popup (Appears after Clicking a Date) -->
 									<div class="date-popup">
 										<a id="close" class="button small">Back</a>
 										<h1 id="datestring"><h1>
@@ -115,7 +145,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<li><a href="meal-explorer.php">Explorer</a></li>
 										<li><a href="meal-recipes.php">Recipes</a></li>
 										<li><a href="includes/logout.php">Log out</a></li>
-										
 									</ul>
 								</nav>
 

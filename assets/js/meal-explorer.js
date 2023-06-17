@@ -3,33 +3,53 @@ import Recipe from './recipeObj.js';
 var Application = {'loading': false};
 const container = document.querySelector('#allResults');
 const searchResults = document.querySelector('#searchResults');
-const pageContainer = document.querySelector('.pagination');
+// const pageContainer = document.querySelector('.pagination');
 
-let apiKey = "dc09bd6aec87426f9b4a4c30ddaf204f"; // put into dotenv later
+
+// several API keys from several emails because there is a daily limit to API calls
+let apiKey = "dc09bd6aec87426f9b4a4c30ddaf204f"; 
 let apiKey2 = "3f043de69de544e6b333d34d97e988c7";
 let apiKey3 = '4621a74d2ad64a26adee0016e0be6c53';
 let apiKey4 ='cbcf41d0632a4583b2cbbe3c44a434ae';
 let apiKey5 = 'a8c6d5e81bd44739b69f8400661a6b38';
 let apiKey6 = '1fcc4a609e8643ab8595fc540fd2e6a9';
-apiKey = apiKey2;
+apiKey = apiKey ;
 
-let numRecipesLoaded = 4, numRecipesLoaded_s = 4;
-let initialNumRecipes = 4;
+// set the default number of recipes loaded for the search (numRecipesLoaded) and scroll (numRecipesLoaded_search)
+
+// number of recipes to load each time
+let numRecipesLoaded = 2, numRecipesLoaded_search = 4;
+// initial number of recipes for scroll menu
+let initialNumRecipes = 1;
 let pagesLoaded = 0, pagesLoaded_s = 0;
 
 const loader = document.getElementById("preloader");
 const loadMoreSearchButton = document.querySelector(`#loadMoreSearch`);
 
 async function fetchResponse(query) {
+    /**
+     * retrieves data from a URL and returns it in JSON format
+     * @param  {String} query  a URL to get data from
+   */
     let response = await fetch(query);
     let data = await response.json();
     return data;
 }
 
-async function searchRecipes(page, numRecipes, query){
-    let searchQuery = `https://api.spoonacular.com/food/search?query=${query}&apiKey=${apiKey}&offset=${page*numRecipesLoaded}&number=${numRecipes}`;
+async function searchRecipes(pageOffset, numRecipesToLoad, query){
+    /**
+     * Retrieves an inputted # recipes from the Spoonacular recipe database taht match a user's input query, then returns a list of recipe objects 
+     * @param  {int} pageOffset  multiplied by the number of recipes loaded each time, this gives the recipe offset
+     * @param  {int} numRecipes  number of recipes to load
+     * @param  {String} query  user's input for their recommended meal
+   */
+
+    // page is the number of refreshes, so page*numRecipesLoaded is the 
+    let searchQuery = `https://api.spoonacular.com/food/search?query=${query}&apiKey=${apiKey}&offset=${pageOffset*numRecipesToLoad}&number=${numRecipesToLoad}`;
     let data = await fetchResponse(searchQuery);
-    // console.log(data.searchResults[0].results);
+    console.log(data.searchResults[0].results);
+
+    // put all fetched recipes in a list
     let recipes = [];
     for (let i = 0; i < data.searchResults[0].results.length; i++) {
         recipes.push(await getRecipeData(data.searchResults[0].results[i].id));
@@ -38,8 +58,12 @@ async function searchRecipes(page, numRecipes, query){
 
 }
 
-// get the recipe 
+// get a recipe's data
 async function getRecipeData(id) {
+    /**
+     * retrieves rthe recipe data of a givem recipe
+     * @param  {int} id the Spoonacular identifcation number, unique to every recipe 
+   */
     let query = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
     let data = await fetchResponse(query);
     let recipe = new Recipe(data.aggregateLikes, data.analyzedInstructions, data.cheap, data.cookingMinutes, data.creditsText, data.cuisines, data.dairyFree, data.diets, data.dishTypes, data.extendedIngredients, data.gaps, data.glutenFree, data.healthScore, data.id, data.image, data.instructions, data.lowFodmap, data.occasions, data.preparationMinutes, data.pricePerServing, data.readyInMinutes, data.servings, data.sourceName, data.sourceUrl, data.spoonacularSourceUrl, data.summary, data.title, data.vegan, data.vegetarian, data.veryHealthy, data.veryPopular, data.weightWatcherSmartPoints);
@@ -47,6 +71,12 @@ async function getRecipeData(id) {
 }
 
 async function getRecipes(args, page, numRecipes) {
+    /**
+     * retrieves recipes from the Spoonacular recipe database, given a user's input query
+     * @param  {list} args  for sorting recipes by diet options (not yet  in use)
+     * @param  {int} page  multiplied by the number of recipes loaded each time, this gives the offset
+     * @param  {String} numRecipes  number of recipes to load
+   */
     let recipes = [];
     if (args.length == 0) {
         // sort by popularity
@@ -56,7 +86,7 @@ async function getRecipes(args, page, numRecipes) {
             recipes.push(await getRecipeData(data.results[i].id));
         }
     } else {
-        // do later
+        // do later, when we implement sorting
         let query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=popularity&offset=${page*numRecipesLoaded}&number=${numRecipes}`;
         let data = await fetchResponse(query);
     }
@@ -64,28 +94,48 @@ async function getRecipes(args, page, numRecipes) {
 }
 
 
-// generating a search from an input
+// Displaying Searched Recipes
 const searchMeal = document.querySelector('#search-meal');
 var searchValue, prevSearchValue;
 searchMeal.addEventListener("click", async function() {
 
     loader.style.display = "block";
     searchValue = document.querySelector("#search").value;
+
+    // there's probably a better way of writing the next 15ish lines
+
     if (prevSearchValue != searchValue && prevSearchValue != null) {
-        searchResults.replaceChildren;
-        numRecipesLoaded_s = 4;
+        // searchResults.replaceChildren;
+        while (searchResults.firstChild) {
+            searchResults.removeChild(searchResults.lastChild);
+        }
+        console.log('more!');  
+        numRecipesLoaded_search = 4;
         pagesLoaded_s = 0;
     }
-    await loadSearchedRecipes(numRecipesLoaded_s, pagesLoaded_s, searchValue);
-    loadMoreSearchButton.style.display = 'absolute';
+    if (prevSearchValue == searchValue && prevSearchValue != null) {
+        while (searchResults.firstChild) {
+            searchResults.removeChild(searchResults.lastChild);
+        }
+        console.log('redo!');  
+        numRecipesLoaded_search = 4;
+        pagesLoaded_s = 0;
+    }
+    
+
+    // Display the recipes
+    await loadSearchedRecipes(numRecipesLoaded_search, pagesLoaded_s, searchValue);
+    loadMoreSearchButton.style.display = 'block';
     loader.style.display = "none";
+
+    // for each recipe add the 'add recipe' buttons
     const addRecipeButtons = document.querySelectorAll('#addRecipe');
     addRecipeButtons.forEach(button => {
-        
+        // onclick, get the recipe data and add it to the saved recipes
         let recipeId = button.getAttribute("data-recipe-id");
         let recipeTitle = button.getAttribute("data-recipe-title");
         let recipeImage = button.getAttribute("data-recipe-image");
-        console.log(recipeId);
+        // console.log(recipeId);
         button.addEventListener("click", function() {
             addRecipe(recipeId, recipeTitle, recipeImage);
         });
@@ -94,8 +144,14 @@ searchMeal.addEventListener("click", async function() {
 });
 
 
-// Update an HTML 'row' container to display recipe info
+
 async function loadRecipes(n, page = 0) {
+    /**
+     * Display recipe info for the scrolling menu
+     * @param  {int} page  
+     * @param  {int} numRecipes  number of recipes to load
+     * @param  {String} query  user's input for their recommended meal
+   */
     loader.style.display = "block";
     let recipes = await getRecipes([], page, n);
     for (let i = 0; i < recipes.length; i++) {
@@ -126,9 +182,6 @@ async function loadRecipes(n, page = 0) {
             container.appendChild(div.children[0]);
         }
         
-        
-
-
 
     }
     loader.style.display = "none";
@@ -138,18 +191,28 @@ async function loadRecipes(n, page = 0) {
             let recipeId = button.getAttribute("data-recipe-id");
             let recipeTitle = button.getAttribute("data-recipe-title");
             let recipeImage = button.getAttribute("data-recipe-image");
-            console.log(recipeId);
+            // console.log(recipeId);
             button.addEventListener("click", function() {
                 addRecipe(recipeId, recipeTitle, recipeImage);
             });
         });
+    loadMorePopularButton.innerHTML = "Load More Recipes";
+    loader.style.display = "none";
 }
 
 
-async function loadSearchedRecipes(n, page=0, s) {
-    let recipes = await searchRecipes(page, n, s);
-
-    for (let i = 0; i < recipes; i++) {
+async function loadSearchedRecipes(numRecipesToLoad, pageOffset=0, searchQuery) {
+    /**
+     * Display recipe info for the search recipe menu
+     * @param  {int} numRecipesToLoad   determines number of recipes to display
+     * @param  {int} pageOffset  determines recipe offset
+     * @param  {String} searchQuery  user's input for their recommended meal
+   */
+    loader.style.display = "block";
+    // console.log(numRecipesToLoad,pageOffset);
+    let recipes = await searchRecipes(pageOffset, numRecipesToLoad, searchQuery);
+    // loadSearchedRecipes(numRecipesLoaded_search, pagesLoaded_s+numRecipesLoaded_search, prevSearchValue);
+    for (let i = 0; i < recipes.length; i++) {
         let div = document.createElement('div');
         let recipe = recipes[i];
         let redirect = `./guest-recipe.php?id=${recipe.id}`;
@@ -176,21 +239,22 @@ async function loadSearchedRecipes(n, page=0, s) {
         while (div.children.length > 0) {
             searchResults.appendChild(div.children[0]);
         }
-    }
+    } 
+    // Update 'load more' button
+    loadMoreSearchButton.innerHTML = "Load More Recipes";
+    loader.style.display = "none";
 }
 
-// When any recipe's "add Recipe" buttons is clicked, 
-// pass the recipe's Id, Title, and Image to the addRecipe function, 
-// where it will be added to the user's saved meals database.
-
-
-
 function addRecipe(id, title, image) {
+    /**
+     * adds a recipe's data to the user's saved meals in the database
+     * @param  {String} id recipe's Spoonacular identification number
+     * @param  {String} title  recipe title
+     * @param  {String} image  a Recipe's image URL
+   */
+    
     var data = {'recipeId': id, 'recipeTitle': title, 'recipeImage': image};
     var recipeButton = document.querySelector(`[data-recipe-id="${id}"]`);
-    
-    // send the data to add-recipe.php, where the recipe will be added to
-    // the user's database of saved meals
     $.ajax({
         processData: false,
         async: true,
@@ -221,93 +285,51 @@ function addRecipe(id, title, image) {
 };
 
 loadMoreSearchButton.addEventListener("click", () => {
+    // loads more recipes for the 'searched' recipes
     loadMoreSearchButton.innerHTML = "Loading...";
-    loadSearchedRecipes(numRecipesLoaded_s, pagesLoaded_s+numRecipesLoaded_s, prevSearchValue);
-    pagesLoaded_s+=numRecipesLoaded_s;
-    loadMoreSearchButton.innerHTML = "Load More Recipes";
+
+    // display more recipes, given the number of recipes loaded, the offset, and the previous search query
+    loadSearchedRecipes(numRecipesLoaded_search, pagesLoaded_s+numRecipesLoaded_search, prevSearchValue);
+    pagesLoaded_s+=numRecipesLoaded_search;
+    
+    loader.style.display = "none";
+
+    // for each recipe add the 'add recipe' buttons
+    const addRecipeButtons = document.querySelectorAll('#addRecipe');
+    addRecipeButtons.forEach(button => {
+        // onclick, get the recipe data and add it to the saved recipes
+        let recipeId = button.getAttribute("data-recipe-id");
+        let recipeTitle = button.getAttribute("data-recipe-title");
+        let recipeImage = button.getAttribute("data-recipe-image");
+        // console.log(recipeId);
+        button.addEventListener("click", function() {
+            addRecipe(recipeId, recipeTitle, recipeImage);
+        });
+    });    
 })
 
 const loadMorePopularButton = document.querySelector(`#loadMorePopular`);
-loadMorePopularButton.addEventListener("click", () => {
+// loads more recipes for the popular recipes (the infinite scrolling one)
+    loadMorePopularButton.addEventListener("click", () => {
     loadMorePopularButton.innerHTML = "Loading...";
     loadRecipes(numRecipesLoaded, pagesLoaded+numRecipesLoaded);
+    
     pagesLoaded+=numRecipesLoaded;
-    loadMorePopularButton.innerHTML = "Load More Recipes";
+    loader.style.display = "none";
+    
+    // for each recipe add the 'add recipe' buttons
+    const addRecipeButtons = document.querySelectorAll('#addRecipe');
+    addRecipeButtons.forEach(button => {
+        // onclick, get the recipe data and add it to the saved recipes
+        let recipeId = button.getAttribute("data-recipe-id");
+        let recipeTitle = button.getAttribute("data-recipe-title");
+        let recipeImage = button.getAttribute("data-recipe-image");
+        // console.log(recipeId);
+        button.addEventListener("click", function() {
+            addRecipe(recipeId, recipeTitle, recipeImage);
+        });
+    });  
 })
 
-
-
-// // here, n is the beginning number. There will be 10 pages loaded at a time
-// function loadPages(n){
-    
-//     n = parseInt(n);
-
-    
-    
-//     let html = `<li><span class="button" id = prevPage>Prev</span></li>`
-//     div.innerHTML = html;
-//     pageContainer.appendChild(div.children[0]);
-
-//     for (let i = -2; i < 3; i++) {
-//         // html = `<li class="pagination page" id ='${3+n+i}'>${3+n+i}</li>`
-//         if (i==-2){
-//             html = `<li class="pagination page" id ='${3+n+i}'>${3+n+i}</li>`
-//             // html = `<li><a href="#" class="pagination page active" id ='${3+n+i}'>${3+n+i}</a></li>`
-//         }else{
-//             html = `<li class="pagination page" id ='${3+n+i}'>${3+n+i}</li>`
-//             // html = `<li><a href="#" class="pagination page" id ='${3+n+i}'>${3+n+i}</a></li>`
-//         }
-        
-        
-//         div.innerHTML = html;
-//         pageContainer.appendChild(div.children[0]);
-        
-//     }
-    
-//     let next = `<li><span class="button" id = nextPage>Next</span></li>`
-//     div.innerHTML = next;
-//     pageContainer.appendChild(div.children[0]);
-
-//     const prevPage = document.querySelector(`#prevPage`);
-//     prevPage.addEventListener("click", () => {
-//         if (n>0){
-//             clearPages()
-//             loadPages(n-1);
-//             loadRecipes(numRecipesLoaded+1, n-1);
-//         }
-//     })
-
-//     const pageButtons = document.querySelectorAll('.page');
-//     pageButtons.forEach(button => {
-//     button.addEventListener("click", function() {
-
-//         clearPages()
-//         loadPages(button.id-1);
-//         loadRecipes(numRecipesLoaded+1, button.id);
-//     });
-
-//     const nextPage = document.querySelector(`#nextPage`);
-//     nextPage.addEventListener("click", () => {
-//         clearPages()
-//         loadPages(n+1);
-//         loadRecipes(numRecipesLoaded, n+1);
-//     })
-//     console.log(div.children.length);
-
-// });
-
-    
-// }
-
-
-// function clearPages(){
-//     // https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
-//     while (pageContainer.firstChild) {
-//         pageContainer.removeChild(pageContainer.lastChild);
-//     }
-// }
-
-// loadPages(0);
-// loader.style.display = "block";
-loadRecipes(initialNumRecipes, 0);
-// loader.style.display = "none";
+loadRecipes(4, 0);
+                                                                        

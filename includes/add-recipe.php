@@ -1,4 +1,7 @@
 <?php
+
+// this file saves recipes to the database, under the current user's id
+
 session_start();
 include "db-conn.php";
 

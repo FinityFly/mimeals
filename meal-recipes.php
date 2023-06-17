@@ -68,20 +68,18 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 									<a id="close" class="button small">Back</a>
 									
 									<h1>Make a Custom Recipe<h1>
-									<!-- <img src = 'images/preloader.gif'> -->
 									<form>
 										<!-- Modal body -->
 										<div>
-											<!-- Recipe Identity -->
+											<!--  -->
 											<div class="recipe-form">
+												<!-- Recipe Identity -->
 												<div class="input-field">
 													<input type="text" placeholder="Recipe Title" id = 'recipeTitle' required="required">
 												</div>
 												<div class="input-field">
 													<textarea id="recipeDescription" placeholder="Enter your recipe description" id = 'recipeDescription' rows="6"></textarea>
 												</div>
-												<!-- <input type = 'file' id = 'recipePhoto' name = 'recipePhoto' accept = 'image/png, image/jpeg'>
-												<span class="image fit"><img id="imageOutput"/></span> -->
 
 												<!-- Recipe 'Times' -->
 												<div class="row">
@@ -136,6 +134,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 													<textarea id="recipeSteps" placeholder="Enter your recipe steps" rows="6" required ></textarea>
 												</div>
 												
+												<!-- Diet Checklist -->
 												<div class='row'>
 													<div class="col-6 col-12-small">
 														<input type="checkbox" id="dairyFree">
@@ -159,17 +158,15 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 													</div>
 												</div>
 												
+												<!-- Recipe photo -->
 												<h6>Upload recipe photo:</h6>
 												<input type = 'file' id = 'recipePhoto' accept = 'image/png, image/jpeg'>
 												<span class="image fit"><img id="imageOutput"/></span>
 
+												<!-- Submit button -->
 												<div class="login-button" style="text-align:center">
 													<input type="submit" id ='save-meal' class = 'button primary icon solid fa-check'>
 												</div>
-
-												<!-- <div class="box">
-													<p id="submit-response"></p>
-												</div> -->
 										
 											</div>
 										</div>
@@ -203,11 +200,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										</div> 
 									</div>
 									<div class="confirm-meals">
-										<a href="meal-calendar.php" style="display: none" class ='button primary icon solid fa-check'>Plan Meals</a>
+										<a href="meal-calendar.php" style="display: none" class ='button primary icon solid fa-check'>Plan Meal(s)</a>
 									</div>
 								</div>
-								<!-- Overlay -->
+
+								<!-- Background Blur Overlay when opening Popup-->
 								<div class = 'overlay' id="overlay"></div> 
+
 						</div>
 					</div>
 

@@ -5,6 +5,9 @@ let apiRecipes = [];
 let customRecipes = [];
 
 function getAPIRecipes() {
+    /**
+     * Gets the user's saved Spoonacular recipes
+   */
     $.ajax({
         processData: false,
         async: true,
@@ -26,8 +29,12 @@ function getAPIRecipes() {
 var date, currYear, currMonth;
 
 function displayRecipes() {
+    /**
+     * Display the user's saved recipes
+   */
     const container = document.querySelector('#recipes');
-    // let allRecipes = apiRecipes.concat(customRecipes);
+
+    // display any of the user's saved Spoonacular recipes
     if (apiRecipes != null) {
         for (let i = 0; i < apiRecipes.length; i++) {
             let div = document.createElement('div');
@@ -48,6 +55,7 @@ function displayRecipes() {
             }
         }
     }
+    // display any of the user's custom-made recipes
     if (customRecipes != null) {
         for (let i = 0; i < customRecipes.length; i++) {
             let div = document.createElement('div');
@@ -68,6 +76,8 @@ function displayRecipes() {
             }
         }
     }
+
+    // For each meal, add a button which will let the user add the meal to their calendar
     var planMeal = document.querySelectorAll('#planMeal');
     console.log(planMeal);
     var recipeId, recipeTitle, recipeImage;
@@ -98,41 +108,40 @@ function displayRecipes() {
             getPlanned(recipeId);
         })
     });
+
+    // Calendar
     const daysTag = document.querySelector(".days"),
     currentDate = document.querySelector(".current-date"),
     prevNextIcon = document.querySelectorAll(".icons span");
 
-    console.log(daysTag);
-
-    // getting new date, current year and month
     date = new Date(),
     currYear = date.getFullYear(),
-    currMonth = date.getMonth();
+    currMonth = date.getMonth(); // getting new date, current year and month
 
-    // storing full name of all months in array
     const months = ["January", "February", "March", "April", "May", "June", "July",
-                "August", "September", "October", "November", "December"];
+                "August", "September", "October", "November", "December"]; // storing full name of all months in array
 
     const renderCalendar = () => {
         let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), // getting first day of month
         lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(), // getting last date of month
         lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(), // getting last day of month
         lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
+        
+        // Create list of tags for each day of a month
         let liTag = "";
-
-        for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
+        // creating li of previous month last days
+        for (let i = firstDayofMonth; i > 0; i--) { 
             liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
-
         }
-
-        for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
+        // creating li of all days of current month
+        for (let i = 1; i <= lastDateofMonth; i++) { 
             // adding active class to li if the current day, month, and year matched
             let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                         && currYear === new Date().getFullYear() ? "active" : "";
             liTag += `<li class="${isToday}">${i}</li>`;
         }
-
-        for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
+        // creating li of next month first days
+        for (let i = lastDayofMonth; i < 6; i++) { 
             liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
         }
         currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
@@ -140,6 +149,7 @@ function displayRecipes() {
         
         var dateCircle = document.querySelectorAll(".days li");
 
+        // Functionality to select previous and next month from calendar
         prevNextIcon.forEach(icon => { // getting prev and next icons
             icon.addEventListener("click", () => { // adding click event on both icons
                 // if clicked icon is previous icon then decrement current month by 1 else increment it by 1
@@ -156,6 +166,7 @@ function displayRecipes() {
                 renderCalendar(); // calling renderCalendar function
                 dateCircle = document.querySelectorAll(".days li");
 
+                // highlighting selected dates to add to planned recipes
                 numToggles = [];
                 dateCircle.forEach(day => {
                     day.addEventListener("click", function() {
@@ -196,7 +207,7 @@ function displayRecipes() {
     }
     renderCalendar();
 
-
+    // Confirm button to update database with selected dates for a given planned recipe
     confirmMealsButton.addEventListener("click", function() {
         numToggles.forEach(d => {
             let timestamp = new Date(currYear, currMonth, parseInt(d));
@@ -222,6 +233,7 @@ function displayRecipes() {
         })
     })
 
+    // button to remove Spoonacular meal from user's saved recipes
     const deleteRecipeButton = document.querySelectorAll('#removeMeal');
     deleteRecipeButton.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -252,8 +264,8 @@ function displayRecipes() {
         })
     })
 
+    // button to remove user's custom meal from user's saved recipes
     const deleteCustomRecipeButton = document.querySelectorAll('#removeCustomMeal');
-
     deleteCustomRecipeButton.forEach(btn => {
         btn.addEventListener('click', function() {
             let rId = btn.getAttribute("data-recipe-id");
@@ -285,6 +297,9 @@ function displayRecipes() {
 }
 
 function getCustomRecipes() {
+    /**
+     * Gets the user's saved custom recipes
+   */
     $.ajax({
         processData: false,
         async: true,
@@ -358,7 +373,7 @@ function popupOff() {
 }
 
 
-// get image
+// get image input and display it
 const input = document.querySelector("#recipePhoto");
 const output = document.querySelector("#imageOutput");
 input.addEventListener("change", function() {
@@ -369,21 +384,23 @@ input.addEventListener("change", function() {
 });
 
 // Save Meal Button
-
 const saveMeal = document.querySelector('#save-meal');
 saveMeal.addEventListener("click", function() {
 
+    // Collect recipe data
+
+    // Recipe Title
     const recipeTitle = document.querySelector('#recipeTitle').value;
     if (recipeTitle == '') {
         return;
     }
-
+    // Recipe Description
     const recipeDescription = document.querySelector('#recipeDescription').value;
     if (recipeDescription == '') {
         recipeDescription = 'No description provided';
     }
 
-    // recipe stats 
+    // Recipe numerical statistics
     const prepTimeDays = parseInt(document.querySelector('#prepTimeDays').value);
     const prepTimeHours = parseInt(document.querySelector('#prepTimeHours').value);
     const prepTimeMins = parseInt(document.querySelector('#prepTimeMins').value);
@@ -428,22 +445,22 @@ saveMeal.addEventListener("click", function() {
         return;
     }
 
-    // image
+    // Recipe image
     let imageFiles = document.querySelector("#recipePhoto").files;
     const imageURL = URL.createObjectURL(imageFiles[0]);
     
-    
+    // Recipe ingredients
     const ingredients = document.querySelector('#ingredients').value;
     if (recipeTitle == '') {
         return;
     }
-
+    // Recipe steps
     const instructions = document.querySelector('#recipeSteps').value;
     if (instructions == '') {
         return;
     }
 
-    // checkboxes
+    // Diet checkboxes
     const dairyFree = (document.querySelector('#dairyFree').checked) ? '1' : '0';
     const glutenFree = (document.querySelector('#glutenFree').checked) ? '1' : '0';
     const vegan = (document.querySelector('#vegan').checked) ? '1' : '0';
@@ -453,6 +470,7 @@ saveMeal.addEventListener("click", function() {
     var data = {'recipeTitle': recipeTitle, 'recipeDescription': recipeDescription, 'prepTime': prepTime, 'cookTime': cookTime, 'totalTime': totalTime, 'image': imageURL, 'numServings': numServings, 'priceServing': priceServing, 'ingredients': ingredients, 'instructions': instructions, 'dairyFree': dairyFree, 'glutenFree': glutenFree, 'vegan': vegan, 'vegetarian': vegetarian, 'lowFODMAP': lowFODMAP};
     console.log('here is the forms recorded data:', data);
 
+    // send the data to php file, where it will be uploaded to the database
     $.ajax({
         processData: false,
         async: true,
@@ -499,6 +517,10 @@ saveMeal.addEventListener("click", function() {
 });
 
 function getPlanned(recipeId) {
+    /**
+     * Display recipe info for the scrolling menu
+     * @param  {int} recipeId the Spoonacular identifcation number, unique to every recipe   
+   */
     let data = {'recipeId': recipeId};
     $.ajax({
         processData: false,

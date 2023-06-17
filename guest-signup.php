@@ -58,6 +58,9 @@
 								<p class="message">
 									Already registered? <a href="guest-login.php">login to your account</a>
 								</p>
+								<p class="message">
+									Forgot your password? <a href="reset-password.php">reset password</a>
+								</p>
 							</form>
 						</div>
 

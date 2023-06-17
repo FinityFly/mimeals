@@ -1,3 +1,23 @@
+<!-- this page is for the user guide, outlined in the SDP SoftwareDesignDoc -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- todo -->
+
+<?php
+session_start();
+?>
+
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -11,8 +31,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-
-		<script type="text/javascript">	</script>
 	</head>
 	<body class="is-preload">
 
@@ -21,11 +39,14 @@
 
 				<!-- Main -->
 					<div id="main">
+
+						<div id="preloader"></div>
+
 						<div class="inner">
 
 							<!-- Header -->
 								<header id="header">
-								<p><b><a href="index.php" class="logo">MiMeals</a></b> | <u>Explorer</u></p>
+								<p><b><a href="dashboard.php" class="logo">MiMeals</a></b> | <u>Explorer</u></p>
 									<ul class="icons">
 										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
@@ -36,7 +57,7 @@
 								</header>
 
 							<!-- Content -->
-								<section>
+							<section>
 									<header class="main">
 										<h1>Meal Explorer</h1>
 									</header>
@@ -46,27 +67,17 @@
 									<!-- Content -->
 										<div>
 											<p>Introducing our recipe explorer - the ultimate tool for culinary exploration. With just a simple scroll, you can discover a vast array of recipes from every corner of the world, each one guaranteed to excite your taste buds and inspire your creativity in the kitchen. From the bold flavors of Latin American cuisine to the aromatic spices of Indian dishes, our recipe explorer allows you to take a global journey from the comfort of your own home.</p>
-											<p>Our platform is user-friendly, allowing you to easily filter and search for recipes based on dietary restrictions, cooking time, and ingredients. You can also save your favorite recipes for later, and share them with friends and family on social media. Plus, with new recipes added regularly, there's always something new and exciting to discover.</p>
-											<p>Whether you're a seasoned foodie or a beginner cook, our recipe explorer is the perfect tool for expanding your culinary horizons and discovering new and exciting dishes. So why not take a journey around the world with us and let your taste buds be your guide? Start exploring today and get ready to experience a world of flavors like never before.</p>
 										</div>
+										<hr>
+										
 
-										<div class="row">
 
-											
-										</div>
+										
 
 									<!-- Pagination -->
 									<div class="container">
 										<ul class="pagination">
-											<li><span class="button disabled">Prev</span></li>
-											<li><a href="#" class="page active">1</a></li>
-											<li><a href="#" class="page">2</a></li>
-											<li><a href="#" class="page">3</a></li>
-											<li><span>&hellip;</span></li>
-											<li><a href="#" class="page">8</a></li>
-											<li><a href="#" class="page">9</a></li>
-											<li><a href="#" class="page">10</a></li>
-											<li><a href="#" class="button">Next</a></li>
+											<!-- The page numbers are inserted here with Js -->
 										</ul>
 									</div>
 
@@ -92,44 +103,35 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="index.php">Homepage</a></li>
-										<li><a href="guest-explorer.php">Explore</a></li>
-										<!-- <li><a href="guest-showcase.php">Showcase Page (delete later)</a></li> -->
-										<li><a href="guest-login.php">Login</a></li>
-										<li><a href="guest-signup.php">Sign Up</a></li>
+                                    <?php
+                                        // ok this doesnt actually work since clicking logout does not actually remove the session id or email, i think
+
+                                        // when logged in and clicking, 
+
+                                        if (isset($_SESSION['id'])) {
+                                            echo 
+                                            '<li><a href="dashboard.php">Dashboard</a></li>
+                                            <li><a href="meal-calendar.php">Calendar</a></li>
+                                            <li><a href="meal-explorer.php">Explorer</a></li>
+                                            <li><a href="meal-recipes.php">Recipes</a></li>
+                                            <li><a href="includes/logout.php">Log out</a></li>';
+
+                                        }else{
+                                            echo 
+                                            '<li><a href="index.php">Homepage</a></li>
+                                            <li><a href="guest-login.php">Login</a></li>
+                                            <li><a href="guest-signup.php">Sign Up</a></li>';
+                                        }
+
+                                        ?>
 									</ul>
 								</nav>
-
-							<!-- Section -->
-								<!-- <section>
-									<header class="major">
-										<h2>Ante interdum</h2>
-									</header>
-									<div class="mini-posts">
-										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-									</div>
-									<ul class="actions">
-										<li><a href="#" class="button">More</a></li>
-									</ul>
-								</section> -->
 
 							<!-- Section -->
 								<section>
 									<header class="major">
 										<h2>Get in touch</h2>
 									</header>
-									<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
 									<ul class="contact">
 										<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
 										<li class="icon solid fa-phone">(000) 000-0000</li>
@@ -154,7 +156,8 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script type="module" src="assets/js/guest-explorer.js"></script>
+			<script type="module" src="assets/js/meal-explorer.js"></script>
 
 	</body>
 </html>
+

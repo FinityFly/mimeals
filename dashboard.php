@@ -57,9 +57,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 											<li><a href="meal-explorer.php" class="button big">Get Started</a></li>
 										</ul> -->
 									</div>
-									<!-- <span class="image object right">
-										<img src="images/gordon.jpeg" alt="" />
-									</span> -->
 								</section>
 								
 
@@ -129,13 +126,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<li><a href="meal-explorer.php">Explorer</a></li>
 										<li><a href="meal-recipes.php">Recipes</a></li>
 										<li><a href="includes/logout.php">Log out</a></li>
-										<!-- <li>
-											<span class="opener">Another Submenu</span>
-											<ul>
-												<li><a href="#">Lorem Dolor</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-											</ul>
-										</li> -->
 									</ul>
 								</nav>
 

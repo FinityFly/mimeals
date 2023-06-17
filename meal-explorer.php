@@ -64,18 +64,18 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 											<div class="login-button" style="text-align:center">
 												<input type="submit" id ='search-meal' class = 'button primary icon solid fa-search'>
 											</div>
-
-
 										</div>
 										
+										<!-- Search Results -->
 										<div class = 'row' id = 'searchResults'></div>
+
 										<div class="login-button" style="text-align:center">
 											<a class="button primary icon solid fa-arrow-down" id = 'loadMoreSearch' style="display: none">Load More Recipes</a>
 										</div>
 
 										<hr>
 
-										<h3>Popular Recipes</h3>
+										<h2>Popular Recipes</h2>
 										<!-- recommended all results -->
 										<div class="row" id = 'allResults'></div>
 
@@ -83,9 +83,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 											<a class="button primary icon solid fa-arrow-down" id = 'loadMorePopular'>Load More Recipes</a>
 										</div>
 
-
-										
-
+									<!-- currently discontinued functionality-->
 									<!-- Pagination -->
 									<div class="container">
 										<ul class="pagination">

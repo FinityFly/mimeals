@@ -73,21 +73,27 @@
 								</section>
 
 								<hr>
-								
-
+							
+								<!-- this footer only exists here... add everywhere later -->
+							<footer id="footer">
+								<p class="copyright">&copy; MiMeals. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+							</footer>
 						</div>
+						
 					</div>
 
 				<!-- Sidebar -->
 					<div id="sidebar">
 						<div class="inner">
 
+							<!-- remove the search bar here -->
+
 							<!-- Search -->
-								<section id="search" class="alt">
+								<!-- <section id="search" class="alt">
 									<form method="post" action="#">
 										<input type="text" name="query" id="query" placeholder="Search" />
 									</form>
-								</section>
+								</section> -->
 
 							<!-- Menu -->
 								<nav id="menu">
