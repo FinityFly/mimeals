@@ -2,16 +2,16 @@
 
 Mimeals is a meal planning website to help make deciding to eat a simpler task.
 
-#Features:
+# Features:
 The website, called MiMeals, includes several primary features: an 'explorer page', which recommends meals to try out, a personalized 'recipe book', which contains any saved or custom-made recipes, and a meal calendar, which shows any meals that you have planned for future dates. Users can sign up for a Mimeals account to save meals to their personalized recipe book, or plan their own meals on the meal calendar.
 
-#Known Bugs:
+# Known Bugs:
 currently none
 
-#Support:
+# Support:
 Please contact mimeals23@gmail.com for any inquiries.
 
-#Sources:
+# Sources:
 [1] F. &amp; W. Editors, “Moqueca (Brazilian seafood stew),” Food &amp; Wine, https://www.foodandwine.com/recipes/moqueca-brazilian-seafood-stew (accessed May. 19, 2023). 
 
 [2] F. &amp; W. Editors, “Moqueca (Brazilian seafood stew),” Food &amp; Wine, https://www.foodandwine.com/recipes/moqueca-brazilian-seafood-stew (accessed May 19, 2023). 
