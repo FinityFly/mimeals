@@ -32,6 +32,8 @@
 						</header>
 
 						<?php
+
+							// get queries from url
 							$selector = $_GET["selector"];
 							$validator = $_GET["validator"];
 
@@ -42,6 +44,8 @@
 								</div>
 								<?php
 							} else {
+
+								// check if data is hexadecimal format
 								if (ctype_xdigit($selector) !== false && ctype_xdigit($validator) !== false) {
 									?>
 
@@ -60,11 +64,15 @@
 											<div class="login-button">
 												<button type="submit" id="login-button" href="#">Reset</button>
 											</div>
+
+											<!-- output error message -->
 											<?php if (isset($_GET['error'])) { ?>
 												<div class="box">
 													<p> <?php echo $_GET['error']; ?> </p>
 												</div>
 											<?php } ?>
+
+											<!-- output if password reset was a success -->
 											<?php 
 											if (isset($_GET['reset'])) {
 												if ($_GET['reset'] == "success") {
@@ -77,7 +85,7 @@
 											}
 											?>
 											<p class="message">
-												Try to login? <a href="login.php">login to your account</a>
+												Try to login? <a href="guest-login.php">login to your account</a>
 											</p>
 										</form>
 									</div>
@@ -108,34 +116,11 @@
 								</header>
 								<ul>
 									<li><a href="index.php">Homepage</a></li>
-									<li><a href="guest-explorer.php">Explore</a></li>
-									<li><a href="login.php">Login</a></li>
-									<li><a href="signup.php">Sign Up</a></li>
-									<!-- <li>
-										<span class="opener">Another Submenu</span>
-										<ul>
-											<li><a href="#">Lorem Dolor</a></li>
-											<li><a href="#">Ipsum Adipiscing</a></li>
-										</ul>
-									</li> -->
+									<li><a href="guest-login.php">Login</a></li>
+									<li><a href="guest-signup.php">Sign Up</a></li>
 								</ul>
 							</nav>
 
-						<!-- Section -->
-							<!-- <section>
-								<header class="major">
-									<h2>Ante interdum</h2>
-								</header>
-								<div class="mini-posts">
-									<article>
-										<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-										<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-									</article>
-								</div>
-								<ul class="actions">
-									<li><a href="#" class="button">More</a></li>
-								</ul>
-							</section> -->
 
 						<!-- Footer -->
 							<footer id="footer">
@@ -152,18 +137,6 @@
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			<script>
-				// $(document).ready(function(){
-					// $("#login-button").click(function(event) {
-					// 	event.preventDefault();
-					// 	event.stopPropagation();
-					// 	var username = $('#username-input').val();
-					// 	var password = $('#password-input').val();
-					// 	console.log(username);
-					// 	console.log(password);
-					// });
-				// });
-			</script>
 			<script src="assets/js/main.js"></script>
 
 	</body>

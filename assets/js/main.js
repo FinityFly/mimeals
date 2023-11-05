@@ -260,14 +260,23 @@ $(document).ready(function(){
 			});
 
 	// Custom.
-		var $button = $('test-button');
-		$button.on('click', function(event) {
+	
+	var velocity = 0.4;
 
-			$button.hide();
-			alert("IF YOU SEE THIS, THEN MY CODE WORKS");
+	// runs once
+	$('.bg').each(function() { 
+		var $element = $(this);
+		$(this).css('backgroundPosition', '50% ' + -($(window).scrollTop()) * velocity + 'px');
+	});
 
+	function update() {
+		var pos = $(window).scrollTop();
+		$('.bg').each(function() { 
+			var $element = $(this);
+			$(this).css('backgroundPosition', '50% ' + -pos * velocity + 'px');
 		});
-
-	console.log("TESTING");
+	};
+	
+	$(window).bind('scroll', update);
 
 });

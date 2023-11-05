@@ -29,7 +29,7 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="index.php" class="logo"><strong>MiMeals</strong></a>
+								<p><b><a href="dashboard.php" class="logo">MiMeals</a></b> </p>
 									<ul class="icons">
 										<!-- social media icons -->
 										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -39,67 +39,61 @@
 								</header>
 
 							<!-- Banner -->
-								<section id="banner">
-									<div class="content">
-										<header>
-											<h1>Welcome to Mimeals!</h1>
-											<p>Your meal planning website</p>
-										</header>
-										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life. With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
-										<ul class="actions">
-											<li><a href="signup.php" class="button big">Get Started</a></li>
-										</ul>
+								<section class="container relative">
+									<div class="bg im-1"></div>
+									<div class="bg-content">
+										<h1>Welcome to Mimeals!</h1>
+										<h2>Your meal planning website</h2>
+										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life.</p>
+										<a href="guest-signup.php" class="button primary big">Get Started</a>
+										<!-- <a href="#" class="button big">Learn More</a> -->
 									</div>
-									<span class="image object">
-										<img src="images/pic10.jpg" alt="" />
-									</span>
 								</section>
 
-							<!-- Section -->
-								<!-- <section>
-									<header class="major">
-										<h2>Erat lacinia</h2>
-									</header>
-									<div class="features">
-										<article>
-											<span class="icon fa-gem"></span>
-											<div class="content">
-												<h3>Portitor ullamcorper</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-									</div>
-								</section>
-							<!-- Section -->
 								<section>
-									<header class="major">
-										<h2>Ipsum sed dolor</h2>
-									</header>
-									<div class="posts">
-										<article>
-											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-											<h3>Interdum aenean</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
-										</article>
+									<article>
+										<span class="image fit right">
+											<img src="images/bratwurst.png" alt="" />
+										</span>
+										<h3>Why use MiMeals?</h3>
+										<p>With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
+										<!-- <a href="#" class="button">More</a> -->
+									</article>
+								</section>
+
+								<section class="container relative">
+									<div class="bg im-2"></div>
+									<div class="bg-content">
+										<h1>Discover Greatness</h1>
+										<h2>Your journey begins here</h2>
+										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life.</p>
+										<a href="guest-signup.php" class="button primary big">Get Started</a>
+										<!-- <a href="#" class="button big">Learn More</a> -->
 									</div>
 								</section>
 
+								<hr>
+							
+								<!-- this footer only exists here... add everywhere later -->
+							<footer id="footer">
+								<p class="copyright">&copy; MiMeals. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+							</footer>
 						</div>
+						
 					</div>
 
 				<!-- Sidebar -->
 					<div id="sidebar">
 						<div class="inner">
 
+							<!-- remove the search bar here -->
+
 							<!-- Search -->
-								<section id="search" class="alt">
+								<!-- <section id="search" class="alt">
 									<form method="post" action="#">
 										<input type="text" name="query" id="query" placeholder="Search" />
 									</form>
-								</section>
+								</section> -->
 
 							<!-- Menu -->
 								<nav id="menu">
@@ -107,40 +101,17 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="index.php">Homepage</a></li>
-										<li><a href="guest-explorer.php">Explore</a></li>
-										<li><a href="showcase.php">Showcase Page (delete later)</a></li>
-										<li><a href="login.php">Login</a></li>
-										<li><a href="signup.php">Sign Up</a></li>
-										<!-- <li>
-											<span class="opener">Another Submenu</span>
-											<ul>
-												<li><a href="#">Lorem Dolor</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-											</ul>
-										</li> -->
+									<li><a href="index.php">Homepage</a></li>
+									<!-- <li><a href="guest-explorer.php">Explore</a></li> -->
+									<!-- <li><a href="guest-showcase.php">Showcase Page (delete later)</a></li> -->
+									<li><a href="guest-login.php">Login</a></li>
+									<li><a href="guest-signup.php">Sign Up</a></li>
+										
 									</ul>
 								</nav>
-
-							<!-- Section -->
-								<!-- <section>
-									<header class="major">
-										<h2>Meet the team</h2>
-									</header>
-									<div class="mini-posts">
-										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-									</div>
-									<ul class="actions">
-										<li><a href="#" class="button">More</a></li>
-									</ul>
-								</section> -->
-
 							<!-- Footer -->
 								<footer id="footer">
-									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+									<p class="copyright">&copy; MiMeals. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 								</footer>
 
 						</div>

@@ -19,7 +19,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 <html>
 	<head>
+
+	<!-- make title bigger -->
 		<title>MiMeals | Dashboard</title>
+
 		<link rel="icon" type="image/x-icon" href="./images/mimealsfavicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -29,14 +32,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 		<!-- Wrapper -->
 			<div id="wrapper">
-
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-
 							<!-- Header -->
 								<header id="header">
-									<a href="dashboard.php" class="logo"><strong>MiMeals</strong></a>
+									<p><b><a href="dashboard.php" class="logo">MiMeals</a></b> | <u>Dashboard</u></p>
 									<ul class="icons">
 										<!-- social media icons -->
 										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -44,56 +45,62 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 									</ul>
 								</header>
-
 							<!-- Banner -->
 								<section id="banner">
-									<div class="content">
+									<div>
 										<header>
 											<h1>Welcome, <?php echo $_SESSION['name']; ?></h1>
-											<p>Your meal planning website</p>
+											<p>Time to make your life a bit easier!</p>
 										</header>
 										<p>Welcome to our meal planning app! We're excited to help you take the guesswork out of mealtime and simplify your life. With our app, you can easily plan your meals for the week, create shopping lists, and discover new recipes that fit your dietary needs and preferences. Whether you're a busy professional, a health-conscious individual, or simply looking to save time and money, we've got you covered. Our user-friendly interface and customizable options make it easy for you to create a meal plan that works for you and your family. Get ready to take control of your meals and start enjoying stress-free, delicious meals today!</p>
-										<ul class="actions">
-											<li><a href="signup.php" class="button big">Get Started</a></li>
-										</ul>
+										<!-- <ul class="actions">
+											<li><a href="meal-explorer.php" class="button big">Get Started</a></li>
+										</ul> -->
 									</div>
-									<span class="image object">
-										<img src="images/pic10.jpg" alt="" />
-									</span>
 								</section>
+								
 
-							<!-- Section -->
-								<!-- <section>
-									<header class="major">
-										<h2>Erat lacinia</h2>
-									</header>
-									<div class="features">
-										<article>
-											<span class="icon fa-gem"></span>
-											<div class="content">
-												<h3>Portitor ullamcorper</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-									</div>
-								</section>
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Ipsum sed dolor</h2>
-									</header>
-									<div class="posts">
-										<article>
-											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-											<h3>Interdum aenean</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
-										</article>
-									</div>
-								</section>
 
+
+
+								<!-- options -->
+								<section id="banner">
+								
+
+								</section>
+								<div class ='row'>
+								<div class="col-4 col-12-medium">
+										<header class="major">
+											<h2>Find a new meal</h2>
+										</header>
+										<div class="posts" style = 'margin: auto;'>
+											<article>
+												<a href="meal-explorer.php" class="image"><img src="images/search 2.jpg" alt="" /></a>
+											</article>
+										</div>
+									</div>
+									<div class="col-4 col-12-medium">
+										<header class="major">
+											<h2>View my saved meals</h2>
+										</header>
+										<div class="posts" style = 'margin: auto;'>
+											<article>
+												<a href="meal-recipes.php" class="image"><img src="images/bookmark.jpg" alt="" /></a>
+											</article>
+										</div>
+									</div>
+									<div class="col-4 col-12-medium">
+										<header class="major">
+											<h2>Plan a meal</h2>
+										</header>
+										<div class="posts" style = 'margin: auto;'>
+											<article>
+												<a href="meal-calendar.php" class="image"><img src="images/calendarPic.jpg" alt="" /></a>
+											</article>
+										</div>
+									</div>
+								</div>
+								
 						</div>
 					</div>
 
@@ -119,31 +126,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 										<li><a href="meal-explorer.php">Explorer</a></li>
 										<li><a href="meal-recipes.php">Recipes</a></li>
 										<li><a href="includes/logout.php">Log out</a></li>
-										<!-- <li>
-											<span class="opener">Another Submenu</span>
-											<ul>
-												<li><a href="#">Lorem Dolor</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-											</ul>
-										</li> -->
 									</ul>
 								</nav>
 
-							<!-- Section -->
-								<!-- <section>
-									<header class="major">
-										<h2>Ante interdum</h2>
-									</header>
-									<div class="mini-posts">
-										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-									</div>
-									<ul class="actions">
-										<li><a href="#" class="button">More</a></li>
-									</ul>
-								</section> -->
+							
 
 							<!-- Footer -->
 								<footer id="footer">
