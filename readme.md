@@ -1,6 +1,6 @@
-# Mimeals
+# MiMeals
 
-Mimeals is a meal planning website to help make deciding to eat a simpler task.
+Mimeals is a meal planning website that allows users to easily plan their meals for the week and organize a crucial aspect of everyday life. 
 
 # Features:
 The website, called MiMeals, includes several primary features: an 'explorer page', which recommends meals to try out, a personalized 'recipe book', which contains any saved or custom-made recipes, and a meal calendar, which shows any meals that you have planned for future dates. Users can sign up for a Mimeals account to save meals to their personalized recipe book, or plan their own meals on the meal calendar.
